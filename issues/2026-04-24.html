@@ -88,6 +88,36 @@
     .footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.8rem; text-align: center; }
     .sources { font-size: 0.85rem; color: var(--text-muted); line-height: 1.8; }
     .sources strong { color: var(--text); }
+    .audio-bar {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      padding: 12px 16px; margin-bottom: 28px; flex-wrap: wrap;
+    }
+    .audio-bar.hidden { display: none; }
+    .audio-play {
+      width: 40px; height: 40px; border-radius: 50%; border: none;
+      background: var(--accent); color: var(--bg); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0; transition: background 0.15s;
+    }
+    .audio-play:hover { background: var(--accent-hover); }
+    .audio-info { flex: 1; min-width: 0; }
+    .audio-label { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+    .audio-sub { font-size: 0.75rem; color: var(--text-muted); }
+    .audio-progress {
+      width: 100%; height: 4px; border-radius: 2px;
+      background: var(--border); margin-top: 8px; cursor: pointer;
+      appearance: none; -webkit-appearance: none; outline: none;
+    }
+    .audio-progress::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 12px; height: 12px;
+      border-radius: 50%; background: var(--accent); cursor: pointer;
+    }
+    .audio-progress::-webkit-slider-runnable-track {
+      height: 4px; border-radius: 2px;
+      background: linear-gradient(var(--accent) 0%, var(--accent) var(--progress, 0%), var(--border) var(--progress, 0%), var(--border) 100%);
+    }
+    .audio-time { font-size: 0.75rem; color: var(--text-muted); flex-shrink: 0; font-variant-numeric: tabular-nums; }
     @media (max-width: 640px) { .tool-grid { grid-template-columns: 1fr; } h1 { font-size: 1.5rem; } }
   </style>
 </head>
@@ -124,6 +154,18 @@
     <a class="back" href="../index.html">← 返回目录</a>
     <h1>GPT-5.5 与 DeepSeek V4 同日登场，大模型军备竞赛白热化</h1>
     <div class="meta">第 1 期 · 2026年4月24日 · Hacker News / TLDR / Import AI / Simon Willison / The Pragmatic Engineer 等 15 个全球精选源</div>
+
+    <!-- Audio Player -->
+    <div class="audio-bar hidden" id="audioBar">
+      <button class="audio-play" id="playBtn" title="播放/暂停">▶</button>
+      <div class="audio-info">
+        <div class="audio-label">🎧 收听本期音频版</div>
+        <div class="audio-sub" id="audioSub">由 NotebookLM 生成 · 双人对话播客风格</div>
+      </div>
+      <span class="audio-time" id="audioTime">0:00 / 0:00</span>
+      <input type="range" class="audio-progress" id="audioProgress" min="0" max="100" value="0">
+    </div>
+
     <img class="hero-img" src="https://devblogs.microsoft.com/typescript/wp-content/uploads/sites/11/2026/04/ts7-0-beta-4.png" alt="TypeScript 7.0 Beta">
     <p class="hero-caption">TypeScript 7.0 Beta — 编译器用 Go 重写，终于不用拿 TS 写 TS 再编译 TS 了</p>
 
@@ -141,18 +183,23 @@
     <h2 id="tech">📰 科技动态</h2>
     <h3>1、<a href="https://wheelfront.com/this-alberta-startup-sells-no-tech-tractors-for-half-price/">加拿大创业公司卖「去智能化」拖拉机，价格直接砍半</a></h3>
     <p>你没看错 —— 卖点是把拖拉机里的「智能」扒掉。没有联网锁机、没有订阅、没有遥测，价格砍半。HN 上两千多票，说明大家苦「万物皆可订阅」久矣。有时候，减法才是最好的产品策略。</p>
+    <img class="article-img" src="https://www.google.com/s2/favicons?domain=wheelfront.com&sz=128" alt="No-tech tractors" style="max-height:80px;object-fit:contain;">
 
     <h3>2、<a href="https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/eighth-generation-tpu-agentic-era">Google 发布第八代 TPU，专为「Agent 时代」设计</a></h3>
     <p>新 TPU 分训练向和推理向两档，明摆着为"一堆 Agent 同时跑"的场景优化。云厂商卷专用芯片，最后受益的是推理单价和我们写编排的人。</p>
+    <img class="article-img" src="https://www.google.com/s2/favicons?domain=blog.google&sz=128" alt="Google TPU" style="max-height:80px;object-fit:contain;">
 
     <h3>3、<a href="https://changelog.com/news/184">OpenAI 收购 Astral（Ruff 和 uv 的开发者）</a></h3>
     <p>开源圈瞬间分裂成"恭喜上岸"和"以后还独立吗"两拨。无论站哪边，Python 工具链格局都变天了。</p>
+    <img class="article-img" src="https://avatars.githubusercontent.com/u/115962839?s=400&v=4" alt="Astral" style="max-height:160px;object-fit:contain;background:#fff;padding:16px;border-radius:8px;">
 
     <h3>4、<a href="https://sherwood.news/tech/america-is-officially-spending-more-on-building-data-centers-than-offices/">美国数据中心建设支出首次超过写字楼</a></h3>
     <p>年化约 450 亿美元砸进数据中心，首次压过私人办公楼 —— 钢筋水泥都在给 GPU 让路。</p>
+    <img class="article-img" src="https://www.google.com/s2/favicons?domain=sherwood.news&sz=128" alt="Data Centers" style="max-height:80px;object-fit:contain;">
 
     <h3>5、<a href="https://tldr.tech/tech/2026-04-23">小鹏的飞行汽车不是 PPT：记者实探工厂</a></h3>
     <p>"车 + 可分离 eVTOL"一套近 30 万美元。不是 PPT 飞行汽车，是供应链和认证地狱中的真实进度条。</p>
+    <img class="article-img" src="https://www.google.com/s2/favicons?domain=tldr.tech&sz=128" alt="Xpeng" style="max-height:80px;object-fit:contain;">
 
     <hr class="divider">
 
@@ -160,18 +207,23 @@
     <h2 id="ai">🤖 AI 相关</h2>
     <h3>1、<a href="https://www.anthropic.com/engineering/april-23-postmortem">Claude Code 变差不是模型的锅 — Anthropic 自曝 harness 三连 Bug</a></h3>
     <p>idle 一小时后清思考链的逻辑写炸了，结果每轮对话都在清 —— 难怪你觉得它"失忆+复读"。给所有做 Agent 框架的人递了把刀：<strong>坑在编排层，不在 logits。</strong></p>
+    <img class="article-img" src="https://cdn.sanity.io/images/4zrzovbb/website/3f522820d47355885631ebda60e5d1f3e5c0fbc2-2000x1050.heif" alt="Claude Code 事后分析">
 
     <h3>2、<a href="https://ai.meta.com/blog/introducing-muse-spark-msl/">Meta 掏出 Muse Spark — Llama 开源大旗还摇吗？</a></h3>
     <p>多模态、会工具调用、还有"contemplation 模式"，健康场景拉满，编码却拉胯。像从「社区爱豆」转型「自家产品优先」。</p>
+    <img class="article-img" src="https://www.google.com/s2/favicons?domain=ai.meta.com&sz=128" alt="Meta Muse Spark" style="max-height:80px;object-fit:contain;">
 
     <h3>3、<a href="https://www.deeplearning.ai/the-batch/issue-349/">Andrew Ng：AI 原生团队的真正瓶颈不是代码</a></h3>
     <p>代码用 Agent 快了 10 倍以后，真正卡脖子的是产品经理、设计、法务、市场。全员被迫变「通才」。还怼了远程：要极致速度？大家还是得挤一间房。</p>
+    <img class="article-img" src="https://www.google.com/s2/favicons?domain=deeplearning.ai&sz=128" alt="The Batch" style="max-height:80px;object-fit:contain;">
 
     <h3>4、<a href="https://www.fiercebiotech.com/biotech/lilly-signs-275b-partnership-insilicos-ai-engine-pursuit-oral-therapeutics">礼来 × Insilico：最高 27.5 亿美元的 AI 制药豪赌</a></h3>
     <p>生成式 AI 不只画猫画狗，还要画分子式。不过临床照样是尸山血海，AI 加速 ≠ 批准率 magically up。</p>
+    <img class="article-img" src="https://www.google.com/s2/favicons?domain=fiercebiotech.com&sz=128" alt="Eli Lilly" style="max-height:80px;object-fit:contain;">
 
     <h3>5、<a href="https://arxiv.org/abs/2604.08826">华为 HiFloat4：国产芯片的「抠门美学」</a></h3>
     <p>显卡被卡脖子之后，算力不够、格式来凑。HiFloat4 精度损失（~1.0%）低于 MXFP4（~1.5%），大模型越大越香。</p>
+    <img class="article-img" src="https://www.google.com/s2/favicons?domain=arxiv.org&sz=128" alt="HiFloat4" style="max-height:80px;object-fit:contain;">
 
     <hr class="divider">
 
@@ -179,18 +231,23 @@
     <h2 id="articles">📝 文章推荐</h2>
     <h3>1、<a href="https://importai.substack.com/p/import-ai-454-automating-alignment">Import AI 454：自动化对齐研究、中国模型安全评测、HiFloat4</a></h3>
     <p>Jack Clark 开场灵魂拷问：股市到底哪天开始给「奇点」计价？论文味很冲，但读起来像悬疑片。</p>
+    <img class="article-img" src="https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/w_1200/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd6d17996-2bef-40a4-abe3-be72a0e8a227_258x258.png" alt="Import AI" style="max-height:200px;">
 
     <h3>2、<a href="https://www.ben-evans.com/benedictevans/2026/2/19/how-will-openai-compete-nkg2x">Benedict Evans：How will OpenAI compete?</a></h3>
     <p>技术不再是独家秘方，用户多但粘性像网红店排队 —— 队散了怎么办？读完想说：答案到底是并购、平台还是躺平？</p>
+    <img class="article-img" src="https://www.google.com/s2/favicons?domain=ben-evans.com&sz=128" alt="Benedict Evans" style="max-height:80px;object-fit:contain;">
 
     <h3>3、<a href="https://newsletter.pragmaticengineer.com/p/designing-data-intensive-applications">DDIA 作者 Martin Kleppmann 深度对谈</a></h3>
     <p>第二版刚出，Kafka 年代的亲历怎么塑造了整本书、LLM 写码之后形式化验证会不会从「太贵」变成「不得不」。</p>
+    <img class="article-img" src="https://substackcdn.com/image/youtube/w_728,c_limit/JiWgKRgdgpI" alt="DDIA" style="max-height:240px;">
 
     <h3>4、<a href="https://newsletter.pragmaticengineer.com/p/learnings-from-conducting-1000-interviews">亚马逊前 Principal 面了 1000 场的感悟</a></h3>
     <p>很多人挂的不是技术，而是「怎么把自己呈现出来」。面试官其实在预览「以后跟你共事是什么感觉」。</p>
+    <img class="article-img" src="https://www.google.com/s2/favicons?domain=pragmaticengineer.com&sz=128" alt="Pragmatic Engineer" style="max-height:80px;object-fit:contain;">
 
     <h3>5、<a href="https://blog.bytebytego.com/p/how-doordash-launches-a-new-country">DoorDash 如何一周内上线一个新国家</a></h3>
     <p>从 if/else 地狱拆成「薄编排器 + 工作流定义 + 可插拔 Step」，一周上线不是加班神话，而是架构复利。</p>
+    <img class="article-img" src="https://substackcdn.com/image/fetch/w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff3088605-85d2-4120-a8ce-ee9dbb3c1b10_3842x2854.png" alt="DoorDash 架构">
 
     <hr class="divider">
 
@@ -331,6 +388,42 @@
   </div>
 </div>
 <script>
+// Audio player
+(function() {
+  const date = '2026-04-24';
+  const mp3Path = `${date}.mp3`;
+  const bar = document.getElementById('audioBar');
+  const btn = document.getElementById('playBtn');
+  const progress = document.getElementById('audioProgress');
+  const timeEl = document.getElementById('audioTime');
+  const audio = new Audio();
+  const fmt = s => { const m = Math.floor(s/60); return m + ':' + String(Math.floor(s%60)).padStart(2,'0'); };
+
+  fetch(mp3Path, { method: 'HEAD' }).then(r => {
+    if (r.ok) {
+      bar.classList.remove('hidden');
+      audio.src = mp3Path;
+      audio.preload = 'metadata';
+    }
+  }).catch(() => {});
+
+  btn.addEventListener('click', () => {
+    if (audio.paused) { audio.play(); btn.textContent = '⏸'; }
+    else { audio.pause(); btn.textContent = '▶'; }
+  });
+  audio.addEventListener('timeupdate', () => {
+    if (!audio.duration) return;
+    const pct = (audio.currentTime / audio.duration) * 100;
+    progress.value = pct;
+    progress.style.setProperty('--progress', pct + '%');
+    timeEl.textContent = fmt(audio.currentTime) + ' / ' + fmt(audio.duration);
+  });
+  audio.addEventListener('ended', () => { btn.textContent = '▶'; });
+  progress.addEventListener('input', () => {
+    if (audio.duration) audio.currentTime = (progress.value / 100) * audio.duration;
+  });
+})();
+
 const tocLinks = document.querySelectorAll('.toc a');
 const sections = [...tocLinks].map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
 const observer = new IntersectionObserver(entries => {
