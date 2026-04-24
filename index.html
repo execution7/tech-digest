@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>每日科技简报</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: #30363d;
+      --text: #e6edf3;
+      --text-muted: #8b949e;
+      --accent: #58a6ff;
+      --accent-hover: #79c0ff;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin-bottom: 48px;
+    }
+    .issue-list {
+      list-style: none;
+    }
+    .issue-item {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--surface);
+      margin-bottom: 16px;
+      transition: border-color 0.2s;
+    }
+    .issue-item:hover {
+      border-color: var(--accent);
+    }
+    .issue-link {
+      display: block;
+      padding: 20px 24px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .issue-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .issue-meta {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    .footer {
+      margin-top: 64px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+    .footer a { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>每日科技简报</h1>
+    <p class="subtitle">全球 15 个精选信息源 · AI 自动整理 · 中文阅读</p>
+    <ul class="issue-list" id="issues"></ul>
+    <div class="footer">
+      Powered by <a href="https://cursor.com">Cursor AI</a> · 灵感来自<a href="https://www.ruanyifeng.com/blog/weekly/">阮一峰《科技爱好者周刊》</a>
+    </div>
+  </div>
+  <script>
+    fetch('issues/index.json')
+      .then(r => r.json())
+      .then(issues => {
+        const list = document.getElementById('issues');
+        issues.sort((a, b) => b.date.localeCompare(a.date));
+        issues.forEach(issue => {
+          const li = document.createElement('li');
+          li.className = 'issue-item';
+          li.innerHTML = `<a class="issue-link" href="issues/${issue.date}.html">
+            <div class="issue-title">${issue.title}</div>
+            <div class="issue-meta">${issue.date} · ${issue.highlights}</div>
+          </a>`;
+          list.appendChild(li);
+        });
+      })
+      .catch(() => {
+        document.getElementById('issues').innerHTML =
+          '<li style="color:var(--text-muted);padding:20px;">暂无期刊，敬请期待...</li>';
+      });
+  </script>
+</body>
+</html>
