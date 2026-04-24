@@ -1,7 +1,7 @@
 [
   {
     "date": "2026-04-24",
-    "title": "第 2 期：TypeScript 7.0 用 Go 重写编译器，AI 自动化编码真能干几周的活了",
+    "title": "第 1 期：TypeScript 7.0 用 Go 重写编译器，AI 自动化编码真能干几周的活了",
     "highlights": "TypeScript 7.0 编译器用 Go 重写 · MirrorCode 验证 AI 多周编码能力 · DHH 转向 Agent-first 工作流 · Vercel 安全事件 · AlphaGenome 解读暗基因",
     "image": "https://devblogs.microsoft.com/typescript/wp-content/uploads/sites/11/2026/04/ts7-0-beta-4.png"
   }
