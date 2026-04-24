@@ -6,70 +6,65 @@
   <title>每日科技简报</title>
   <style>
     :root {
-      --bg: #0d1117; --surface: #161b22; --surface2: #1c2129;
-      --border: #30363d; --text: #e6edf3; --text-muted: #8b949e;
-      --accent: #58a6ff; --accent-hover: #79c0ff;
+      --bg: #f5f6f8; --surface: #ffffff; --surface2: #f0f2f5;
+      --border: #e8ecf1; --text: #1a1d21; --text-secondary: #3d4550; --text-muted: #8c95a1;
+      --accent: #2d9f6f; --accent-light: #e8f5ef; --accent-hover: #248a5e;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.04);
+      --radius: 12px;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Helvetica, Arial, sans-serif;
       background: var(--bg); color: var(--text); line-height: 1.6; min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
     }
-    .container { max-width: 820px; margin: 0 auto; padding: 60px 24px; }
-    h1 { font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
-    .subtitle { color: var(--text-muted); font-size: 1rem; margin-bottom: 48px; }
+    .topbar {
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: 14px 32px; display: flex; align-items: center; gap: 12px;
+      position: sticky; top: 0; z-index: 100; box-shadow: var(--shadow-sm);
+    }
+    .topbar-brand {
+      font-size: 1.1rem; font-weight: 700; color: var(--accent);
+      text-decoration: none; display: flex; align-items: center; gap: 8px;
+    }
+    .topbar-brand svg { width: 28px; height: 28px; }
+    .container { max-width: 820px; margin: 0 auto; padding: 48px 24px; }
+    h1 { font-size: 1.8rem; font-weight: 800; margin-bottom: 8px; letter-spacing: -0.01em; }
+    .subtitle { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 40px; }
     .issue-list { list-style: none; }
-
     .issue-card {
-      border: 1px solid var(--border); border-radius: 10px;
-      background: var(--surface); margin-bottom: 16px;
-      overflow: hidden; transition: border-color 0.2s, transform 0.15s;
+      border: 1px solid var(--border); border-radius: var(--radius);
+      background: var(--surface); margin-bottom: 14px;
+      overflow: hidden; transition: all 0.2s; box-shadow: var(--shadow-sm);
     }
-    .issue-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-
-    .issue-link {
-      display: flex; align-items: stretch;
-      text-decoration: none; color: inherit;
-    }
-
+    .issue-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .issue-link { display: flex; align-items: stretch; text-decoration: none; color: inherit; }
     .issue-thumb {
       width: 160px; min-height: 110px; flex-shrink: 0;
       object-fit: cover; background: var(--surface2);
-      border-right: 1px solid var(--border);
     }
-
     .issue-body {
       flex: 1; padding: 16px 20px;
       display: flex; flex-direction: column; justify-content: center;
     }
-
     .issue-date {
       display: inline-block; font-size: 0.7rem; font-weight: 600;
-      color: var(--accent); background: rgba(88,166,255,0.1);
-      padding: 2px 8px; border-radius: 3px; margin-bottom: 8px;
-      width: fit-content;
+      color: var(--accent); background: var(--accent-light);
+      padding: 3px 10px; border-radius: 10px; margin-bottom: 8px; width: fit-content;
     }
-
-    .issue-title {
-      font-size: 1.05rem; font-weight: 700; color: var(--text);
-      margin-bottom: 6px; line-height: 1.4;
-    }
+    .issue-title { font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 6px; line-height: 1.4; }
     .issue-card:hover .issue-title { color: var(--accent); }
-
-    .issue-highlights {
-      font-size: 0.82rem; color: var(--text-muted); line-height: 1.5;
-    }
-
+    .issue-highlights { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
     .footer {
-      margin-top: 64px; padding-top: 24px;
-      border-top: 1px solid var(--border);
+      margin-top: 48px; padding: 20px;
+      background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border);
       color: var(--text-muted); font-size: 0.85rem; text-align: center;
     }
-    .footer a { color: var(--accent); text-decoration: none; }
-
+    .footer a { color: var(--accent); text-decoration: none; font-weight: 500; }
     @media (max-width: 640px) {
-      .container { padding: 32px 16px; }
-      h1 { font-size: 1.6rem; }
+      .container { padding: 24px 16px; }
+      h1 { font-size: 1.5rem; }
       .issue-thumb { width: 100px; min-height: 90px; }
       .issue-title { font-size: 0.95rem; }
       .issue-body { padding: 12px 14px; }
@@ -77,6 +72,12 @@
   </style>
 </head>
 <body>
+  <header class="topbar">
+    <a href="index.html" class="topbar-brand">
+      <svg viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="14" fill="#2d9f6f"/><path d="M8 14.5l3.5 3.5 8.5-8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Tech Digest
+    </a>
+  </header>
   <div class="container">
     <h1>每日科技简报</h1>
     <p class="subtitle">全球 15 个精选信息源 · AI 自动整理 · 中文阅读</p>
