@@ -162,26 +162,21 @@
 
   <h3>2、OpenAI 收购 Astral（Ruff 和 uv 的开发者）</h3>
   <p>开源圈瞬间分裂成"恭喜上岸"和"以后还独立吗"两拨。Astral 团队打造了 Python 生态中最受欢迎的格式化器 <a href="https://github.com/astral-sh/ruff">Ruff</a> 和包管理器 <a href="https://github.com/astral-sh/uv">uv</a>。OpenAI 盯上这些资产，说明 Python 开发者体验在 AI 时代成了战略级基础设施。</p>
-  <img class="article-img" src="https://www.google.com/s2/favicons?domain=changelog.com&sz=128" alt="Changelog">
 
   <h3>3、「Tokenmaxxing」成为企业奇葩新趋势</h3>
   <p>TLDR 和 Pragmatic Engineer 同时报道了一个离谱但真实的现象：公司把 token 使用量当作 KPI，鼓励员工疯狂刷 prompt 和并行 Agent 来爬内部排行榜。结果是浪费 token、产出脆弱的输出、以及月底吓人的基础设施账单。AI 版的"面向指标编程"。</p>
-  <img class="article-img" src="https://www.google.com/s2/favicons?domain=tldr.tech&sz=128" alt="Tokenmaxxing">
 
   <h3>4、MDN 重构：从 React 迁移到 Web Components</h3>
   <p>MDN 工程团队<a href="https://developer.mozilla.org/en-US/blog/mdn-front-end-deep-dive/">详细解释</a>了为什么要把 React 换成 Lit Web Components：避免 <code>dangerouslySetInnerHTML</code> 的安全边界问题，解耦 CSS 纠缠，瘦身构建流水线。一个罕见的"在百科全书级别规模上退役 CRA 架构"的内部报告。</p>
-  <img class="article-img" src="https://www.google.com/s2/favicons?domain=developer.mozilla.org&sz=128" alt="MDN">
 
   <h3>5、Railway 把前端从 Next.js 迁走了</h3>
   <p>Railway <a href="https://blog.railway.com/p/moving-railways-frontend-off-nextjs">记录了</a>把 200+ 路由从 Next.js 迁移到 Vite + TanStack Router 的过程：降低构建复杂度、改善路由类型安全、简化本质上是 SPA 的应用。又一个"Next.js 不适合所有场景"的真实案例。</p>
-  <img class="article-img" src="https://www.google.com/s2/favicons?domain=railway.com&sz=128" alt="Railway">
 
   <!-- ========== AI 相关 ========== -->
   <h2 id="ai">🤖 AI 相关</h2>
 
   <h3>1、Claude Code 变差不是模型的锅 — Anthropic 自曝三连 Bug</h3>
   <p>Anthropic <a href="https://www.anthropic.com/engineering/april-23-postmortem">发布事后分析</a>：默认推理等级被调低、思考链缓存清理逻辑写炸（idle 一小时后清的逻辑变成了每轮都清）、冗长提示词过度激进。三个产品层面的 Bug 叠加，让用户觉得"模型变蠢了"。给所有做 Agent 框架的团队递了一把刀：<strong>坑在编排层，不在 logits。</strong></p>
-  <img class="article-img" src="https://www.google.com/s2/favicons?domain=anthropic.com&sz=128" alt="Anthropic">
 
   <h3>2、Anthropic 用 9 个 Claude Agent 自动化对齐研究</h3>
   <p>Import AI 报道了 Anthropic 的"<a href="https://www.anthropic.com/research/automated-alignment-researchers">自动化对齐研究员</a>"项目：9 个沙盒化的 Claude Opus 4.6 Agent，带工具和共享研究论坛，自主提出并测试弱到强监督方案。人类一周达到 PGR 0.23，Agent 跑出了 0.97 —— 不过迁移到 Sonnet 4 后实际增益不显著。关键洞察：自动化对齐的瓶颈不是生成想法，而是<strong>设计评估指标</strong>。</p>
@@ -193,11 +188,9 @@
 
   <h3>4、华为 HiFloat4：国产芯片的「抠门美学」</h3>
   <p>显卡被卡脖子之后，算力不够、数值格式来凑。华为研究人员在昇腾 NPU 上对比了自研 HiFloat4 与 OCP 标准 MXFP4 格式：HiFloat4 相对 BF16 的精度损失（~1.0%）低于 MXFP4（~1.5%），大模型越大优势越明显。</p>
-  <img class="article-img" src="https://arxiv.org/static/browse/0.3.4/images/arxiv-logo-fb.png" alt="HiFloat4">
 
   <h3>5、美国各州 AI 立法拼图：一盘散沙还是多元探索？</h3>
   <p>The Batch 梳理了加州水印规则、科罗拉多高风险 AI 义务、明尼苏达/犹他健康保险 AI 拒赔限制、纽约生物武器/黑客防护等法案，与联邦层面的抢先立法倾向形成鲜明对比。监管碎片化 vs. 一刀切，目前还没有赢家。</p>
-  <img class="article-img" src="https://www.google.com/s2/favicons?domain=deeplearning.ai&sz=128" alt="AI Laws">
 
   <!-- ========== 文章推荐 ========== -->
   <h2 id="articles">📝 文章推荐</h2>
@@ -208,15 +201,12 @@
 
   <h3>2、<a href="https://newsletter.pragmaticengineer.com/p/designing-data-intensive-applications">DDIA 作者 Martin Kleppmann 深度对谈</a></h3>
   <p>第二版刚出，Kafka 年代的亲历怎么塑造了整本书。最有意思的部分：LLM 写码之后，形式化验证会不会从"太贵用不起"变成"不得不用"？以及 local-first 软件面临的现实挑战。</p>
-  <img class="article-img" src="https://www.google.com/s2/favicons?domain=pragmaticengineer.com&sz=128" alt="DDIA">
 
   <h3>3、<a href="https://newsletter.pragmaticengineer.com/p/learnings-from-conducting-1000-interviews">亚马逊前 Principal 面了 1000 场的感悟</a></h3>
   <p>很多人挂的不是技术，而是"怎么把自己呈现出来"。面试官其实在预览"以后跟你共事是什么感觉" —— 信号比答案重要。Steve Huynh 十年面试经验的浓缩。</p>
-  <img class="article-img" src="https://www.google.com/s2/favicons?domain=pragmaticengineer.com&sz=128" alt="Interviews">
 
   <h3>4、<a href="https://blog.bytebytego.com/p/how-doordash-launches-a-new-country">DoorDash 如何一周内上线一个新国家</a></h3>
   <p>从 if/else 地狱拆成"薄编排器 + 工作流定义 + 可插拔 Step"，一周上线不是加班神话，而是架构复利。系统设计教科书级别的案例。</p>
-  <img class="article-img" src="https://www.google.com/s2/favicons?domain=bytebytego.com&sz=128" alt="DoorDash">
 
   <h3>5、<a href="https://importai.substack.com/p/import-ai-454-automating-alignment">Import AI 454：自动化对齐研究</a></h3>
   <p>Jack Clark 开场灵魂拷问：股市到底哪天开始给"奇点"计价？本期覆盖 Anthropic 自动化对齐、华为 HiFloat4、Kimi K2.5 安全评测。论文味很冲，但读起来像悬疑片。</p>
