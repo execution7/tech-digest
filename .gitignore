@@ -1,0 +1,12 @@
+.DS_Store
+*.log
+*.env
+*.env.*
+.secret*
+node_modules/
+.idea/
+.vscode/
+*.pem
+*.key
+*.p12
+credentials*
