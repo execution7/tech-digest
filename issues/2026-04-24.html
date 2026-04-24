@@ -491,7 +491,7 @@
 <script>
   // Audio player
   const today = '2026-04-24';
-  const audioPath = `../audio/${today}.mp3`;
+  const audioPath = `../audio/${today}.m4a`;
   fetch(audioPath, { method: 'HEAD' }).then(r => {
     if (r.ok) {
       document.getElementById('audioBar').classList.remove('hidden');
