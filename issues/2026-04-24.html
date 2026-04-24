@@ -9,312 +9,322 @@
   <meta property="og:image" content="https://devblogs.microsoft.com/typescript/wp-content/uploads/sites/11/2026/04/ts7-0-beta-4.png">
   <style>
     :root {
-      --bg: #0d1117;
-      --surface: #161b22;
-      --surface2: #1c2129;
-      --border: #30363d;
-      --text: #e6edf3;
-      --text-muted: #8b949e;
-      --accent: #58a6ff;
-      --accent-hover: #79c0ff;
-      --green: #3fb950;
-      --yellow: #d29922;
-      --red: #f85149;
-      --purple: #bc8cff;
+      --bg: #0d1117; --surface: #161b22; --border: #30363d;
+      --text: #e6edf3; --text-muted: #8b949e;
+      --accent: #58a6ff; --accent-hover: #79c0ff;
+      --green: #3fb950; --yellow: #d29922; --red: #f85149; --purple: #bc8cff;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.7;
-      font-size: 16px;
+      background: var(--bg); color: var(--text); line-height: 1.7; font-size: 16px;
     }
-    .container { max-width: 760px; margin: 0 auto; padding: 40px 24px 80px; }
+
+    /* --- Layout --- */
+    .page { display: flex; max-width: 1100px; margin: 0 auto; }
+    .container { flex: 1; min-width: 0; padding: 40px 32px 80px; }
+
+    /* --- TOC sidebar --- */
+    .toc {
+      width: 220px; flex-shrink: 0;
+      position: sticky; top: 0; height: 100vh; overflow-y: auto;
+      padding: 40px 16px 40px 0; border-right: 1px solid var(--border);
+    }
+    .toc-title { font-size: 0.75rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; }
+    .toc a {
+      display: block; padding: 5px 12px; margin-bottom: 2px;
+      font-size: 0.85rem; color: var(--text-muted); text-decoration: none;
+      border-radius: 4px; border-left: 2px solid transparent; transition: all 0.15s;
+    }
+    .toc a:hover, .toc a.active { color: var(--accent); background: var(--surface); border-left-color: var(--accent); }
+
+    /* --- Mobile TOC --- */
+    .toc-mobile {
+      display: none; position: sticky; top: 0; z-index: 100;
+      background: var(--bg); border-bottom: 1px solid var(--border); padding: 12px 16px;
+    }
+    .toc-mobile summary {
+      cursor: pointer; font-size: 0.85rem; color: var(--accent); list-style: none;
+    }
+    .toc-mobile summary::-webkit-details-marker { display: none; }
+    .toc-mobile .toc-dropdown {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+      padding: 8px; margin-top: 8px; max-height: 60vh; overflow-y: auto;
+    }
+    .toc-mobile .toc-dropdown a {
+      display: block; padding: 8px 12px; font-size: 0.9rem;
+      color: var(--text-muted); text-decoration: none; border-radius: 4px;
+    }
+    .toc-mobile .toc-dropdown a:hover { color: var(--accent); background: var(--bg); }
+
+    @media (max-width: 860px) {
+      .toc { display: none; }
+      .toc-mobile { display: block; }
+      .page { flex-direction: column; }
+      .container { padding: 24px 16px 60px; }
+    }
+
+    /* --- Content --- */
     .back { display: inline-block; color: var(--text-muted); text-decoration: none; font-size: 0.9rem; margin-bottom: 32px; }
     .back:hover { color: var(--accent); }
-
     h1 { font-size: 1.8rem; font-weight: 700; margin-bottom: 12px; line-height: 1.3; }
     .meta { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 32px; }
-
-    .hero-img {
-      width: 100%; border-radius: 12px; margin-bottom: 12px;
-      border: 1px solid var(--border);
-    }
-    .hero-caption {
-      font-size: 0.85rem; color: var(--text-muted); margin-bottom: 40px;
-      text-align: center; font-style: italic;
-    }
-
-    h2 {
-      font-size: 1.4rem; font-weight: 700; margin: 48px 0 20px;
-      padding-bottom: 8px; border-bottom: 1px solid var(--border);
-    }
+    .hero-img { width: 100%; border-radius: 12px; margin-bottom: 12px; border: 1px solid var(--border); }
+    .hero-caption { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 40px; text-align: center; font-style: italic; }
+    h2 { font-size: 1.4rem; font-weight: 700; margin: 48px 0 20px; padding-bottom: 8px; border-bottom: 1px solid var(--border); scroll-margin-top: 20px; }
     h3 { font-size: 1.1rem; font-weight: 600; margin: 28px 0 8px; }
-
     p { margin-bottom: 16px; }
     a { color: var(--accent); text-decoration: none; }
     a:hover { color: var(--accent-hover); text-decoration: underline; }
     strong { color: #fff; }
-
-    .callout {
-      background: var(--surface);
-      border-left: 4px solid var(--accent);
-      border-radius: 6px;
-      padding: 16px 20px;
-      margin: 20px 0;
-      font-size: 0.95rem;
-    }
-    .callout.warn { border-left-color: var(--yellow); }
-    .callout.success { border-left-color: var(--green); }
-
-    .article-img {
-      width: 100%;
-      max-height: 400px;
-      object-fit: cover;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      margin: 12px 0 24px;
-    }
-    .article-img-small {
-      height: 48px;
-      border-radius: 6px;
-      margin: 8px 0 20px;
-      vertical-align: middle;
-    }
-
-    .tool-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin: 16px 0;
-    }
-    .tool-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 16px;
-      transition: border-color 0.2s;
-    }
+    .callout { background: var(--surface); border-left: 4px solid var(--accent); border-radius: 6px; padding: 16px 20px; margin: 20px 0; font-size: 0.95rem; }
+    .article-img { width: 100%; max-height: 400px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border); margin: 12px 0 24px; }
+    .tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+    .tool-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; transition: border-color 0.2s; }
     .tool-card:hover { border-color: var(--accent); }
     .tool-card h4 { font-size: 1rem; margin-bottom: 6px; }
     .tool-card h4 a { color: var(--accent); }
     .tool-card p { font-size: 0.85rem; color: var(--text-muted); margin: 0; line-height: 1.5; }
-
-    blockquote {
-      border-left: 3px solid var(--border);
-      padding: 12px 20px;
-      margin: 16px 0;
-      background: var(--surface);
-      border-radius: 0 6px 6px 0;
-      font-style: italic;
-    }
+    .tool-card .tag { display: inline-block; font-size: 0.7rem; padding: 2px 6px; border-radius: 3px; background: var(--accent); color: var(--bg); font-weight: 600; margin-bottom: 6px; }
+    blockquote { border-left: 3px solid var(--border); padding: 12px 20px; margin: 16px 0; background: var(--surface); border-radius: 0 6px 6px 0; font-style: italic; }
     blockquote p { margin-bottom: 0; }
-    .quote-author {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-top: 8px;
-      font-style: normal;
-    }
-    .quote-comment {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      margin: 8px 0 28px;
-      font-style: normal;
-    }
-
+    .quote-author { font-size: 0.85rem; color: var(--text-muted); margin-top: 8px; font-style: normal; }
+    .quote-comment { font-size: 0.9rem; color: var(--text-muted); margin: 8px 0 28px; font-style: normal; }
     .divider { border: none; border-top: 1px solid var(--border); margin: 40px 0; }
-
-    .footer {
-      margin-top: 60px; padding-top: 24px;
-      border-top: 1px solid var(--border);
-      color: var(--text-muted); font-size: 0.8rem; text-align: center;
-    }
+    .footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.8rem; text-align: center; }
     .sources { font-size: 0.85rem; color: var(--text-muted); line-height: 1.8; }
     .sources strong { color: var(--text); }
-
-    @media (max-width: 640px) {
-      .tool-grid { grid-template-columns: 1fr; }
-      h1 { font-size: 1.5rem; }
-      .container { padding: 24px 16px 60px; }
-    }
+    @media (max-width: 640px) { .tool-grid { grid-template-columns: 1fr; } h1 { font-size: 1.5rem; } }
   </style>
 </head>
 <body>
-<div class="container">
-  <a class="back" href="../index.html">← 返回目录</a>
 
-  <h1>GPT-5.5 与 DeepSeek V4 同日登场，大模型军备竞赛白热化</h1>
-  <div class="meta">第 1 期 · 2026年4月24日 · Hacker News / TLDR / Import AI / Simon Willison / The Pragmatic Engineer 等 15 个全球精选源</div>
-
-  <img class="hero-img" src="https://devblogs.microsoft.com/typescript/wp-content/uploads/sites/11/2026/04/ts7-0-beta-4.png" alt="TypeScript 7.0 Beta">
-  <p class="hero-caption">TypeScript 7.0 Beta — 编译器用 Go 重写，构建速度提升约 10 倍</p>
-
-  <!-- 头条 -->
-  <h2>🔥 头条速递</h2>
-  <p>今天科技圈最大的新闻，毫无疑问是 OpenAI 和 DeepSeek 几乎同时投下的两颗重磅炸弹。</p>
-  <p>OpenAI 发布了 <a href="https://openai.com/index/introducing-gpt-5-5/">GPT-5.5</a>，定位为新一代旗舰模型，覆盖推理、编程和 Agent 工作负载。Hacker News 上的讨论异常热烈，开发者们最关心的是：定价策略、与竞品的实际对比、以及它在 Agent 场景下的真实表现。</p>
-  <img class="article-img" src="https://images.ctfassets.net/kftzwdyauwt9/1WiRj8XUEoqruFEKNQJPRr/4063977e99833d7129b6a238b4d3d876/Bartosz_Visual.png?w=3840&q=90&fm=webp" alt="GPT-5.5">
-  <p>与此同时，<a href="https://api-docs.deepseek.com/">DeepSeek V4</a> 系列预览版发布（V4-Pro 和 V4-Flash），Simon Willison 的评价是："几乎达到了前沿水平，但价格只是零头。"</p>
-  <p>有趣的是，就在同一天，阿里的 <a href="https://qwen.ai/blog?id=qwen3.6-27b">Qwen3.6-27B</a> 也发布了 —— 仅 27B 参数的稠密模型，声称在编码基准上击败自家 397B 的 MoE 旗舰。</p>
-  <div class="callout">
-    <strong>三种路线同日对决：</strong>更快、更便宜、更专精才是新战场。对开发者来说，选择越来越多，成本越来越低。
+<!-- Mobile TOC -->
+<details class="toc-mobile">
+  <summary>📑 目录导航</summary>
+  <div class="toc-dropdown">
+    <a href="#headline">🔥 头条速递</a>
+    <a href="#tech">📰 科技动态</a>
+    <a href="#ai">🤖 AI 相关</a>
+    <a href="#articles">📝 文章推荐</a>
+    <a href="#tools">🛠️ 工具推荐</a>
+    <a href="#ai-tools">🧠 AI 工具</a>
+    <a href="#resources">📚 资源</a>
+    <a href="#quotes">💬 言论</a>
   </div>
+</details>
 
-  <hr class="divider">
+<div class="page">
+  <!-- Sidebar TOC -->
+  <nav class="toc">
+    <div class="toc-title">本期目录</div>
+    <a href="#headline">🔥 头条速递</a>
+    <a href="#tech">📰 科技动态</a>
+    <a href="#ai">🤖 AI 相关</a>
+    <a href="#articles">📝 文章推荐</a>
+    <a href="#tools">🛠️ 工具推荐</a>
+    <a href="#ai-tools">🧠 AI 工具</a>
+    <a href="#resources">📚 资源</a>
+    <a href="#quotes">💬 言论</a>
+  </nav>
 
-  <!-- 科技动态 -->
-  <h2>📰 科技动态</h2>
+  <div class="container">
+    <a class="back" href="../index.html">← 返回目录</a>
 
-  <h3>1、<a href="https://changelog.com/news/184">OpenAI 收购 Astral（Ruff 和 uv 的开发者）</a></h3>
-  <p>OpenAI 收购了 Astral，也就是 Python 生态中最受欢迎的 Linter 工具 Ruff 和包管理器 uv 的开发组织。前沿 AI 实验室开始吃下高影响力的开发者工具链。如果你的项目依赖 Ruff 或 uv，需要关注后续路线图、治理模式和集成方向的变化。</p>
-  <img class="article-img" src="https://avatars.githubusercontent.com/u/115962839?s=400&v=4" alt="Astral" style="max-height:200px;object-fit:contain;background:#fff;padding:20px;">
+    <h1>GPT-5.5 与 DeepSeek V4 同日登场，大模型军备竞赛白热化</h1>
+    <div class="meta">第 1 期 · 2026年4月24日 · Hacker News / TLDR / Import AI / Simon Willison / The Pragmatic Engineer 等 15 个全球精选源</div>
 
-  <h3>2、<a href="https://socket.dev/blog/bitwarden-cli-compromised">Bitwarden CLI 遭遇供应链攻击</a></h3>
-  <p>Bitwarden 命令行工具被卷入 Checkmarx 生态的供应链攻击事件。对于在 CI/CD 中使用 Bitwarden CLI 的团队来说，需要立即审查安装来源、锁定版本、验证哈希。</p>
-  <img class="article-img" src="https://cdn.sanity.io/images/cgdhsj6q/production/65ef8dc5e66260e20fdf13cead82ebd41b705ee6-1018x666.png?w=1200&q=95&fit=max&auto=format" alt="Bitwarden CLI 供应链攻击">
+    <img class="hero-img" src="https://devblogs.microsoft.com/typescript/wp-content/uploads/sites/11/2026/04/ts7-0-beta-4.png" alt="TypeScript 7.0 Beta">
+    <p class="hero-caption">TypeScript 7.0 Beta — 编译器用 Go 重写，构建速度提升约 10 倍</p>
 
-  <h3>3、<a href="https://tldr.tech/infosec/2026-04-23">Anthropic 安全研究工具 Mythos 遭未授权访问</a></h3>
-  <p>未授权团体据称通过第三方渠道获取了 Anthropic "Mythos" 安全研究模型的访问权限。越是独占的安全研究工具，越是高价值的攻击目标。</p>
+    <h2 id="headline">🔥 头条速递</h2>
+    <p>今天科技圈最大的新闻，毫无疑问是 OpenAI 和 DeepSeek 几乎同时投下的两颗重磅炸弹。</p>
+    <p>OpenAI 发布了 <a href="https://openai.com/index/introducing-gpt-5-5/">GPT-5.5</a>，定位为新一代旗舰模型，覆盖推理、编程和 Agent 工作负载。Hacker News 上的讨论异常热烈，开发者们最关心的是：定价策略、与竞品的实际对比、以及它在 Agent 场景下的真实表现。</p>
+    <img class="article-img" src="https://images.ctfassets.net/kftzwdyauwt9/1WiRj8XUEoqruFEKNQJPRr/4063977e99833d7129b6a238b4d3d876/Bartosz_Visual.png?w=3840&q=90&fm=webp" alt="GPT-5.5">
+    <p>与此同时，<a href="https://api-docs.deepseek.com/">DeepSeek V4</a> 系列预览版发布（V4-Pro 和 V4-Flash），Simon Willison 的评价是："几乎达到了前沿水平，但价格只是零头。"</p>
+    <p>有趣的是，就在同一天，阿里的 <a href="https://qwen.ai/blog?id=qwen3.6-27b">Qwen3.6-27B</a> 也发布了 —— 仅 27B 参数的稠密模型，声称在编码基准上击败自家 397B 的 MoE 旗舰。</p>
+    <div class="callout"><strong>三种路线同日对决：</strong>更快、更便宜、更专精才是新战场。对开发者来说，选择越来越多，成本越来越低。</div>
 
-  <h3>4、<a href="https://javascriptweekly.com/link/184047/web">Vercel 安全事件：从 Roblox 外挂开始的供应链渗透</a></h3>
-  <p>恶意软件附着在 Roblox 外挂上 → 感染第三方工具 → OAuth 进入 Google Workspace → 暴露部分 Vercel 客户密钥。第三方 OAuth 授权是普遍的薄弱环节。</p>
-  <img class="article-img" src="https://assets.vercel.com/image/upload/v1588805858/repositories/vercel/logo.png" alt="Vercel" style="max-height:120px;object-fit:contain;background:#000;padding:24px;">
+    <hr class="divider">
 
-  <h3>5、<a href="https://tldr.tech/ai/2026-04-23">Google 推出 Workspace Intelligence for Gemini</a></h3>
-  <p>Google 正在为 Gmail、Drive、Chat 等 Workspace 产品构建语义集成层，让 Gemini Agent 能够获取更丰富的组织上下文。</p>
+    <h2 id="tech">📰 科技动态</h2>
+    <h3>1、<a href="https://changelog.com/news/184">OpenAI 收购 Astral（Ruff 和 uv 的开发者）</a></h3>
+    <p>OpenAI 收购了 Astral，也就是 Python 生态中最受欢迎的 Linter 工具 Ruff 和包管理器 uv 的开发组织。前沿 AI 实验室开始吃下高影响力的开发者工具链。</p>
+    <img class="article-img" src="https://avatars.githubusercontent.com/u/115962839?s=400&v=4" alt="Astral" style="max-height:200px;object-fit:contain;background:#fff;padding:20px;">
+    <h3>2、<a href="https://socket.dev/blog/bitwarden-cli-compromised">Bitwarden CLI 遭遇供应链攻击</a></h3>
+    <p>Bitwarden 命令行工具被卷入 Checkmarx 生态的供应链攻击事件。CI/CD 中使用 Bitwarden CLI 的团队需要立即审查安装来源、锁定版本、验证哈希。</p>
+    <img class="article-img" src="https://cdn.sanity.io/images/cgdhsj6q/production/65ef8dc5e66260e20fdf13cead82ebd41b705ee6-1018x666.png?w=1200&q=95&fit=max&auto=format" alt="Bitwarden CLI 供应链攻击">
+    <h3>3、<a href="https://tldr.tech/infosec/2026-04-23">Anthropic 安全研究工具 Mythos 遭未授权访问</a></h3>
+    <p>未授权团体据称通过第三方渠道获取了 Anthropic "Mythos" 安全研究模型的访问权限。越是独占的安全研究工具，越是高价值的攻击目标。</p>
+    <h3>4、<a href="https://javascriptweekly.com/link/184047/web">Vercel 安全事件：从 Roblox 外挂开始的供应链渗透</a></h3>
+    <p>恶意软件附着在 Roblox 外挂上 → 感染第三方工具 → OAuth 进入 Google Workspace → 暴露部分 Vercel 客户密钥。</p>
+    <img class="article-img" src="https://assets.vercel.com/image/upload/v1588805858/repositories/vercel/logo.png" alt="Vercel" style="max-height:120px;object-fit:contain;background:#000;padding:24px;">
+    <h3>5、<a href="https://tldr.tech/ai/2026-04-23">Google 推出 Workspace Intelligence for Gemini</a></h3>
+    <p>Google 正在为 Gmail、Drive、Chat 等 Workspace 产品构建语义集成层，让 Gemini Agent 能够获取更丰富的组织上下文。</p>
 
-  <hr class="divider">
+    <hr class="divider">
 
-  <!-- AI 相关 -->
-  <h2>🤖 AI 相关</h2>
+    <h2 id="ai">🤖 AI 相关</h2>
+    <h3>1、<a href="https://www.anthropic.com/engineering/april-23-postmortem">Claude Code 质量下降事件：Anthropic 发布事后分析</a></h3>
+    <p>Anthropic 发布了工程事后分析，问题并非出在基础模型本身，而是工具链层面的 Bug —— 空闲后清除"思考"上下文的 harness Bug，导致每轮对话都丢失推理状态。</p>
+    <img class="article-img" src="https://cdn.sanity.io/images/4zrzovbb/website/3f522820d47355885631ebda60e5d1f3e5c0fbc2-2000x1050.heif" alt="Claude Code 事后分析">
+    <h3>2、<a href="https://arxiv.org/abs/2604.08826">华为 HiFloat4 vs 西方 MXFP4：中国芯片的效率反击</a></h3>
+    <p>华为针对昇腾 NPU 开发的 HiFloat4 四位浮点格式，精度损失（~1.0%）低于 OCP 的 MXFP4（~1.5%）。中国芯片栈正在通过格式级优化来弥补硬件代差。</p>
+    <h3>3、<a href="https://www.anthropic.com/research/automated-alignment-researchers">Anthropic 的自动化对齐研究员（AAR）</a></h3>
+    <p>多个 Claude Opus 4.6 Agent 并行提出实验方案。AAR 的 PGR（~0.97）远超人类（~0.23）。<strong>对齐研究本身正在被自动化。</strong></p>
+    <img class="article-img" src="https://www.anthropic.com/api/opengraph-illustration?name=Hand%20Abacus&backgroundColor=olive" alt="自动化对齐研究" style="max-height:300px;">
+    <h3>4、<a href="https://the-decoder.com/mistrals-new-small-4-model-punches-above-its-weight-with-128-expert-modules/">Mistral Small 4 开源 + "Forge" 企业定制平台</a></h3>
+    <p>开源了 Small 4 系列（128 个专家模块的 MoE 架构），定位于推理、多模态和编码 Agent 场景。</p>
+    <h3>5、<a href="https://newsletter.pragmaticengineer.com/p/the-pulse-ai-token-spending-out-of">AI token 支出失控 —— 下一步怎么办？</a></h3>
+    <p>The Pragmatic Engineer 调研了 15 家科技公司的 AI token 支出，发现失控式增长已成普遍现象。</p>
 
-  <h3>1、<a href="https://www.anthropic.com/engineering/april-23-postmortem">Claude Code 质量下降事件：Anthropic 发布事后分析</a></h3>
-  <p>最近不少 Claude Code 用户反馈"模型变差了"。Anthropic 发布了工程事后分析，结论出人意料：问题并非出在基础模型本身，而是工具链层面的 Bug —— 空闲后清除"思考"上下文的 harness Bug，导致每轮对话都丢失推理状态。</p>
-  <img class="article-img" src="https://cdn.sanity.io/images/4zrzovbb/website/3f522820d47355885631ebda60e5d1f3e5c0fbc2-2000x1050.heif" alt="Claude Code 事后分析">
+    <hr class="divider">
 
-  <h3>2、<a href="https://arxiv.org/abs/2604.08826">华为 HiFloat4 vs 西方 MXFP4：中国芯片的效率反击</a></h3>
-  <p>华为针对昇腾 NPU 开发的 HiFloat4 四位浮点格式，精度损失（~1.0%）低于 OCP 的 MXFP4（~1.5%）。在出口管制压力下，中国芯片栈正在通过格式级优化来弥补硬件代差。</p>
+    <h2 id="articles">📝 文章推荐</h2>
+    <h3>1、<a href="https://addyosmani.com/blog/agentic-engine-optimization/">Agentic Engine Optimization（AEO）</a></h3>
+    <p>Addy Osmani 提出新概念：为 AI 编码 Agent 优化你的文档和站点结构 —— "SEO 的 Agent 版本"。</p>
+    <img class="article-img" src="https://addyosmani.com/assets/images/aeo.jpg" alt="AEO">
+    <h3>2、<a href="https://developer.mozilla.org/en-US/blog/mdn-front-end-deep-dive/">MDN 为什么抛弃了 React 重写前端</a></h3>
+    <p>MDN 从 React 迁移到自定义渲染管线 + Lit Web Components，框架极简主义的有力案例。</p>
+    <img class="article-img" src="https://developer.mozilla.org/mdn-social-image.46ac2375.png" alt="MDN">
+    <h3>3、<a href="https://newsletter.pragmaticengineer.com/p/dhhs-new-way-of-writing-code">DHH 的新编码方式</a></h3>
+    <p>Ruby on Rails 之父如何转向 Agent 优先的 AI 工作流。</p>
+    <h3>4、<a href="https://blog.bytebytego.com/p/how-doordash-launches-a-new-country">DoorDash 如何一周内上线一个新国家</a></h3>
+    <p>ByteByteGo 拆解极速国际化的架构设计和运营约束。</p>
+    <img class="article-img" src="https://substackcdn.com/image/fetch/w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff3088605-85d2-4120-a8ce-ee9dbb3c1b10_3842x2854.png" alt="DoorDash 架构">
+    <h3>5、<a href="https://blog.bytebytego.com/p/the-security-architecture-of-github">GitHub Agent 工作流的安全架构</a></h3>
+    <p>核心假设：<strong>Agent 可能已经被攻陷</strong>。在此前提下设计安全边界。</p>
+    <img class="article-img" src="https://substackcdn.com/image/fetch/w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0fe07f2a-1668-4e29-bc60-9c558e024e6b_3108x1758.png" alt="GitHub Agent 安全架构">
 
-  <h3>3、<a href="https://www.anthropic.com/research/automated-alignment-researchers">Anthropic 的自动化对齐研究员（AAR）</a></h3>
-  <p>多个 Claude Opus 4.6 Agent 并行提出实验方案、在论坛上讨论、迭代弱到强监督方法。AAR 的 PGR（~0.97）远超人类（~0.23）。<strong>对齐研究本身正在被自动化。</strong></p>
-  <img class="article-img" src="https://www.anthropic.com/api/opengraph-illustration?name=Hand%20Abacus&backgroundColor=olive" alt="自动化对齐研究" style="max-height:300px;">
+    <hr class="divider">
 
-  <h3>4、<a href="https://the-decoder.com/mistrals-new-small-4-model-punches-above-its-weight-with-128-expert-modules/">Mistral Small 4 开源 + "Forge" 企业定制平台</a></h3>
-  <p>开源了 Small 4 系列（128 个专家模块的 MoE 架构），定位于推理、多模态和编码 Agent 场景。开源模型赛道又多了一个有力竞争者。</p>
-
-  <h3>5、<a href="https://newsletter.pragmaticengineer.com/p/the-pulse-ai-token-spending-out-of">AI token 支出失控 —— 下一步怎么办？</a></h3>
-  <p>The Pragmatic Engineer 调研了 15 家科技公司的 AI token 支出情况，发现失控式增长已成普遍现象。核心矛盾：需求在爆发，但供应商的算力和配额远未跟上。</p>
-
-  <hr class="divider">
-
-  <!-- 文章 -->
-  <h2>📝 文章推荐</h2>
-
-  <h3>1、<a href="https://addyosmani.com/blog/agentic-engine-optimization/">Agentic Engine Optimization（AEO）</a></h3>
-  <p>Addy Osmani 提出新概念：为 AI 编码 Agent 优化你的文档和站点结构 —— 可发现性、可解析性、Token 效率和访问边界。本质上就是"SEO 的 Agent 版本"。</p>
-  <img class="article-img" src="https://addyosmani.com/assets/images/aeo.jpg" alt="AEO">
-
-  <h3>2、<a href="https://developer.mozilla.org/en-US/blog/mdn-front-end-deep-dive/">MDN 为什么抛弃了 React 重写前端</a></h3>
-  <p>MDN 工程团队解释了为什么从 React 迁移到自定义渲染管线 + Lit Web Components：对于以静态内容为主的文档站，React 的抽象层反而成了性能和可维护性的包袱。</p>
-  <img class="article-img" src="https://developer.mozilla.org/mdn-social-image.46ac2375.png" alt="MDN">
-
-  <h3>3、<a href="https://newsletter.pragmaticengineer.com/p/dhhs-new-way-of-writing-code">DHH 的新编码方式</a></h3>
-  <p>Ruby on Rails 之父 David Heinemeier Hansson 解释了自己如何转向 Agent 优先的 AI 工作流，以及这对"谁来写软件、怎么写"意味着什么。</p>
-
-  <h3>4、<a href="https://blog.bytebytego.com/p/how-doordash-launches-a-new-country">DoorDash 如何一周内上线一个新国家</a></h3>
-  <p>ByteByteGo 深入拆解了 DoorDash 极速国际化的架构设计和运营约束。一个关于平台设计、本地化和时间压力下可靠性保证的优秀案例。</p>
-  <img class="article-img" src="https://substackcdn.com/image/fetch/w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Ff3088605-85d2-4120-a8ce-ee9dbb3c1b10_3842x2854.png" alt="DoorDash 架构">
-
-  <h3>5、<a href="https://blog.bytebytego.com/p/the-security-architecture-of-github">GitHub Agent 工作流的安全架构</a></h3>
-  <p>GitHub 的 Agent 工作流安全模型有一个核心假设：<strong>Agent 可能已经被攻陷</strong>。在此前提下设计 CI/CD 和 AI 辅助编码环境的安全边界。</p>
-  <img class="article-img" src="https://substackcdn.com/image/fetch/w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F0fe07f2a-1668-4e29-bc60-9c558e024e6b_3108x1758.png" alt="GitHub Agent 安全架构">
-
-  <hr class="divider">
-
-  <!-- 工具 -->
-  <h2>🛠️ 工具推荐</h2>
-  <div class="tool-grid">
-    <div class="tool-card">
-      <h4><a href="https://devblogs.microsoft.com/typescript/announcing-typescript-7-0-beta/">TypeScript 7.0 Beta</a></h4>
-      <p>编译器用 Go 重写，构建速度提升约 10 倍</p>
+    <h2 id="tools">🛠️ 工具推荐</h2>
+    <div class="tool-grid">
+      <div class="tool-card">
+        <h4><a href="https://devblogs.microsoft.com/typescript/announcing-typescript-7-0-beta/">TypeScript 7.0 Beta</a></h4>
+        <p>编译器用 Go 重写，构建速度提升约 10 倍</p>
+      </div>
+      <div class="tool-card">
+        <h4><a href="https://rspack.rs/blog/announcing-2-0">Rspack 2.0</a></h4>
+        <p>基于 Rust 的打包器，极致速度，最兼容 Webpack</p>
+      </div>
+      <div class="tool-card">
+        <h4><a href="https://tsrx.dev/">TSRX</a></h4>
+        <p>TypeScript 语言扩展，"JSX 的精神继承者"</p>
+      </div>
+      <div class="tool-card">
+        <h4><a href="https://pijul.org/">Pijul</a></h4>
+        <p>基于 Patch 的分布式版本控制，冲突解决为一等公民</p>
+      </div>
+      <div class="tool-card">
+        <h4><a href="https://github.com/vercel-labs/portless">Portless</a></h4>
+        <p>用命名 URL 替代 localhost:3000</p>
+      </div>
+      <div class="tool-card">
+        <h4><a href="https://github.github.com/gh-stack/">GitHub Stacked PRs</a></h4>
+        <p>原生堆叠 PR 工作流，支持 AI Agent 辅助</p>
+      </div>
+      <div class="tool-card">
+        <h4><a href="https://github.com/multica-ai/multica">Multica</a></h4>
+        <p>将 AI 编码 Agent 整合到团队工作流</p>
+      </div>
+      <div class="tool-card">
+        <h4><a href="https://bun.sh/blog">Bun v1.3.13</a></h4>
+        <p>测试隔离/并行/分片/增量，内存降低 5%</p>
+      </div>
     </div>
-    <div class="tool-card">
-      <h4><a href="https://rspack.rs/blog/announcing-2-0">Rspack 2.0</a></h4>
-      <p>基于 Rust 的打包器，极致速度，最兼容 Webpack</p>
+
+    <hr class="divider">
+
+    <h2 id="ai-tools">🧠 AI 工具</h2>
+    <div class="tool-grid">
+      <div class="tool-card">
+        <div class="tag">Agent</div>
+        <h4><a href="https://github.com/multica-ai/multica">Multica</a></h4>
+        <p>开源平台，通过 Go 守护进程将 AI 编码 Agent 整合到团队工作流，支持任务认领和进度汇报</p>
+      </div>
+      <div class="tool-card">
+        <div class="tag">编码</div>
+        <h4><a href="https://openai.com/index/introducing-codex-cli/">OpenAI Codex CLI</a></h4>
+        <p>OpenAI 开源的终端 AI 编码助手，支持本地代码修改、Shell 命令执行，可直接调用 GPT-5.5</p>
+      </div>
+      <div class="tool-card">
+        <div class="tag">模型</div>
+        <h4><a href="https://api-docs.deepseek.com/">DeepSeek V4 API</a></h4>
+        <p>V4-Pro 和 V4-Flash 预览版开放 API，几乎前沿水平但定价仅为竞品零头</p>
+      </div>
+      <div class="tool-card">
+        <div class="tag">对齐</div>
+        <h4><a href="https://www.anthropic.com/research/automated-alignment-researchers">Anthropic AAR</a></h4>
+        <p>自动化对齐研究框架，多 Agent 并行提出方案、讨论、迭代，PGR 达 0.97</p>
+      </div>
+      <div class="tool-card">
+        <div class="tag">开源</div>
+        <h4><a href="https://the-decoder.com/mistrals-new-small-4-model-punches-above-its-weight-with-128-expert-modules/">Mistral Small 4</a></h4>
+        <p>128 专家模块 MoE 架构，定位推理/多模态/编码 Agent 场景，完全开源</p>
+      </div>
+      <div class="tool-card">
+        <div class="tag">企业</div>
+        <h4><a href="https://mistral.ai/news/mistral-forge">Mistral Forge</a></h4>
+        <p>Mistral 企业定制训练平台，基于开源模型微调你自己的专属 AI</p>
+      </div>
     </div>
-    <div class="tool-card">
-      <h4><a href="https://tsrx.dev/">TSRX</a></h4>
-      <p>TypeScript 语言扩展，"JSX 的精神继承者"</p>
+
+    <hr class="divider">
+
+    <h2 id="resources">📚 资源</h2>
+    <p><strong><a href="https://javascriptweekly.com/link/184068/web">OWASP NPM 安全最佳实践速查表</a></strong> — npm 供应链安全检查清单，可直接作为安全审查基线。</p>
+    <p><strong><a href="https://blog.bytebytego.com/p/b-trees-vs-lsm-trees-comparison-and">B-Trees vs LSM Trees</a></strong> — ByteByteGo 出品，两大主流磁盘索引结构对比。</p>
+    <p><strong><a href="https://codeberg.org/hails/wsl9x">WSL9x</a></strong> — 在 Windows 9x 上运行现代 Linux 内核，极客级实验项目。</p>
+
+    <hr class="divider">
+
+    <h2 id="quotes">💬 言论</h2>
+    <blockquote><p>AI Agent 已经太像人了……缺乏严谨性、缺乏耐心、缺乏专注力……它们向熟悉的东西漂移，与现实谈判。</p></blockquote>
+    <p class="quote-author">— <a href="https://nial.se/blog/less-human-ai-agents-please/">Andreas Påhlsson-Notini</a></p>
+    <p class="quote-comment">Agent 需要的不是人类的灵活性，而是机器的确定性。</p>
+
+    <blockquote><p>AI 原生的软件团队，其工作方式与传统工程组织有本质不同。</p></blockquote>
+    <p class="quote-author">— Andrew Ng，<a href="https://www.deeplearning.ai/the-batch/">The Batch</a></p>
+    <p class="quote-comment">关键不是"用 AI 工具辅助传统流程"，而是围绕 AI 的能力重新设计整个工作流程。</p>
+
+    <blockquote><p>一份好的 AGENTS.md 是一次模型升级；一份差的比没有文档还糟糕。</p></blockquote>
+    <p class="quote-author">— <a href="https://tldr.tech/ai/2026-04-23">TLDR Tech</a></p>
+    <p class="quote-comment">给 Agent 写的指令文档，重要性可能已经超过了给人类写的 README。</p>
+
+    <blockquote><p>用户感觉"模型变差了"，但真正出问题的是 harness 层的 Bug。</p></blockquote>
+    <p class="quote-author">— <a href="https://www.anthropic.com/engineering/april-23-postmortem">Anthropic 工程团队</a></p>
+    <p class="quote-comment">用户归因的原因和实际原因经常南辕北辙。</p>
+
+    <blockquote><p>对齐研究本身正在被自动化。AAR Agent 的 PGR 达到 ~0.97，远超人类研究员的 ~0.23。</p></blockquote>
+    <p class="quote-author">— <a href="https://www.anthropic.com/research/automated-alignment-researchers">Anthropic Research</a></p>
+    <p class="quote-comment">如果连"确保 AI 安全"都可以被自动化，我们还剩下什么？答案可能是：提出正确的问题。</p>
+
+    <hr class="divider">
+
+    <div class="sources">
+      <strong>综合科技：</strong>Hacker News · TLDR · Changelog · weeklyfoo<br>
+      <strong>AI 前沿：</strong>Import AI · The Batch · Simon Willison · Last Week in AI<br>
+      <strong>开发者工具：</strong>console.dev · Bytes.dev · JavaScript Weekly<br>
+      <strong>深度分析：</strong>Benedict Evans · The Pragmatic Engineer<br>
+      <strong>系统设计：</strong>ByteByteGo
     </div>
-    <div class="tool-card">
-      <h4><a href="https://pijul.org/">Pijul</a></h4>
-      <p>基于 Patch 的分布式版本控制，冲突解决为一等公民</p>
-    </div>
-    <div class="tool-card">
-      <h4><a href="https://github.com/vercel-labs/portless">Portless</a></h4>
-      <p>用命名 URL 替代 localhost:3000</p>
-    </div>
-    <div class="tool-card">
-      <h4><a href="https://github.com/multica-ai/multica">Multica</a></h4>
-      <p>将 AI 编码 Agent 整合到团队工作流</p>
-    </div>
-    <div class="tool-card">
-      <h4><a href="https://bun.sh/blog">Bun v1.3.13</a></h4>
-      <p>测试隔离/并行/分片/增量，内存降低 5%</p>
-    </div>
-    <div class="tool-card">
-      <h4><a href="https://github.github.com/gh-stack/">GitHub Stacked PRs</a></h4>
-      <p>原生堆叠 PR 工作流，支持 AI Agent 辅助</p>
-    </div>
-  </div>
 
-  <hr class="divider">
-
-  <!-- 资源 -->
-  <h2>📚 资源</h2>
-  <p><strong><a href="https://javascriptweekly.com/link/184068/web">OWASP NPM 安全最佳实践速查表</a></strong> — npm 供应链安全检查清单，可直接作为安全审查基线。</p>
-  <p><strong><a href="https://blog.bytebytego.com/p/b-trees-vs-lsm-trees-comparison-and">B-Trees vs LSM Trees</a></strong> — ByteByteGo 出品，两大主流磁盘索引结构对比。</p>
-  <p><strong><a href="https://codeberg.org/hails/wsl9x">WSL9x</a></strong> — 在 Windows 9x 上运行现代 Linux 内核，极客级实验项目。</p>
-
-  <hr class="divider">
-
-  <!-- 言论 -->
-  <h2>💬 言论</h2>
-
-  <blockquote><p>AI Agent 已经太像人了……缺乏严谨性、缺乏耐心、缺乏专注力……它们向熟悉的东西漂移，与现实谈判。</p></blockquote>
-  <p class="quote-author">— <a href="https://nial.se/blog/less-human-ai-agents-please/">Andreas Påhlsson-Notini</a></p>
-  <p class="quote-comment">我们总在追求让 AI"更像人"，但也许问题恰恰出在这里 — Agent 需要的不是人类的灵活性，而是机器的确定性。</p>
-
-  <blockquote><p>AI 原生的软件团队，其工作方式与传统工程组织有本质不同。</p></blockquote>
-  <p class="quote-author">— Andrew Ng，<a href="https://www.deeplearning.ai/the-batch/">The Batch</a></p>
-  <p class="quote-comment">关键不是"用 AI 工具辅助传统流程"，而是围绕 AI 的能力重新设计整个工作流程。做前者效率提升 20%，做后者可能提升 10 倍。</p>
-
-  <blockquote><p>一份好的 AGENTS.md 是一次模型升级；一份差的比没有文档还糟糕。</p></blockquote>
-  <p class="quote-author">— <a href="https://tldr.tech/ai/2026-04-23">TLDR Tech</a></p>
-  <p class="quote-comment">在 AI Agent 编程时代，你给 Agent 写的指令文档，其重要性可能已经超过了你给人类写的 README。</p>
-
-  <blockquote><p>用户感觉"模型变差了"，但真正出问题的是 harness 层的 Bug — 一个空闲后清除思考上下文的缺陷，导致每轮对话都丢失推理状态。</p></blockquote>
-  <p class="quote-author">— <a href="https://www.anthropic.com/engineering/april-23-postmortem">Anthropic 工程团队</a></p>
-  <p class="quote-comment">在复杂系统中，用户归因的原因和实际原因经常南辕北辙。下次你觉得"AI 变蠢了"，先检查你的上下文管理链路。</p>
-
-  <blockquote><p>对齐研究本身正在被自动化。AAR Agent 的 PGR 达到 ~0.97，远超人类研究员的 ~0.23。</p></blockquote>
-  <p class="quote-author">— <a href="https://www.anthropic.com/research/automated-alignment-researchers">Anthropic Research</a></p>
-  <p class="quote-comment">如果连"确保 AI 安全"这件事都可以被 AI 自动化完成，我们还剩下什么是不可替代的？答案可能是：提出正确的问题。</p>
-
-  <hr class="divider">
-
-  <div class="sources">
-    <strong>综合科技：</strong>Hacker News · TLDR · Changelog · weeklyfoo<br>
-    <strong>AI 前沿：</strong>Import AI · The Batch · Simon Willison · Last Week in AI<br>
-    <strong>开发者工具：</strong>console.dev · Bytes.dev · JavaScript Weekly<br>
-    <strong>深度分析：</strong>Benedict Evans · The Pragmatic Engineer<br>
-    <strong>系统设计：</strong>ByteByteGo
-  </div>
-
-  <div class="footer">
-    由 Cursor AI 自动生成 · 信息截止至 2026-04-24 16:00 CST
+    <div class="footer">由 Cursor AI 自动生成 · 信息截止至 2026-04-24 16:00 CST</div>
   </div>
 </div>
+
+<script>
+const tocLinks = document.querySelectorAll('.toc a');
+const sections = [...tocLinks].map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      tocLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id));
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
 </body>
 </html>
