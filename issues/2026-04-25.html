@@ -6,7 +6,7 @@
   <title>每日科技简报 #2 — 2026-04-25</title>
   <meta property="og:title" content="AI 模型三国争霸日：DeepSeek V4 开源登场，Google 砸 400 亿投 Anthropic">
   <meta property="og:description" content="DeepSeek V4 开源 MoE 模型 · Google 400 亿投资 Anthropic · GPT-5.5 API 上线 · Astral 被 OpenAI 收购 · Ruby 之父发布 AOT 编译器 Spinel">
-  <meta property="og:image" content="https://opengraph.githubassets.com/1/matz/spinel">
+  <meta property="og:image" content="https://charonhub.deeplearning.ai/content/images/2026/04/RACECARS-6_1200px--1-.jpg">
   <style>
     :root {
       --bg: #f5f6f8; --surface: #ffffff; --surface2: #f0f2f5;
@@ -241,10 +241,7 @@
   <h1>第 2 期：AI 模型三国争霸日 — DeepSeek V4 开源登场，Google 砸 400 亿投 Anthropic</h1>
   <div class="meta">第 2 期 · 2026年4月25日</div>
 
-  <div class="audio-bar hidden" id="audioBar">
-    <div class="audio-label">🎧 收听本期音频版<br><small>由 NotebookLM 生成 · 双人对话播客风格</small></div>
-    <audio controls preload="none" id="audioPlayer"></audio>
-  </div>
+  <img class="hero-img" src="https://charonhub.deeplearning.ai/content/images/2026/04/RACECARS-6_1200px--1-.jpg" alt="AI 模型三国争霸">
 
   <!-- ========== 头条速递 ========== -->
   <h2 id="headline">🔥 头条速递</h2>
@@ -292,14 +289,18 @@
   <p><a href="https://www.anthropic.com/engineering/april-23-postmortem">阅读原文 →</a></p>
 
   <h3>2、Benedict Evans：OpenAI 的护城河在哪？</h3>
+  <img class="article-img" src="https://static1.squarespace.com/static/50363cf324ac8e905e7df861/t/6993b59b8517240d2235240a/1771507646532/Frontier%2BLanguage%2BModel%2BIntelligence%2C%2BOver%2BTime%2B%2824%2BJan%2B%2726%29%2B-2.png.webp?format=1500w" alt="Frontier Language Model Intelligence Over Time">
   <p>Evans 论证了 OpenAI 在模型本身没有持久壁垒、ChatGPT 用户参与度浅、竞争对手在加速商品化基础模型的局面下，必须发明全新的产品形态才能存活。更深层的结构性矛盾在于：产品负责人无法控制研究路线图。这不是一篇产品发布笔记，而是一张 OpenAI 未来几年的战略地图。</p>
   <p><a href="https://www.ben-evans.com/benedictevans/2026/2/19/how-will-openai-compete-nkg2x">阅读原文 →</a></p>
 
   <h3>3、GitHub Agent 工作流的安全架构设计</h3>
+  <img class="article-img" src="https://substack-post-media.s3.amazonaws.com/public/images/0fe07f2a-1668-4e29-bc60-9c558e024e6b_3108x1758.png" alt="GitHub Agentic Workflow Security Architecture">
   <p>ByteByteGo 拆解了 GitHub 的"假设 Agent 已被攻陷"安全模型：隔离执行基底、用显式权限编译工作流、通过代理网关将密钥隔离在 Agent 容器之外、用确定性白名单审计输出后再写入 GitHub。在 Agent 越来越多地操作代码库的今天，这套"零信任 Agent"的思路值得每个团队参考。</p>
 
   <!-- ========== 工具推荐 ========== -->
   <h2 id="tools">🛠️ 工具推荐</h2>
+
+  <img class="article-img" src="https://assets.rspack.rs/rspack/assets/rspack-og-image-v2-0.png" alt="Rspack 2.0">
 
   <div class="tool-grid">
     <div class="tool-card">
@@ -331,6 +332,8 @@
   <!-- ========== AI 工具 ========== -->
   <h2 id="ai-tools">🧠 AI 工具</h2>
 
+  <img class="article-img" src="https://opengraph.githubassets.com/1/multica-ai/multica" alt="Multica - Multi-Agent Coding">
+
   <div class="tool-grid">
     <div class="tool-card">
       <span class="tag">模型</span>
@@ -358,6 +361,7 @@
   <h2 id="fun">🎲 趣闻</h2>
 
   <div class="fun-card">
+    <img class="article-img" src="https://cf-assets.www.cloudflare.com/zkvhlag99gkb/3RDH6grpXMz6DWEQmZgXj9/0dcfca0bf86c72e933d4fcb8b585b45c/OG_Share_2024-2025-2026__2_.png" alt="Cloudflare 安全事件">
     <h4><a href="https://webmatrices.com/post/how-a-roblox-cheat-and-one-ai-tool-brought-down-vercel-s-entire-platform">一个 Roblox 外挂是怎么搞垮 Vercel 整个平台的</a></h4>
     <p>续报 · 一个捆绑了恶意软件的 Roblox 作弊工具 → 入侵了一个第三方 AI 工具（Context.ai）→ 通过 OAuth 渗透进 Google Workspace → 最终暴露了 Vercel 客户的环境变量。攻击链之长令人叹为观止，也说明了一件事：你的安全取决于你信任链中最弱的那一环，而那一环可能是某个实习生装的 Roblox 外挂。</p>
   </div>
@@ -425,14 +429,6 @@
 </div>
 
 <script>
-  const today = '2026-04-25';
-  const audioPath = `../audio/${today}.m4a`;
-  fetch(audioPath, { method: 'HEAD' }).then(r => {
-    if (r.ok) {
-      document.getElementById('audioBar').classList.remove('hidden');
-      document.getElementById('audioPlayer').src = audioPath;
-    }
-  }).catch(() => {});
   const tocLinks = document.querySelectorAll('.toc a');
   const sections = [];
   tocLinks.forEach(link => {

@@ -44,6 +44,13 @@
       width: 160px; min-height: 110px; flex-shrink: 0;
       object-fit: cover; background: var(--surface2);
     }
+    .issue-thumb-placeholder {
+      width: 160px; min-height: 110px; flex-shrink: 0;
+      background: linear-gradient(135deg, #2d9f6f 0%, #1a7a4f 50%, #0f5a38 100%);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,0.9); font-size: 1.8rem; font-weight: 800;
+      letter-spacing: -0.02em; text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
     .issue-body {
       flex: 1; padding: 16px 20px;
       display: flex; flex-direction: column; justify-content: center;
@@ -92,12 +99,14 @@
       .then(issues => {
         const list = document.getElementById('issues');
         issues.sort((a, b) => b.date.localeCompare(a.date));
-        issues.forEach(issue => {
+        issues.forEach((issue, idx) => {
           const li = document.createElement('li');
           li.className = 'issue-card';
+          const issueNum = issues.length - idx;
+          const placeholder = `<div class="issue-thumb-placeholder">#${issueNum}</div>`;
           const imgTag = issue.image
-            ? `<img class="issue-thumb" src="${issue.image}" alt="" loading="lazy">`
-            : '';
+            ? `<img class="issue-thumb" src="${issue.image}" alt="" loading="lazy" onerror="this.outerHTML='${placeholder.replace(/'/g, "\\'")}';">`
+            : placeholder;
           li.innerHTML = `<a class="issue-link" href="issues/${issue.date}.html">
             ${imgTag}
             <div class="issue-body">
