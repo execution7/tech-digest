@@ -269,6 +269,16 @@
   <h3>4、npm 供应链再出事：Namastex 包被植入蠕虫式恶意软件</h3>
   <p>Socket 的安全分析揭示，多个广泛使用的 Namastex 相关 npm 包在安装时会窃取开发者密钥，并尝试蠕虫式扩散到 PyPI（通过 .pth 文件），同时使用 HTTPS 和 ICP canister 双通道外泄数据。这是一个高危提醒：锁定依赖版本、审计发布来源、暴露后立即轮换 CI secrets。</p>
 
+  <h3>5、Cohere 与 Aleph Alpha 合并，打造"跨大西洋 AI 巨头"</h3>
+  <img class="article-img" src="https://techcrunch.com/wp-content/uploads/2024/08/GettyImages-2157583770.jpg?resize=1200,833" alt="Cohere Aleph Alpha 合并">
+  <p>加拿大的 Cohere 宣布收购并合并德国企业 AI 公司 Aleph Alpha，合并后估值约 200 亿美元。这笔交易的定位是：在美国超级巨头之外，为受监管行业和政府客户提供一个更主权、更独立的 AI 选项。当所有人都在盯着 Google/Anthropic/OpenAI 三国杀时，欧洲正在默默走自己的路。</p>
+
+  <h3>6、Meta 签约采购数百万 Amazon AI CPU —— 不是 GPU</h3>
+  <p>Amazon 和 Meta 达成一项大规模协议，Meta 将采购数百万颗 AWS Graviton ARM CPU 用于 AI 相关计算。注意，<strong>不是 GPU</strong>。这说明后训练和 Agent 推理负载正在从"全靠 GPU"转向更多样化的计算架构。对 Amazon 来说，这也是一个重大的云客户胜利 —— 在 AI 算力的军备竞赛中，ARM CPU 正成为被忽视的第二战场。</p>
+
+  <h3>7、微软紧急修复 ASP.NET 跨平台高危漏洞</h3>
+  <p>微软发布了 CVE-2026-40372 的紧急补丁：macOS 和 Linux 上的 ASP.NET Core 数据保护组件存在 HMAC 校验缺陷，攻击者可伪造认证 payload 获取最高权限。即使打了补丁，长期有效的 token 可能仍然可用 —— 如果你的服务暴露在公网，<strong>打完补丁还要轮换密钥</strong>。</p>
+
   <!-- ========== AI 相关 ========== -->
   <h2 id="ai">🤖 AI 相关</h2>
 
@@ -280,6 +290,13 @@
 
   <h3>3、AI Token 支出失控 — 企业还在摸索怎么管</h3>
   <p>The Pragmatic Engineer 报道，许多公司的 AI Agent token 支出正在快速增长，但管理手段严重滞后。供应商也在为飙升的需求挣扎。这篇报道还提到了 Meta 内部因裁员焦虑和内部追踪系统导致的士气问题 —— AI 带来的不只是技术变革，还有组织阵痛。</p>
+
+  <h3>4、ComfyUI 估值 5 亿美元 —— AI 创作工具的节点式工作流崛起</h3>
+  <img class="article-img" src="https://techcrunch.com/wp-content/uploads/2026/04/ComfyUI-Co-founders-1.png?resize=1200,790" alt="ComfyUI 创始人团队">
+  <p>ComfyUI 融资 3000 万美元，估值 5 亿，由 Craft Ventures 领投。这个基于节点的可视化工作流，让专业创作者可以精细控制 diffusion 模型的图像、视频和音频生成 —— 比单句 prompt 的控制力高出几个量级。VFX、动画、设计行业的人已经离不开它了。当"一句话生成"不够用时，节点式编排就是答案。</p>
+
+  <h3>5、首个量子安全勒索软件被确认 —— 但别慌</h3>
+  <p>Ars Technica 报道，Rapid7 分析了"Kyber"勒索软件家族，确认它使用 ML-KEM-1024（后量子密码学标准）来加密文件密钥。这是首个在野外确认使用 PQC 的商业勒索软件。但专家指出，勒索场景的时间窗口是天级而非年级 —— 量子计算对受害者几乎没有实际威胁，<strong>更多是攻击者的"恐慌营销"</strong>。</p>
 
   <!-- ========== 文章推荐 ========== -->
   <h2 id="articles">📝 文章推荐</h2>
@@ -296,6 +313,14 @@
   <h3>3、GitHub Agent 工作流的安全架构设计</h3>
   <img class="article-img" src="https://substack-post-media.s3.amazonaws.com/public/images/0fe07f2a-1668-4e29-bc60-9c558e024e6b_3108x1758.png" alt="GitHub Agentic Workflow Security Architecture">
   <p>ByteByteGo 拆解了 GitHub 的"假设 Agent 已被攻陷"安全模型：隔离执行基底、用显式权限编译工作流、通过代理网关将密钥隔离在 Agent 容器之外、用确定性白名单审计输出后再写入 GitHub。在 Agent 越来越多地操作代码库的今天，这套"零信任 Agent"的思路值得每个团队参考。</p>
+
+  <h3>4、打开一个文件到底有多难？—— 从 Flatpak 沙箱逃逸说起</h3>
+  <p>一篇 Lobsters 热门文章，从路径解析、符号链接、TOCTOU 竞态条件出发，解释了为什么把路径传给特权代码是系统性的安全隐患。以 Flatpak 最近的沙箱逃逸 CVE 为案例，论证了 fd-first API 的必要性。如果你写过任何处理文件路径的代码（谁没有呢？），这篇文章会让你重新审视那些"理所当然"的文件操作。</p>
+  <p><a href="https://blog.sebastianwick.net/posts/how-hard-is-it-to-open-a-file/">阅读原文 →</a></p>
+
+  <h3>5、GPU 也能被 Rowhammer？Nvidia 显卡的新攻击面</h3>
+  <img class="article-img" src="https://cdn.arstechnica.net/wp-content/uploads/2026/04/jsc2025e034729large-1152x648.jpg" alt="GPU Rowhammer 攻击">
+  <p>Ars Technica 报道，独立研究团队展示了 GPU 端 Rowhammer 技术（GDDRHammer、GeForge），可以在 Nvidia Ampere 显卡的 GDDR 内存中翻转 bit，突破 GPU 页表隔离，在 IOMMU 关闭时实现完整的主机接管。后续的 GPUBreach 攻击甚至可以在 IOMMU 开启时利用驱动内存安全 bug 提权。<strong>云 GPU 隔离的安全假设正在被动摇。</strong></p>
 
   <!-- ========== 工具推荐 ========== -->
   <h2 id="tools">🛠️ 工具推荐</h2>
@@ -327,6 +352,18 @@
       <h4><a href="https://pijul.org/">Pijul</a></h4>
       <p>基于可交换 patch 的分布式版本控制，用代数化的合并语义减少 rebase 痛苦。少数几个认真重新思考版本控制基础的实验之一。</p>
     </div>
+    <div class="tool-card">
+      <h4><a href="https://gleam.run/news/javascript-source-maps/">Gleam v1.16.0</a></h4>
+      <p>Gleam 加入 JS source maps 支持，stack trace 和断点终于对齐源码。还改进了语言服务器的部分编译失败处理和 codegen 性能。</p>
+    </div>
+    <div class="tool-card">
+      <h4><a href="https://github.com/google/osv-scanner">osv-scanner</a></h4>
+      <p>Google 开源的依赖漏洞扫描器，接入 OSV 数据库查找已知问题。设计上注重 CI 集成和日常维护工作流，数据源覆盖面比 npm audit 更广。</p>
+    </div>
+    <div class="tool-card">
+      <h4><a href="https://discourse.ubuntu.com/t/an-update-on-rust-coreutils/80773">rust-coreutils 审计更新</a></h4>
+      <p>Canonical 发布了 Zellic 对 uutils（Rust 重写的 coreutils）的外部安全审计结果。GNU coreutils 仍保留给高风险命令，目标是未来版本完成全量替换。</p>
+    </div>
   </div>
 
   <!-- ========== AI 工具 ========== -->
@@ -355,6 +392,21 @@
       <h4><a href="https://simonwillison.net/2026/Apr/24/llm/">llm 0.31</a></h4>
       <p>Simon Willison 的 CLI 工具新版，支持 GPT-5.5、OpenAI verbosity 控制和更精细的图片 detail 设置。对可复现的 Agent 和多模态工作流至关重要的小工具大更新。</p>
     </div>
+    <div class="tool-card">
+      <span class="tag">模型</span>
+      <h4><a href="https://github.com/huggingface/ml-intern">ml-intern</a></h4>
+      <p>Hugging Face 开源的"ML 工程师"Agent —— 读论文、训模型、跑实验，一条龙自动化 ML 生命周期。目标是从 paper-to-production 的可复现实验流水线。</p>
+    </div>
+    <div class="tool-card">
+      <span class="tag">Agent</span>
+      <h4><a href="https://github.com/zilliztech/claude-context">claude-context</a></h4>
+      <p>Zilliz 出品的代码搜索 MCP 服务器，给 Claude Code 等 Agent 按需提供高信号的仓库上下文。让大规模重构和迁移不再漏改引用。</p>
+    </div>
+    <div class="tool-card">
+      <span class="tag">编码</span>
+      <h4><a href="https://github.com/Alishahryar1/free-claude-code">free-claude-code</a></h4>
+      <p>社区项目，目标是在终端和 VS Code 中免费使用 Claude Code 风格的 Agent 编码体验。降低 agentic coding 的入门门槛。</p>
+    </div>
   </div>
 
   <!-- ========== 趣闻 ========== -->
@@ -369,6 +421,16 @@
   <div class="fun-card">
     <h4><a href="https://www.theverge.com/podcast/917029/software-brain-ai-backlash-databases-automation">"人民不渴望自动化" — The Verge 编辑的 AI 反思</a></h4>
     <p>Nilay Patel 在 The Verge 发表了一篇犀利的文化评论，认为 AI 的大众接受度问题部分源于"软件脑"文化 —— 把人类生活扁平化为可自动化的流程。这不是一个模型基准测试，而是对纯能力导向 AI 话语的一记文化层面的反击。读完让人想问一个问题：我们是在用技术解决真正的问题，还是在用技术创造新的问题？</p>
+  </div>
+
+  <div class="fun-card">
+    <h4><a href="https://techcrunch.com/2026/04/24/two-college-kids-raise-a-5-1-million-pre-seed-to-build-an-ai-social-network-in-imessage/">两个大学生融资 510 万，在 iMessage 里做 AI 社交网络</a></h4>
+    <p>"Series" —— 一个嵌入 iMessage 的 AI 社交 app，拿到了 510 万美元 pre-seed。不造新平台，不做新 app，直接寄生在用户每天已经在用的聊天工具里。这大概是"distribution first"策略的极致体现：你的 AI 不需要独立入口，它只需要在用户已有的习惯里"长出来"。</p>
+  </div>
+
+  <div class="fun-card">
+    <h4><a href="https://theconsensus.dev/p/2026/04/16/who-even-uses-jemalloc-anyway.html">2026 年了，谁还在用 jemalloc？—— 答案是所有人</a></h4>
+    <p>一篇对 jemalloc 现状的全面盘点：Meta 重新接管维护、发布 5.3.x，数据库、缓存、Rust 生态的主要项目仍在链接它。也有一些项目正在迁向 mimalloc/tcmalloc。这是一篇关于"基础设施依赖"的考古学 —— 你可能从没想过，你用的数据库的内存分配器，才是真正决定性能上限的东西。</p>
   </div>
 
   <!-- ========== 资源 ========== -->
@@ -418,12 +480,12 @@
 
   <!-- ========== 来源 ========== -->
   <div class="footer-sources">
-    <strong>综合科技：</strong>Hacker News · TLDR · Changelog · weeklyfoo<br>
-    <strong>AI 前沿：</strong>Import AI · The Batch · Simon Willison · Last Week in AI<br>
-    <strong>开发者工具：</strong>console.dev · Bytes.dev · JavaScript Weekly<br>
-    <strong>深度分析：</strong>Benedict Evans · The Pragmatic Engineer<br>
+    <strong>综合科技：</strong>Hacker News · TLDR · Changelog · weeklyfoo · TechCrunch · Lobsters<br>
+    <strong>AI 前沿：</strong>Import AI · The Batch · Simon Willison · Last Week in AI · Product Hunt<br>
+    <strong>开发者工具：</strong>console.dev · Bytes.dev · JavaScript Weekly · GitHub Trending<br>
+    <strong>深度分析：</strong>Benedict Evans · The Pragmatic Engineer · Ars Technica<br>
     <strong>系统设计：</strong>ByteByteGo · Dense Discovery<br><br>
-    由 Cursor AI 自动生成 · 信息截止至 2026-04-25
+    由 Cursor AI 自动生成 · 20 个信息源 · 信息截止至 2026-04-25
   </div>
 </main>
 </div>
