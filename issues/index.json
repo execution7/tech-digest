@@ -1,9 +1,9 @@
 [
   {
     "date": "2026-04-25",
-    "title": "第 2 期：AI 模型三国争霸日 — DeepSeek V4 开源登场，Google 砸 400 亿投 Anthropic",
-    "highlights": "DeepSeek V4 开源 MoE 模型 · Google 400 亿投 Anthropic · Cohere 合并 Aleph Alpha · ComfyUI 估值 5 亿 · GPU Rowhammer 攻击 · 量子安全勒索软件",
-    "image": "https://charonhub.deeplearning.ai/content/images/2026/04/RACECARS-6_1200px--1-.jpg"
+    "title": "第 2 期：Firefox 偷师 Brave 广告拦截 · 百个机器人运营生物实验室 · 美中 AI 盗窃争端升级",
+    "highlights": "Firefox 内置 Brave adblock-rust · DeepMind AI Agent 六大攻击类型 · Spotify 发布流水线解密 · Railway 弃用 Next.js · Tokenmaxxing 刷 token 乱象",
+    "image": "https://itsfoss.com/content/images/2026/04/firefox-brave-adblock-rust-banner.png"
   },
   {
     "date": "2026-04-24",

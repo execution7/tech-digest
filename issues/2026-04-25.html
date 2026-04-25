@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>每日科技简报 #2 — 2026-04-25</title>
-  <meta property="og:title" content="AI 模型三国争霸日：DeepSeek V4 开源登场，Google 砸 400 亿投 Anthropic">
-  <meta property="og:description" content="DeepSeek V4 开源 MoE 模型 · Google 400 亿投资 Anthropic · GPT-5.5 API 上线 · Astral 被 OpenAI 收购 · Ruby 之父发布 AOT 编译器 Spinel">
-  <meta property="og:image" content="https://charonhub.deeplearning.ai/content/images/2026/04/RACECARS-6_1200px--1-.jpg">
+  <meta property="og:title" content="Firefox 偷师 Brave 广告拦截引擎 · 百个机器人运营生物实验室 · 美国指控中国"工业级"AI 盗窃">
+  <meta property="og:description" content="Firefox 内置 Brave adblock-rust · DeepMind AI Agent 六大攻击类型 · Spotify 发布流水线解密 · Railway 弃用 Next.js · Tokenmaxxing 刷 token 乱象">
+  <meta property="og:image" content="https://itsfoss.com/content/images/2026/04/firefox-brave-adblock-rust-banner.png">
   <style>
     :root {
       --bg: #f5f6f8; --surface: #ffffff; --surface2: #f0f2f5;
@@ -238,259 +238,229 @@
 <main class="container">
   <a href="../index.html" class="back">← 返回目录</a>
 
-  <h1>第 2 期：AI 模型三国争霸日 — DeepSeek V4 开源登场，Google 砸 400 亿投 Anthropic</h1>
+  <h1>第 2 期：Firefox 偷师 Brave 广告拦截 · 百个机器人运营生物实验室 · 美中 AI 盗窃争端升级</h1>
   <div class="meta">第 2 期 · 2026年4月25日</div>
 
-  <img class="hero-img" src="https://charonhub.deeplearning.ai/content/images/2026/04/RACECARS-6_1200px--1-.jpg" alt="AI 模型三国争霸">
+  <div class="audio-bar hidden" id="audioBar">
+    <div class="audio-label">🎧 收听本期音频版<br><small>由 NotebookLM 生成 · 双人对话播客风格</small></div>
+    <audio controls preload="none" id="audioPlayer"></audio>
+  </div>
+
+  <img class="hero-img" src="https://substack-post-media.s3.amazonaws.com/public/images/978bb4cd-d2e2-4943-bb3c-3eed21a19a4d_6000x4000.jpeg" alt="Medra 生物实验室机器人">
+  <p class="hero-caption">Medra 的旧金山实验室 — 约 100 个机器人正在全自动运营一个生物实验室</p>
 
   <!-- ========== 头条速递 ========== -->
   <h2 id="headline">🔥 头条速递</h2>
 
-  <p>今天的科技圈像是约好了一起放大招。<strong>DeepSeek 发布 V4 系列</strong>，在 Hacker News 拿下近 1800 分 —— V4 Flash 和 V4 Pro 两款 MoE 模型，支持 1M 上下文，MIT 开源协议，API 定价直接把西方大厂的价格按在地上摩擦。</p>
+  <p>今天最让人意外的新闻：<strong>Firefox 149 悄悄内置了 Brave 的 <code>adblock-rust</code> 广告拦截引擎。</strong></p>
 
-  <p>与此同时，<strong>Bloomberg 曝出 Google 正在准备向 Anthropic 投资高达 400 亿美元</strong>。这不是一笔普通的投资 —— 这是在用钱投票，表明 Google 认为自家模型（Gemini）不够，还需要 Anthropic 的 Claude 作为对冲。超级云厂商们正在争夺模型实验室的话语权，竞争格局正在从"谁的模型最好"变成"谁能控制供给"。</p>
+  <p>没有发布会，甚至连发行说明里都没有高调提及。Mozilla 直接把 Brave VP 开发的 Rust 广告拦截核心塞进了 Firefox，默认关闭，通过 <code>about:config</code> 手动启用后可以加载 EasyList 和 EasyPrivacy 规则集。</p>
 
-  <p><strong>OpenAI 也没闲着</strong>，悄悄在 API 里开放了 GPT-5.5 和 GPT-5.5 Pro —— 继续在编码、工具调用和长程任务上加码。Simon Willison 第一时间在 <code>llm</code> CLI 工具中适配了新模型，并对比了 DeepSeek V4 的 token 定价 —— 结论是 DeepSeek 在 $/M tokens 上已经便宜到"让人不好意思用付费模型"的程度。</p>
+  <img class="article-img" src="https://itsfoss.com/content/images/2026/04/firefox-brave-adblock-rust-banner.png" alt="Firefox 集成 Brave 广告拦截引擎">
 
-  <p><strong>判断：</strong>AI 模型市场正在进入"三国时代" —— OpenAI 靠先发和品牌，Anthropic 靠安全和研发深度（外加 Google 的钱），DeepSeek 靠开源和极致性价比。对开发者来说，最大的赢家是你：模型在变好，价格在暴跌，选择在增多。</p>
+  <p>这事为什么值得当头条？三个原因：</p>
+
+  <p><strong>1. 竞争对手共享核心代码极为罕见。</strong> 浏览器厂商之间通常在底层引擎上各自为战，Firefox 直接拿 Brave 的代码来用，说明在广告拦截这件事上，"用户利益" 赢过了 "NIH 综合征"。</p>
+
+  <p><strong>2. Rust 生态的跨项目复用正在兑现承诺。</strong> <code>adblock-rust</code> 之所以能被直接集成，是因为它是一个设计干净、接口清晰的 Rust crate。这不是第一次了 —— 想想 Firefox 的 Stylo（从 Servo 移植的 CSS 引擎）。Rust 正在成为浏览器底层的通用语言。</p>
+
+  <p><strong>3. 广告拦截正在从"插件"升级为"浏览器内核功能"。</strong> 当 Chrome 用 Manifest V3 削弱扩展能力的时候，Firefox 选择把广告拦截直接做进引擎层。这是一个很明确的战略分化信号。</p>
+
+  <p><strong>判断：</strong> 虽然现在默认关闭，但方向已经很清楚。对于关心隐私的用户来说，Firefox 作为"非 Chrome 浏览器"的独特价值正在持续增强。</p>
 
   <!-- ========== 科技动态 ========== -->
   <h2 id="tech-news">📰 科技动态</h2>
 
-  <h3>1、Google 计划向 Anthropic 投资高达 400 亿美元</h3>
-  <p>Bloomberg 报道，Google 正在准备对 Anthropic 进行一笔高达 400 亿美元的资本投入。这笔交易重新定义了超级云厂商与前沿模型实验室之间的竞争关系 —— Google、Anthropic、OpenAI 三方在企业和消费级 AI 市场的角力格局正在被改写。当一家公司同时押注 Gemini 和 Claude 两条线，说明连 Google 自己都不确定哪个会赢。</p>
+  <h3>1、美国指控中国"工业级"AI 盗窃，中国回应"纯属诽谤"</h3>
+  <p>美国政府正式公开指控中国通过<strong>模型蒸馏和大规模账户爬取</strong>进行"工业级"的 AI 知识产权盗窃，并暗示可能出台新的出口管制和法律手段。中方予以否认并回应称是"诽谤"。这事的核心矛盾在于：蒸馏攻击在 ToS 层面很难有效管控，而且"用公开 API 学你的模型"和"偷你的模型"之间的界限并没有法律共识。在即将到来的 Trump-Xi 会谈背景下，AI 已经成为中美科技博弈的最新焦点。</p>
+  <img class="article-img" src="https://cdn.arstechnica.net/wp-content/uploads/2026/04/GettyImages-1195493804-1152x648-1776978131.jpg" alt="中美 AI 争端">
 
-  <h3>2、OpenAI 发布 GPT-5.5 系列 API</h3>
-  <p>OpenAI 在开发者 API 和 changelog 中上线了 GPT-5.5 家族，延续了前沿模型的高频升级节奏。重点面向编码、工具调用和长期 Agent 任务场景。对于正在构建 Agent 管线的开发者来说，又到了重新跑评估、调价格、更新 Agent 配置的时候了。</p>
+  <h3>2、Microsoft 首次启动美国员工自愿退休计划</h3>
+  <p>CNBC 报道，Microsoft 推出首个面向美国员工的自愿退出/退休计划，适用于从普通员工到高级总监级别、满足"年龄+工龄=70"规则的约 7% 美国员工。公司称这是让员工"按自己的节奏过渡"的选择，但结合 AI 时代的人力结构调整来看，这个信号意味深长 —— 大厂在用温和的方式重新配置人力结构。</p>
 
-  <h3>3、Astral（ruff / uv 的公司）被 OpenAI 收购</h3>
-  <p>Changelog 报道，Python 工具链的明星公司 Astral —— 高性能 linter <code>ruff</code> 和包管理器 <code>uv</code> 的幕后团队 —— 加入了 OpenAI。这释放了一个强信号：模型公司正在向语言生态和开发者工具链进行端到端的渗透。你的 linter 和你的 AI 可能很快就是同一家公司做的了。</p>
+  <h3>3、美国多地爆发数据中心反建抗议，已发生暴力事件</h3>
+  <p>Andrew Ng 的 The Batch 报道，美国多个地方社区对超大规模数据中心建设的反对正在升级 —— 已经从公民投票和暂停令发展到了暴力冲突。数百亿美元的数据中心项目被延期或叫停。当 AI 建设需要的电力和水资源与社区利益直接冲突时，"技术中立"的幻觉就碎了。</p>
 
-  <h3>4、npm 供应链再出事：Namastex 包被植入蠕虫式恶意软件</h3>
-  <p>Socket 的安全分析揭示，多个广泛使用的 Namastex 相关 npm 包在安装时会窃取开发者密钥，并尝试蠕虫式扩散到 PyPI（通过 .pth 文件），同时使用 HTTPS 和 ICP canister 双通道外泄数据。这是一个高危提醒：锁定依赖版本、审计发布来源、暴露后立即轮换 CI secrets。</p>
-
-  <h3>5、Cohere 与 Aleph Alpha 合并，打造"跨大西洋 AI 巨头"</h3>
-  <img class="article-img" src="https://techcrunch.com/wp-content/uploads/2024/08/GettyImages-2157583770.jpg?resize=1200,833" alt="Cohere Aleph Alpha 合并">
-  <p>加拿大的 Cohere 宣布收购并合并德国企业 AI 公司 Aleph Alpha，合并后估值约 200 亿美元。这笔交易的定位是：在美国超级巨头之外，为受监管行业和政府客户提供一个更主权、更独立的 AI 选项。当所有人都在盯着 Google/Anthropic/OpenAI 三国杀时，欧洲正在默默走自己的路。</p>
-
-  <h3>6、Meta 签约采购数百万 Amazon AI CPU —— 不是 GPU</h3>
-  <p>Amazon 和 Meta 达成一项大规模协议，Meta 将采购数百万颗 AWS Graviton ARM CPU 用于 AI 相关计算。注意，<strong>不是 GPU</strong>。这说明后训练和 Agent 推理负载正在从"全靠 GPU"转向更多样化的计算架构。对 Amazon 来说，这也是一个重大的云客户胜利 —— 在 AI 算力的军备竞赛中，ARM CPU 正成为被忽视的第二战场。</p>
-
-  <h3>7、微软紧急修复 ASP.NET 跨平台高危漏洞</h3>
-  <p>微软发布了 CVE-2026-40372 的紧急补丁：macOS 和 Linux 上的 ASP.NET Core 数据保护组件存在 HMAC 校验缺陷，攻击者可伪造认证 payload 获取最高权限。即使打了补丁，长期有效的 token 可能仍然可用 —— 如果你的服务暴露在公网，<strong>打完补丁还要轮换密钥</strong>。</p>
+  <h3>4、数据中心温室气体排放可能超过整个国家</h3>
+  <p>Ars Technica 援引 WIRED 分析指出，几个超大型数据中心园区规划中的燃气发电厂的排放量，可能超过一些中小国家的全国排放基准。这些项目之所以绕过公共电网，是因为电网本身已经不够用了。AI 时代的代价不只是芯片价格，还有碳排放。</p>
+  <img class="article-img" src="https://cdn.arstechnica.net/wp-content/uploads/2026/01/microsoft_datacenter_2025-1152x648.jpg" alt="数据中心建设">
 
   <!-- ========== AI 相关 ========== -->
   <h2 id="ai">🤖 AI 相关</h2>
 
-  <h3>1、Anthropic 让 Claude 自己做对齐研究，效果超过人类基线</h3>
-  <p>Anthropic 发布了"自动对齐研究员"（AAR）实验：在沙箱中运行多个 Claude Opus 4.6 Agent，配合共享论坛和评估钩子，让它们自行研究弱到强监督问题。结果是 AI 达到了约 0.97 的性能差距回收率，而同样设置下的人类基线仅为 0.23。当然，研究团队也指出了奖励黑客和迁移受限等注意事项 —— 但方向是明确的：<strong>用 AI 来对齐 AI，效率远超人工。</strong></p>
+  <h3>1、DeepMind 论文：AI Agent 面临六大攻击类型</h3>
+  <p>Google DeepMind 发布了一篇重磅论文，将 AI Agent 面临的攻击系统性地归纳为<strong>六大类型</strong>：从内容中的隐藏指令、多 Agent 拼图攻击、到利用人类审批环节的操纵，分别针对 Agent 的感知、记忆和编排层。作者认为"AI 安全"越来越不是加固单个模型的事，而是像"给整个城市做婴儿安全防护"一样，需要系统性地加固 Agent 运行的整个环境。</p>
 
-  <h3>2、华为 HiFloat4：用国产加速器做 FP4 训练的突围方案</h3>
-  <p>Import AI 报道了一项华为主导的研究：在昇腾 NPU 上用 HiFloat4 格式做 LLM 预训练，在 dense 和 MoE 模型上都比 MXFP4 有更低的相对损失，同时配合稳定化技巧保证训练收敛。这是中国在出口管制压力下，最大化国产加速器训练效率的一个代表性尝试。</p>
+  <h3>2、Benedict Evans：Deep Research 的根本问题</h3>
+  <p>Benedict Evans 亲自测试了 OpenAI 的 Deep Research 功能，发现即使是官方示例中的手机对比表格，也混淆了不同来源的数据、错读了数字、连"实习生级别"的事实核查都没做到。他的核心论点是：<strong>让概率语言模型交付确定性的、可引用的事实，本身就是一个类型错误。</strong> 但他也承认，当有专家在旁边纠错时，这些工具仍然是"加速器，不是神谕"。</p>
 
-  <h3>3、AI Token 支出失控 — 企业还在摸索怎么管</h3>
-  <p>The Pragmatic Engineer 报道，许多公司的 AI Agent token 支出正在快速增长，但管理手段严重滞后。供应商也在为飙升的需求挣扎。这篇报道还提到了 Meta 内部因裁员焦虑和内部追踪系统导致的士气问题 —— AI 带来的不只是技术变革，还有组织阵痛。</p>
+  <h3>3、百个机器人全自动运营生物实验室</h3>
+  <p>Core Memory 深度报道了 Medra 在旧金山的 3800 平方米实验室 —— 约 100 个通用机械臂、物流机器人和 AI Agent 正在端到端运行客户实验方案。最惊人的是"AI 科学家"闭环：系统主动提出实验优化建议（比如增加一步涡旋步骤），将一个抗体结合测试从 0% 直接拉到了 70% 以上。当实验室不需要人的时候，科学研究的节奏会发生什么变化？</p>
 
-  <h3>4、ComfyUI 估值 5 亿美元 —— AI 创作工具的节点式工作流崛起</h3>
-  <img class="article-img" src="https://techcrunch.com/wp-content/uploads/2026/04/ComfyUI-Co-founders-1.png?resize=1200,790" alt="ComfyUI 创始人团队">
-  <p>ComfyUI 融资 3000 万美元，估值 5 亿，由 Craft Ventures 领投。这个基于节点的可视化工作流，让专业创作者可以精细控制 diffusion 模型的图像、视频和音频生成 —— 比单句 prompt 的控制力高出几个量级。VFX、动画、设计行业的人已经离不开它了。当"一句话生成"不够用时，节点式编排就是答案。</p>
-
-  <h3>5、首个量子安全勒索软件被确认 —— 但别慌</h3>
-  <p>Ars Technica 报道，Rapid7 分析了"Kyber"勒索软件家族，确认它使用 ML-KEM-1024（后量子密码学标准）来加密文件密钥。这是首个在野外确认使用 PQC 的商业勒索软件。但专家指出，勒索场景的时间窗口是天级而非年级 —— 量子计算对受害者几乎没有实际威胁，<strong>更多是攻击者的"恐慌营销"</strong>。</p>
+  <h3>4、xAI 发布 Grok Voice Think Fast 1.0 语音 Agent</h3>
+  <p>xAI 在 Product Hunt 上线了 Grok Voice Think Fast 1.0，定位为长时间、多步骤语音交互的 API 级产品。和其他语音模型不同的是，它强调在复杂任务上的准确性和持续性，而不只是"能聊天"。语音作为 API 通道的竞争正在加剧 —— OpenAI、Google、xAI 现在都有自己的语音 Agent 方案。</p>
 
   <!-- ========== 文章推荐 ========== -->
   <h2 id="articles">📝 文章推荐</h2>
 
-  <h3>1、Anthropic 事后复盘：Claude Code "变差"不是模型的锅</h3>
-  <p>最近社区频繁反馈"Claude 变差了"，Anthropic 发布了一篇罕见的详细事后分析：问题出在<strong>三个产品层面的变更</strong> —— 默认推理力度被降低、一个空闲时清除 thinking 的 bug 在每轮对话都触发、以及一个过于激进的简洁系统提示 —— 而不是底层模型本身。修复在 4 月 20 日已上线。这篇文章是对"在生产级 Agent 产品中，prompt 和 harness 变更如何主导用户感知到的模型质量"这个问题的教科书级别答案。</p>
-  <p><a href="https://www.anthropic.com/engineering/april-23-postmortem">阅读原文 →</a></p>
+  <h3>1、Spotify 如何每周向 6.75 亿用户发布更新</h3>
+  <p>ByteByteGo 的深度解析揭示了 Spotify 的发布流水线 —— 不是靠英雄主义，而是靠<strong>工程设计</strong>：trunk-based 开发流、两周发布列车、环形灰度发布、feature flags，以及基于 Backstage 的发布指挥中心。一个叫"Robot"的自动化系统负责状态流转，人类只需要处理真正模棱两可的风险判断。对于任何规模超过百人的工程团队来说，这篇几乎是必读。</p>
 
-  <h3>2、Benedict Evans：OpenAI 的护城河在哪？</h3>
-  <img class="article-img" src="https://static1.squarespace.com/static/50363cf324ac8e905e7df861/t/6993b59b8517240d2235240a/1771507646532/Frontier%2BLanguage%2BModel%2BIntelligence%2C%2BOver%2BTime%2B%2824%2BJan%2B%2726%29%2B-2.png.webp?format=1500w" alt="Frontier Language Model Intelligence Over Time">
-  <p>Evans 论证了 OpenAI 在模型本身没有持久壁垒、ChatGPT 用户参与度浅、竞争对手在加速商品化基础模型的局面下，必须发明全新的产品形态才能存活。更深层的结构性矛盾在于：产品负责人无法控制研究路线图。这不是一篇产品发布笔记，而是一张 OpenAI 未来几年的战略地图。</p>
-  <p><a href="https://www.ben-evans.com/benedictevans/2026/2/19/how-will-openai-compete-nkg2x">阅读原文 →</a></p>
+  <h3>2、Railway 放弃 Next.js 的迁移实录</h3>
+  <p>Railway 详细记录了如何把 200+ 路由从 Next.js 迁移到 Vite + TanStack Router 的过程 —— 零停机完成。他们追求的是更快的开发/构建迭代和更简洁的客户端架构。这不是一篇"框架大战"的口水文，而是扎实的工程决策记录。如果你的团队正在被 Next.js 的复杂度困扰，值得一读。</p>
+  <img class="article-img" src="https://res.cloudinary.com/railway/image/upload/v1775567332/blog/Moving-OG_aclrsn.png" alt="Railway 迁移 Next.js">
 
-  <h3>3、GitHub Agent 工作流的安全架构设计</h3>
-  <img class="article-img" src="https://substack-post-media.s3.amazonaws.com/public/images/0fe07f2a-1668-4e29-bc60-9c558e024e6b_3108x1758.png" alt="GitHub Agentic Workflow Security Architecture">
-  <p>ByteByteGo 拆解了 GitHub 的"假设 Agent 已被攻陷"安全模型：隔离执行基底、用显式权限编译工作流、通过代理网关将密钥隔离在 Agent 容器之外、用确定性白名单审计输出后再写入 GitHub。在 Agent 越来越多地操作代码库的今天，这套"零信任 Agent"的思路值得每个团队参考。</p>
+  <h3>3、前亚马逊首席工程师：1000 场面试的经验总结</h3>
+  <p>前 Amazon PE Steve Huynh 在 The Pragmatic Engineer 上分享了十年间作为 Bar Raiser 进行约 1000 场面试的经验：为什么行为面试的信号量其实比 LeetCode 更重要，以及候选人在准备时最常犯的时间分配错误。对于正在准备大厂面试的人来说，这篇可能比刷 100 道算法题更有用。</p>
 
-  <h3>4、打开一个文件到底有多难？—— 从 Flatpak 沙箱逃逸说起</h3>
-  <p>一篇 Lobsters 热门文章，从路径解析、符号链接、TOCTOU 竞态条件出发，解释了为什么把路径传给特权代码是系统性的安全隐患。以 Flatpak 最近的沙箱逃逸 CVE 为案例，论证了 fd-first API 的必要性。如果你写过任何处理文件路径的代码（谁没有呢？），这篇文章会让你重新审视那些"理所当然"的文件操作。</p>
-  <p><a href="https://blog.sebastianwick.net/posts/how-hard-is-it-to-open-a-file/">阅读原文 →</a></p>
-
-  <h3>5、GPU 也能被 Rowhammer？Nvidia 显卡的新攻击面</h3>
-  <img class="article-img" src="https://cdn.arstechnica.net/wp-content/uploads/2026/04/jsc2025e034729large-1152x648.jpg" alt="GPU Rowhammer 攻击">
-  <p>Ars Technica 报道，独立研究团队展示了 GPU 端 Rowhammer 技术（GDDRHammer、GeForge），可以在 Nvidia Ampere 显卡的 GDDR 内存中翻转 bit，突破 GPU 页表隔离，在 IOMMU 关闭时实现完整的主机接管。后续的 GPUBreach 攻击甚至可以在 IOMMU 开启时利用驱动内存安全 bug 提权。<strong>云 GPU 隔离的安全假设正在被动摇。</strong></p>
+  <h3>4、"Tokenmaxxing" —— 工程师为凑 AI 用量指标疯狂刷 token</h3>
+  <p>The Pragmatic Engineer 追踪到一个诡异的新现象：一些公司的工程师被要求达到内部 AI 使用量指标，于是开始<strong>疯狂消耗 model token 来凑数</strong>。这个"Tokenmaxxing"趋势揭示了企业 AI 补贴政策中的激励扭曲 —— 当 KPI 是"用了多少 token"而不是"产出了多少价值"，结果就是大家比着烧钱。Cal.com 的许可证变更和厂商定价压力也在同一篇中被讨论。</p>
 
   <!-- ========== 工具推荐 ========== -->
   <h2 id="tools">🛠️ 工具推荐</h2>
 
-  <img class="article-img" src="https://assets.rspack.rs/rspack/assets/rspack-og-image-v2-0.png" alt="Rspack 2.0">
-
   <div class="tool-grid">
     <div class="tool-card">
-      <h4><a href="https://github.com/matz/spinel">Spinel</a></h4>
-      <p>Ruby 之父 Matz 亲自发布的 Ruby AOT 原生编译器。如果它成熟，可能重塑 Ruby 在延迟敏感服务和 CLI 工具链中的地位 —— 从"太慢"到"够快"。</p>
+      <h4><a href="https://github.com/NikolayS/pgque">PgQue</a></h4>
+      <p>纯 SQL 实现的 Postgres 轻量级任务队列，不需要额外的 worker 框架。对于已经住在 SQL 里的团队来说，这是最小阻力的消息队列方案。</p>
     </div>
     <div class="tool-card">
-      <h4><a href="https://rspack.rs/blog/announcing-2-0">Rspack 2.0</a></h4>
-      <p>Rust 编写的 webpack 兼容打包器大版本更新，改进了 ESM 处理和构建速度。在 webpack 生态但嫌慢的团队，这是最实际的迁移选项。</p>
+      <h4><a href="https://eli.thegreenplace.net/2026/watgo-a-webassembly-toolkit-for-go/">watgo</a></h4>
+      <p>Eli Bendersky 的 Go 语言 WebAssembly 工具链，用于处理 <code>.wat</code> 文本格式，面向编译器/工具链开发者。桥接 Go 和 Wasm 的实用方案。</p>
     </div>
     <div class="tool-card">
-      <h4><a href="https://bun.com/blog/bun-v1.3.13">Bun v1.3.13</a></h4>
-      <p>测试更智能（隔离/分片/按变更文件过滤），安装更快（流式解压 tarball），内存占用更少。对于正在 CI 中标准化 Bun 的团队很实用。</p>
+      <h4><a href="https://simonwillison.net/2026/Apr/23/liteparse-for-the-web/">LiteParse for the Web</a></h4>
+      <p>Simon Willison 把 LlamaIndex 的 LiteParse 搬到了浏览器 —— PDF 解析和 OCR 全部在客户端运行，零后端依赖。非 LLM 文档处理方案中的佼佼者。</p>
     </div>
     <div class="tool-card">
-      <h4><a href="https://github.com/heygen-com/hyperframes">HyperFrames</a></h4>
-      <p>用 HTML 和 data-attribute 场景描述来编排视频，支持逐帧动画和本地 MP4 导出。明确面向 CLI 和 Agent 驱动的非交互式视频生成管线。</p>
+      <h4><a href="https://nodejs.org/en/blog/release/v24.15.0">Node.js 24.15.0 LTS</a></h4>
+      <p><code>require(esm)</code> 和模块编译缓存转正为稳定功能，新增 <code>--max-heap-size</code> 运维参数。对于还在 CJS/ESM 边界挣扎的大型服务来说是好消息。</p>
     </div>
     <div class="tool-card">
-      <h4><a href="https://blog.cloudflare.com/email-for-agents/">Cloudflare Email</a></h4>
-      <p>Cloudflare 推出公测版邮件服务，强调面向自动化系统和 Agent 工作流的编程式收发模式。对于需要邮件驱动自动化或人在环审批的场景，是一个新的云原生选项。</p>
+      <h4><a href="https://blog.margelo.com/whats-new-in-visioncamera-v5">VisionCamera v5</a></h4>
+      <p>React Native 相机库大版本更新：Nitro Modules、新的 Constraints API、视频捕获管线性能优化。移动端相机体验的首选方案。</p>
     </div>
     <div class="tool-card">
-      <h4><a href="https://pijul.org/">Pijul</a></h4>
-      <p>基于可交换 patch 的分布式版本控制，用代数化的合并语义减少 rebase 痛苦。少数几个认真重新思考版本控制基础的实验之一。</p>
-    </div>
-    <div class="tool-card">
-      <h4><a href="https://gleam.run/news/javascript-source-maps/">Gleam v1.16.0</a></h4>
-      <p>Gleam 加入 JS source maps 支持，stack trace 和断点终于对齐源码。还改进了语言服务器的部分编译失败处理和 codegen 性能。</p>
-    </div>
-    <div class="tool-card">
-      <h4><a href="https://github.com/google/osv-scanner">osv-scanner</a></h4>
-      <p>Google 开源的依赖漏洞扫描器，接入 OSV 数据库查找已知问题。设计上注重 CI 集成和日常维护工作流，数据源覆盖面比 npm audit 更广。</p>
-    </div>
-    <div class="tool-card">
-      <h4><a href="https://discourse.ubuntu.com/t/an-update-on-rust-coreutils/80773">rust-coreutils 审计更新</a></h4>
-      <p>Canonical 发布了 Zellic 对 uutils（Rust 重写的 coreutils）的外部安全审计结果。GNU coreutils 仍保留给高风险命令，目标是未来版本完成全量替换。</p>
+      <h4><a href="https://lightwhale.asklandd.dk/">Lightwhale 3</a></h4>
+      <p>一个小巧的不可变 Linux 发行版，直接 Live Boot 进 Docker 引擎。为自托管容器场景设计，RAM 占用极低 —— 作者称之为"RAMageddon"时代的解药。</p>
     </div>
   </div>
+  <img class="article-img" src="https://opengraph.githubassets.com/1/NikolayS/pgque" alt="PgQue">
 
   <!-- ========== AI 工具 ========== -->
   <h2 id="ai-tools">🧠 AI 工具</h2>
 
-  <img class="article-img" src="https://opengraph.githubassets.com/1/multica-ai/multica" alt="Multica - Multi-Agent Coding">
-
   <div class="tool-grid">
     <div class="tool-card">
-      <span class="tag">模型</span>
-      <h4><a href="https://z.ai/blog/glm-5.1">GLM-5.1</a></h4>
-      <p>智谱发布面向长时间 Agent 任务的开放权重模型，强调在超长计划-执行-评估循环中的可持续性（最长可达 8 小时连续工作）。"知道何时放弃失败方案"可能是最被低估的能力。</p>
+      <span class="tag">企业</span>
+      <h4><a href="https://www.producthunt.com/products/ascend-ai-agent-and-mcp-control-plane">ASCEND</a></h4>
+      <p>AI Agent 和 MCP 的治理控制面 —— 策略执行、工具调用拦截、合规证据自动生成。亮点是 MCP 调用级别的 pre-call 拦截和 500ms 内的 Agent kill switch。</p>
+    </div>
+    <div class="tool-card">
+      <span class="tag">企业</span>
+      <h4><a href="https://www.producthunt.com/products/gemini-personal-intelligence">Gemini Personal Intelligence</a></h4>
+      <p>Google 的个人化 AI 层 —— 从 Gmail、Photos、YouTube 和历史对话中提取上下文，消除冷启动问题。用户可以按应用粒度控制数据权限。</p>
     </div>
     <div class="tool-card">
       <span class="tag">Agent</span>
-      <h4><a href="https://github.com/multica-ai/multica">Multica</a></h4>
-      <p>Go 编写的本地 daemon，协调多个 AI 编码 Agent 认领任务、实现变更、汇报进度。目标是团队级工作流而非单人聊天窗口 —— Agent 不再是你的助手，而是你的队友。</p>
-    </div>
-    <div class="tool-card">
-      <span class="tag">Agent</span>
-      <h4><a href="https://github.com/letta-ai/letta-code">Letta Code</a></h4>
-      <p>记忆优先的长期编码 Agent 框架，跨会话持久化 Agent 记忆和技能积累。解决了临时聊天式编码助手的核心缺陷 —— 它不会每次重新"入职"你的代码库。</p>
-    </div>
-    <div class="tool-card">
-      <span class="tag">编码</span>
-      <h4><a href="https://simonwillison.net/2026/Apr/24/llm/">llm 0.31</a></h4>
-      <p>Simon Willison 的 CLI 工具新版，支持 GPT-5.5、OpenAI verbosity 控制和更精细的图片 detail 设置。对可复现的 Agent 和多模态工作流至关重要的小工具大更新。</p>
+      <h4><a href="https://www.producthunt.com/products/clawdi">Clawdi</a></h4>
+      <p>AI Agent 云端运行环境，支持 OpenClaw、Hermes 等 Agent 框架。内存、API 密钥和技能与底层引擎解耦，本地加密密钥管理。</p>
     </div>
     <div class="tool-card">
       <span class="tag">模型</span>
-      <h4><a href="https://github.com/huggingface/ml-intern">ml-intern</a></h4>
-      <p>Hugging Face 开源的"ML 工程师"Agent —— 读论文、训模型、跑实验，一条龙自动化 ML 生命周期。目标是从 paper-to-production 的可复现实验流水线。</p>
-    </div>
-    <div class="tool-card">
-      <span class="tag">Agent</span>
-      <h4><a href="https://github.com/zilliztech/claude-context">claude-context</a></h4>
-      <p>Zilliz 出品的代码搜索 MCP 服务器，给 Claude Code 等 Agent 按需提供高信号的仓库上下文。让大规模重构和迁移不再漏改引用。</p>
-    </div>
-    <div class="tool-card">
-      <span class="tag">编码</span>
-      <h4><a href="https://github.com/Alishahryar1/free-claude-code">free-claude-code</a></h4>
-      <p>社区项目，目标是在终端和 VS Code 中免费使用 Claude Code 风格的 Agent 编码体验。降低 agentic coding 的入门门槛。</p>
+      <h4><a href="https://github.com/Anil-matcha/Open-Generative-AI">Open-Generative-AI</a></h4>
+      <p>MIT 协议的自托管多模型创意工作台，聚合了大量图像/视频生成模型，支持离线工作流。开源前端多模型 UI 的竞速赛选手。</p>
     </div>
   </div>
+  <img class="article-img" src="https://opengraph.githubassets.com/1/Anil-matcha/Open-Generative-AI" alt="Open-Generative-AI">
 
   <!-- ========== 趣闻 ========== -->
   <h2 id="fun">🎲 趣闻</h2>
 
   <div class="fun-card">
-    <img class="article-img" src="https://cf-assets.www.cloudflare.com/zkvhlag99gkb/3RDH6grpXMz6DWEQmZgXj9/0dcfca0bf86c72e933d4fcb8b585b45c/OG_Share_2024-2025-2026__2_.png" alt="Cloudflare 安全事件">
-    <h4><a href="https://webmatrices.com/post/how-a-roblox-cheat-and-one-ai-tool-brought-down-vercel-s-entire-platform">一个 Roblox 外挂是怎么搞垮 Vercel 整个平台的</a></h4>
-    <p>续报 · 一个捆绑了恶意软件的 Roblox 作弊工具 → 入侵了一个第三方 AI 工具（Context.ai）→ 通过 OAuth 渗透进 Google Workspace → 最终暴露了 Vercel 客户的环境变量。攻击链之长令人叹为观止，也说明了一件事：你的安全取决于你信任链中最弱的那一环，而那一环可能是某个实习生装的 Roblox 外挂。</p>
+    <h4><a href="https://github.com/yuvadm/quantumslop">用 /dev/urandom 替代 IBM 量子计算后端</a></h4>
+    <p>有人把 IBM Quantum 的采样后端接到了 Linux 的 <code>/dev/urandom</code> 上，制作了一个名为 <code>quantumslop</code> 的恶搞 demo。这个项目的哲学问题是：当量子"随机"后端对用户来说像个黑盒时，你怎么证明它不是用 <code>urandom</code> 跑的？上了 HN 首页，程序员们纷纷表示"我其实一直有这个怀疑"。</p>
+  </div>
+  <img class="article-img" src="https://opengraph.githubassets.com/1/yuvadm/quantumslop" alt="quantumslop">
+
+  <div class="fun-card">
+    <h4><a href="https://www.dbpro.app/blog/chess-in-pure-sql">纯 SQL 实现的可玩国际象棋</a></h4>
+    <p>dbpro 用 <code>SELECT</code> 和 <code>UPDATE</code> 写了一个完整可玩的国际象棋游戏，只用极少量的 PHP 做宿主。当关系型数据库被推到报表查询之外，它到底能做什么？答案是：可以下棋。这是一个周末数据库黑客的艺术作品，比你想象的优雅得多。</p>
   </div>
 
   <div class="fun-card">
-    <h4><a href="https://www.theverge.com/podcast/917029/software-brain-ai-backlash-databases-automation">"人民不渴望自动化" — The Verge 编辑的 AI 反思</a></h4>
-    <p>Nilay Patel 在 The Verge 发表了一篇犀利的文化评论，认为 AI 的大众接受度问题部分源于"软件脑"文化 —— 把人类生活扁平化为可自动化的流程。这不是一个模型基准测试，而是对纯能力导向 AI 话语的一记文化层面的反击。读完让人想问一个问题：我们是在用技术解决真正的问题，还是在用技术创造新的问题？</p>
+    <h4><a href="https://codeberg.org/hails/wsl9x">WSL9x：在 Windows 95/98 上跑 Linux 内核</a></h4>
+    <p>一个故意让人目瞪口呆的系统项目：在 Windows 9x 内核中以协作方式运行现代 Linux 内核，用 VxD 加载器、GPF 中断做系统调用管道，再用一个 DOS 端的控制台客户端交互。README 上骄傲地写着"Proudly written without AI"—— 既是炫技也是宣言。</p>
   </div>
-
-  <div class="fun-card">
-    <h4><a href="https://techcrunch.com/2026/04/24/two-college-kids-raise-a-5-1-million-pre-seed-to-build-an-ai-social-network-in-imessage/">两个大学生融资 510 万，在 iMessage 里做 AI 社交网络</a></h4>
-    <p>"Series" —— 一个嵌入 iMessage 的 AI 社交 app，拿到了 510 万美元 pre-seed。不造新平台，不做新 app，直接寄生在用户每天已经在用的聊天工具里。这大概是"distribution first"策略的极致体现：你的 AI 不需要独立入口，它只需要在用户已有的习惯里"长出来"。</p>
-  </div>
-
-  <div class="fun-card">
-    <h4><a href="https://theconsensus.dev/p/2026/04/16/who-even-uses-jemalloc-anyway.html">2026 年了，谁还在用 jemalloc？—— 答案是所有人</a></h4>
-    <p>一篇对 jemalloc 现状的全面盘点：Meta 重新接管维护、发布 5.3.x，数据库、缓存、Rust 生态的主要项目仍在链接它。也有一些项目正在迁向 mimalloc/tcmalloc。这是一篇关于"基础设施依赖"的考古学 —— 你可能从没想过，你用的数据库的内存分配器，才是真正决定性能上限的东西。</p>
-  </div>
+  <img class="article-img" src="https://codeberg.org/hails/wsl9x/raw/branch/main/screenshot.png" alt="WSL9x 截图">
 
   <!-- ========== 资源 ========== -->
   <h2 id="resources">📚 资源</h2>
 
   <div class="resource-item">
-    <a href="https://blog.bytebytego.com/p/b-trees-vs-lsm-trees-comparison-and">B-Tree vs LSM Tree：数据库存储引擎的核心抉择</a>
-    <p>ByteByteGo 的系统设计图解：从磁盘访问的核心问题出发，对比 B-Tree（读优化排序结构）和 LSM Tree（写缓冲批量刷盘设计）的根本权衡。如果你做过数据库选型但说不清"为什么选这个引擎"，这篇文章就是答案。</p>
+    <a href="https://github.com/codecrafters-io/build-your-own-x">build-your-own-x</a>
+    <p>一个长期维护的"从零实现 X"教程合集 —— 涵盖编译器、数据库、容器、游戏引擎等数十个领域和语言。把周末好奇心转化为结构化学习路径的最快方式。GitHub 上的常青项目。</p>
+  </div>
+  <img class="article-img" src="https://opengraph.githubassets.com/1/codecrafters-io/build-your-own-x" alt="build-your-own-x">
+
+  <div class="resource-item">
+    <a href="https://developer.mozilla.org/en-US/blog/mdn-front-end-deep-dive/">MDN 前端技术深度剖析：从 React 到自定义渲染管线</a>
+    <p>MDN 团队详细解释了为什么 React 对于一个以内容为主的文档站来说是"笨重的包装纸"，以及替代方案：自定义渲染管线 + Lit Web Components + 性能和无障碍优先的架构设计。被广泛引用为"框架减重"的经典案例研究。</p>
   </div>
 
   <div class="resource-item">
-    <a href="https://blog.bytebytego.com/p/how-doordash-launches-a-new-country">DoorDash 如何一周上线一个新国家</a>
-    <p>拆解了 DoorDash 如何用薄编排层 + 可组合工作流定义 + 可复用步骤模块 + 单一 JSON 状态映射，把国家级别的上线从"定制化意大利面代码"变成模块化拼装。在单体架构内建立模块边界的教科书案例。</p>
-  </div>
-
-  <div class="resource-item">
-    <a href="https://newsletter.pragmaticengineer.com/p/designing-data-intensive-applications">DDIA 第二版作者 Kleppmann 深度访谈</a>
-    <p>长篇对话涵盖了《数据密集型应用设计》第二版、云规模如何改变了分片与复制的思考方式、形式化验证在 LLM 时代可能变得更便宜、以及 local-first 软件的挑战。</p>
+    <a href="https://www.youtube.com/watch?v=a9_Ud5MFTjU">Evan You — State of Vue 2026（Vue.js Amsterdam）</a>
+    <p>尤雨溪年度生态报告：不仅仅是 Vue —— Vite 8、Vite+、VoidZero 工具链的进展，加上 Vapor Mode 的最新进度。2026 年 4 月 Vue/Vite 生态的最全面 checkpoint。</p>
   </div>
 
   <!-- ========== 言论 ========== -->
   <h2 id="quotes">💬 言论</h2>
 
   <div class="quote-block">
-    <blockquote>编码 Agent 加速前端开发最多，其次是后端，再是基础设施，最后才是研究 —— 研究仍然被非编码的科学判断力主导。</blockquote>
-    <div class="quote-author">— Andrew Ng, <a href="https://www.deeplearning.ai/the-batch/issue-350/">The Batch #350</a></div>
-    <div class="quote-comment">点评：这个排序揭示了一个反直觉的事实 —— AI 加速的不是最难的事，而是反馈循环最短的事。前端有浏览器秒级预览，所以 Agent 如鱼得水；科研需要的是判断力，而这恰恰是 AI 最弱的地方。</div>
+    <blockquote>核心问题在于：让概率语言模型交付确定性的、可引用的事实，本身就是一个类型错误。</blockquote>
+    <div class="quote-author">— Benedict Evans, <a href="https://www.ben-evans.com/benedictevans/2025/2/17/the-deep-research-problem">The Deep Research Problem</a></div>
+    <div class="quote-comment">点评：Deep Research 的本质困境 —— 模型擅长模式匹配，不擅长事实核查。在有专家兜底的情况下当加速器用还行，当"全自动分析师"用就是在赌博。</div>
   </div>
 
   <div class="quote-block">
-    <blockquote>人民不渴望自动化。"软件脑"文化把人类生活扁平化为可自动化的循环 —— 而人们正在反击。</blockquote>
-    <div class="quote-author">— Nilay Patel, <a href="https://www.theverge.com/podcast/917029/software-brain-ai-backlash-databases-automation">The Verge</a></div>
-    <div class="quote-comment">点评：所有人都在讨论 AI "能做什么"，很少有人问"该不该做"。当自动化的目标从"消除重复劳动"变成"消除人类参与"，反弹是必然的。</div>
+    <blockquote>Agent 安全看起来不会像加固单个模型，而是像给整座城市做婴儿安全防护。</blockquote>
+    <div class="quote-author">— Google DeepMind, <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6372438">AI Agent Traps: Six Genres of Attacks</a></div>
+    <div class="quote-comment">点评：当 Agent 在真实世界里操作文件、执行代码、调用 API 时，安全问题不再是"模型对齐"就能解决的。你需要防的不是 Agent 本身变坏，而是整个环境被恶意利用。</div>
   </div>
 
   <div class="quote-block">
-    <blockquote>OpenAI 在模型本身没有持久壁垒，ChatGPT 的用户参与度出人意料地浅，而它必须在竞争对手商品化基础模型的同时发明全新的产品形态。</blockquote>
-    <div class="quote-author">— Benedict Evans, <a href="https://www.ben-evans.com/benedictevans/2026/2/19/how-will-openai-compete-nkg2x">How will OpenAI compete?</a></div>
-    <div class="quote-comment">点评：当你的核心产品（模型）正在被开源和巨头同时夹击，你的分发渠道（ChatGPT）没有形成习惯粘性 —— 这几乎就是教科书级别的"护城河焦虑"。Anthropic 有 Google 的钱，DeepSeek 有开源的势，OpenAI 有什么？</div>
+    <blockquote>搜索"先行研究"和扩大范围能悄无声息地杀死一个个人项目 —— 我在用 LLM 构建一个模糊文件查找器时就掉进了这个坑。</blockquote>
+    <div class="quote-author">— Kevin Lynagh, <a href="https://kevinlynagh.com/newsletter/2026_04_overthinking/">Sabotaging Projects by Overthinking</a></div>
+    <div class="quote-comment">点评：LLM 时代的 scope creep 更隐蔽了 —— 因为 AI 让你觉得"加个功能"的成本很低，结果项目被无限膨胀拖死。最好的个人项目往往是最小的那个。</div>
   </div>
 
   <div class="quote-block">
-    <blockquote>用户感知到的"模型变差"，实际上是 prompt 工程和 harness 层的三个独立 bug 叠加造成的 —— 底层模型从未改变。</blockquote>
-    <div class="quote-author">— Anthropic 工程团队, <a href="https://www.anthropic.com/engineering/april-23-postmortem">April 23 Postmortem</a></div>
-    <div class="quote-comment">点评：这个事后复盘给所有 AI 产品团队上了一课 —— 在生产环境中，模型能力只是冰山一角。默认参数、系统提示、缓存策略这些"无聊"的产品决策，对用户体验的影响可能远大于模型升级。</div>
+    <blockquote>工程师被要求达到内部 AI 使用量指标，于是开始疯狂消耗 token 来凑数。</blockquote>
+    <div class="quote-author">— Gergely Orosz, <a href="https://newsletter.pragmaticengineer.com/p/the-pulse-tokenmaxxing-as-a-weird">The Pulse: Tokenmaxxing</a></div>
+    <div class="quote-comment">点评：这是古德哈特定律（"当一个指标成为目标，它就不再是好指标"）在 AI 时代的完美演绎。企业不应该 KPI 员工用了多少 token，而应该看产出了多少价值。</div>
   </div>
 
   <!-- ========== 来源 ========== -->
   <div class="footer-sources">
     <strong>综合科技：</strong>Hacker News · TLDR · Changelog · weeklyfoo · TechCrunch · Lobsters<br>
-    <strong>AI 前沿：</strong>Import AI · The Batch · Simon Willison · Last Week in AI · Product Hunt<br>
-    <strong>开发者工具：</strong>console.dev · Bytes.dev · JavaScript Weekly · GitHub Trending<br>
-    <strong>深度分析：</strong>Benedict Evans · The Pragmatic Engineer · Ars Technica<br>
-    <strong>系统设计：</strong>ByteByteGo · Dense Discovery<br><br>
-    由 Cursor AI 自动生成 · 20 个信息源 · 信息截止至 2026-04-25
+    <strong>AI 前沿：</strong>Import AI · The Batch · Simon Willison · Last Week in AI<br>
+    <strong>开发者工具：</strong>console.dev · Bytes.dev · JavaScript Weekly · Product Hunt<br>
+    <strong>深度分析：</strong>Benedict Evans · The Pragmatic Engineer<br>
+    <strong>系统设计：</strong>ByteByteGo · Dense Discovery · Ars Technica · GitHub Trending<br><br>
+    由 Cursor AI 自动生成 · 信息截止至 2026-04-25
   </div>
 </main>
 </div>
 
 <script>
+  const today = '2026-04-25';
+  const audioPath = `../audio/${today}.m4a`;
+  fetch(audioPath, { method: 'HEAD' }).then(r => {
+    if (r.ok) {
+      document.getElementById('audioBar').classList.remove('hidden');
+      document.getElementById('audioPlayer').src = audioPath;
+    }
+  }).catch(() => {});
   const tocLinks = document.querySelectorAll('.toc a');
   const sections = [];
   tocLinks.forEach(link => {
