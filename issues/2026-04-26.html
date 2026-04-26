@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>每日科技简报 #3 — 2026-04-26</title>
-  <meta property="og:title" content="业余爱好者用 ChatGPT 攻克 60 年 Erdős 猜想 · Anthropic 估值破万亿 · DeepSeek V4 杀入前沿">
-  <meta property="og:description" content="ChatGPT 解数学猜想 · Anthropic 万亿估值 · OpenAI 收购 Astral · GLM-5.1 长任务 · DeepSeek V4 · Agent 交易市场 · npm 供应链攻击">
-  <meta property="og:image" content="https://static.scientificamerican.com/dam/asset/124ad289-58c2-4d51-87e8-aee854d10fc7/abstract-rubiks-cube.jpg?m=1777033076.511&w=1200">
+  <meta property="og:title" content="欧盟年龄验证背后的数字身份证博弈 · Flickr 为何仍是摄影师的「最后一块净土」· AI 正在改变内核维护的代价">
+  <meta property="og:description" content="欧盟年龄门与数字身份 · Flickr 反潮流长期主义 · Linux 老驱动与 AI 漏洞报告 · OpenAI 企业隐私滤镜 · Vibe Coding 时代的 Mac 应用淘金热">
+  <meta property="og:image" content="https://juraj.bednar.io/wp-content/uploads/2026/04/cover-eu-age.jpeg">
   <style>
     :root {
       --bg: #f5f6f8; --surface: #ffffff; --surface2: #f0f2f5;
@@ -238,7 +238,7 @@
 <main class="container">
   <a href="../index.html" class="back">← 返回目录</a>
 
-  <h1>第 3 期：业余爱好者用 ChatGPT 攻克 60 年 Erdős 猜想 · Anthropic 估值破万亿 · DeepSeek V4 杀入前沿</h1>
+  <h1>第 3 期：欧盟年龄门背后的数字身份证博弈 · Flickr 的长期主义 · 内核维护遇上 AI 漏洞报告潮</h1>
   <div class="meta">第 3 期 · 2026年4月26日</div>
 
   <div class="audio-bar hidden" id="audioBar">
@@ -246,215 +246,218 @@
     <audio controls preload="none" id="audioPlayer"></audio>
   </div>
 
-  <img class="hero-img" src="https://static.scientificamerican.com/dam/asset/124ad289-58c2-4d51-87e8-aee854d10fc7/abstract-rubiks-cube.jpg?m=1777033076.511&w=1200" alt="ChatGPT 攻克 Erdős 猜想">
-  <p class="hero-caption">一个 23 岁的业余爱好者用 ChatGPT 找到了 Erdős 原始集猜想的新证明 — Scientific American</p>
+  <img class="hero-img" src="https://juraj.bednar.io/wp-content/uploads/2026/04/cover-eu-age.jpeg" alt="欧盟年龄验证与数字身份封面图">
+  <p class="hero-caption">欧盟「年龄验证」立法争议 —— 图片来自 Juraj Bednar 博客封面</p>
 
   <!-- ========== 头条速递 ========== -->
   <h2 id="headline">🔥 头条速递</h2>
 
-  <p>今天最炸裂的新闻来自数学界：<strong>一个 23 岁的业余爱好者，用 ChatGPT Pro 的 GPT-5.4 Pro，给一个 60 年来悬而未决的 Erdős 猜想找到了一条全新的证明路径。</strong></p>
+  <p>今天最值得单独拎出来说的，不是某个模型发布，而是一条正在欧洲快速推进的<strong>监管逻辑链</strong>：以「保护未成年人」为名的年龄验证，正在变成数字身份基础设施的入口 —— Juraj Bednar 把它形容为 <strong>Trojan horse for digital IDs</strong>。</p>
 
-  <p>这不是 AI 独立解题 —— 而是一个没有专业数学训练的年轻人，通过反复和 GPT 对话、引导、追问，最终碰撞出了一条连 Terence Tao 等数学家都在认真审查的全新攻击路线。证明已发布在 erdosproblems.com，核心思路被同行确认为"与已有方法截然不同"。</p>
+  <p>政策叙事很干净：没有年龄门，孩子就能刷到不该看的内容。工程落地却极其复杂：你要证明「屏幕前的人已满 18 岁」，几乎必然会走向<strong>更强的身份绑定</strong>（证件、钱包、运营商、平台账号互证）。一旦基础设施建成，它不会只服务于「家长控制」，而会服务于所有需要「可信成年人」的场景 —— 广告、金融、政治动员，都会排队来借这套能力。</p>
 
-  <p>这个故事的意义远不止于一个猜想。它验证了一种新的人机协作范式：<strong>AI 不需要"理解"数学，它只需要在对话中扮演一个不知疲倦的"思维伙伴"</strong>，帮助人类探索他们独自不会尝试的方向。Vibe-mathing 可能听起来不严肃，但成果比嘲笑它的人想象的来得更快。</p>
+  <p><strong>1. 这是典型的「安全理由 → 永久能力」路径。</strong> 年龄验证听起来比「全面实名制」更容易在舆论场通过，但它对技术栈的要求几乎等价：可验证、可审计、难伪造 —— 也就是数字身份系统最喜欢的那组性质。</p>
 
-  <p>与此同时，Anthropic 在二级市场的估值突破了 1 万亿美元，Google 跟进了高达 400 亿美元的现金+算力投资。AI 从实验室走向天文数字的资本故事，这一周的浓度格外高。</p>
+  <p><strong>2. 平台与国家的激励高度对齐。</strong> 大型平台早就苦于合规与风控成本；国家则希望减少匿名互联网的「不可控面」。当双方都想把「人」钉在账号与设备上时，年龄门只是最先被写进法律的那一个楔子。</p>
 
-  <p><strong>判断：</strong>数学家用了 60 年没解决的问题，一个业余选手用几周的 ChatGPT 对话撬开了裂缝。这不是"AI 取代人类"，而是"AI 让更多人进入原本封闭的竞技场"。当你的思维伙伴永远不会累、不会嘲笑你的笨问题，创新的门槛正在被重新定义。</p>
+  <p><strong>3. 对开发者意味着什么？</strong> 你要设计的不是「一个勾选框」，而是一整条信任链：数据来源、最小化采集、可删除性、跨境合规、以及最坏情况下的滥用模型。否则你以为自己在做 parental controls，用户看到的可能只是又一层账号监狱。</p>
+
+  <p><strong>判断：</strong> 这类议题没有「技术中立」的舒适区 —— 架构选型即政治选择。值得所有做身份、支付、社交与内容分发的人严肃读一遍 <a href="https://juraj.bednar.io/en/blog-en/2026/04/17/eu-age-control-the-trojan-horse-for-digital-ids/">Juraj Bednar 的分析长文</a>。本期其他板块不再重复该 URL，避免「头条写了、下面又贴一遍」的重复感。</p>
 
   <!-- ========== 科技动态 ========== -->
   <h2 id="tech-news">📰 科技动态</h2>
 
-  <h3>1、Anthropic 估值飙至 1 万亿美元，Google 追投 400 亿</h3>
-  <p>二级市场的投资者正在把 Anthropic 定价到 1 万亿美元附近 —— 超过了 OpenAI 在同类市场的报价。与此同时，Google 宣布了一笔高达 400 亿美元的现金+云计算投资组合，紧随 Amazon 之前的 Anthropic 交易。这已经不是"看好一家创业公司"的故事了，这是超级大厂在抢 AI 算力时代的关键资源：<strong>谁绑定了 Claude，谁就绑定了一个生态。</strong></p>
-  <img class="article-img" src="https://cdn.mos.cms.futurecdn.net/9HPuS6sB2qP4amZaCbDCNk-1920-80.png" alt="Anthropic 估值">
+  <h3>1、Linux 内核讨论：老旧网络驱动是否该为「AI 生成的漏洞报告」让路？</h3>
+  <p><a href="https://www.phoronix.com/news/Linux-Old-Network-AI">Phoronix</a> 报道，上游社区在权衡<strong>维护成本</strong>与<strong>安全响应</strong>时，开始讨论是否更激进地移除长期无人维护的老旧网络驱动。导火索之一是：大量由 AI 辅助生成的漏洞报告涌入，让维护者花在「甄别真伪」上的时间暴涨 —— 这不是「模型好不好用」的问题，而是<strong>协作协议被新工具改写</strong>之后，项目治理要怎么升级。</p>
 
-  <h3>2、OpenAI 收购 Astral —— Python 的 uv 和 ruff 归了 OpenAI</h3>
-  <p>Astral，Python 生态中火得一塌糊涂的 <code>uv</code> 包管理器和 <code>ruff</code> linter 背后的团队，被 OpenAI 收购了。这是 AI 公司在开发者工具链上的一次重大整合 —— OpenAI 不只要你用他们的模型写代码，还想拥有你写代码的工具。Changelog 将此视为 2026 年最重要的 DevTools 并购事件。</p>
-  <img class="article-img" src="https://snap.fly.dev/news/184/img" alt="Astral 收购">
+  <h3>2、Flickr：为什么它仍是「最后一个伟大的照片平台」？</h3>
+  <p><a href="https://petapixel.com/2026/04/22/flickr-the-first-and-last-great-photo-platform/">PetaPixel</a> 刊登了一篇立场鲜明的长文，为 Flickr 辩护：在算法短视频与「全站 Reels 化」的浪潮里，Flickr 坚持<strong>时间线、社群小组、开放 API 与 RSS</strong>这些「老派 Web」能力。作者承认 Pro 订阅不便宜，但认为它换来的是不被信息流绑架的摄影社区 —— 这在 2026 年反而成了稀缺品。</p>
+  <img class="article-img" src="https://petapixel.com/assets/uploads/2026/04/Flickr-The-First-and-Last-Great-Photo-Platform.jpg" alt="Flickr 长文配图">
 
-  <h3>3、Cohere 与 Aleph Alpha 合并，押注"主权 AI"</h3>
-  <p>加拿大的 Cohere 和德国的 Aleph Alpha 宣布合并，背后有 Schwarz 集团（欧洲最大零售商之一）的支持。这场合并的核心叙事是"主权 AI"—— 为政府和企业提供不依赖美国超级大厂的 LLM 基础设施。这既是一个 M&A 故事，也是一个 AI 地缘政治故事。</p>
+  <h3>3、Freakonomics：阿尔茨海默病为什么「看起来」几十年没大突破？</h3>
+  <p><a href="https://freakonomics.com/podcast/why-has-there-been-so-little-progress-on-alzheimers-disease/">Freakonomics 播客</a> 从药物研发、临床试验设计、以及「公众叙事 vs 科学进展节奏」三个角度拆解：不是科学家在摸鱼，而是<strong>生物学难度 + 统计显著性门槛 + 媒体偏好简单故事</strong>共同制造了「停滞感」。对科技报道读者来说，这是一剂很好的「慢变量清醒剂」。</p>
 
-  <h3>4、npm 供应链攻击：CanisterWorm 蠕虫劫持 Namastex 系列包</h3>
-  <p>安全公司 Socket 披露了一起蠕虫式供应链攻击：Namastex 相关的 npm 包被植入恶意代码，窃取开发者凭证、钱包密钥和 CI 密钥，还能自我复制并发布新的恶意版本。攻击还试图跨越到 PyPI 生态。如果你的依赖树里有 Namastex 相关包，<strong>现在就去检查。</strong></p>
+  <h3>4、最快的 Linux 时间戳是哪一个？</h3>
+  <p><a href="https://www.hmpcabral.com/2026/04/26/the-fastest-linux-timestamps/">HM Cabral</a> 的性能小品把 <code>clock_gettime</code>、<code>vdso</code>、<code>riscv_hwprobe</code> 等路径放到同一套微基准里对比 —— 适合想把系统调用成本吃透的底层工程师当下午茶读物。</p>
 
   <!-- ========== AI 相关 ========== -->
   <h2 id="ai">🤖 AI 相关</h2>
 
-  <h3>1、GLM-5.1：为长任务而生的 754B MoE 怪兽</h3>
-  <p>Z.ai（智谱）发布开源 GLM-5.1，一个 754B 参数（40B 激活）的 MoE 模型，专为"规划-执行-修正"循环的长任务设计 —— 可以连续工作数小时、发起数千次工具调用。在开源模型中编码能力排名靠前，但 API 定价比上一代显著提高。当模型的目标不再是"回答一个问题"而是"完成一项工程"，游戏规则正在改变。</p>
-  <img class="article-img" src="https://charonhub.deeplearning.ai/content/images/2026/04/GLM-5.1-Aims-for-Long-Running-Tasks-1.png" alt="GLM-5.1">
+  <h3>1、OpenAI 推出企业向 Privacy Filter：把「可审计的不看」做成产品</h3>
+  <p><a href="https://openai.com/index/introducing-openai-privacy-filter/">OpenAI</a> 发布 Privacy Filter，主打在模型推理链路里对敏感字段做<strong>可配置、可审计的脱敏与访问控制</strong>。对企业来说，卖点不是「更聪明」，而是「更敢用」：在合规、法务与数据安全部门能签字的前提下，把生成式 AI 接进现有工作流。</p>
 
-  <h3>2、DeepSeek V4：几乎前沿的能力，零头一样的价格</h3>
-  <p>DeepSeek 放出 V4 系列（Pro 和 Flash），巨大的参数量、MIT 开源协议、100 万 token 上下文，以及一个让同行尴尬的定价策略。Simon Willison 在 OpenRouter 上实测后评价："性能几乎追平前沿闭源模型，价格却是人家的零头。"这场定价战的终局在哪里，没人知道，但开发者显然是赢家。</p>
-  <img class="article-img" src="https://static.simonwillison.net/static/2026/deepseek-v4-card.jpg" alt="DeepSeek V4">
+  <h3>2、Vibe Coding 时代的 Mac 应用淘金热</h3>
+  <p><a href="https://caio.ca/blog/ai-vibe-coded-mac-apps.html">Caio Chassot</a> 观察到：越来越多「几天内用 AI 辅助搓出来的」Mac 小工具开始上架，定价从几美元到订阅不等，营销话术高度模板化。文章不是在道德审判，而是在拆解<strong>供给侧暴增 + 注意力稀缺</strong>时，独立开发者要如何避免把 App Store 变成彩票站。</p>
 
-  <h3>3、Anthropic 搭了个 Agent 之间做生意的市场</h3>
-  <p>TechCrunch 报道了 Anthropic 的 Project Deal 实验：让公司内部的 AI Agent 在一个真实市场里相互谈判、成交 —— 186 笔交易，总价超过 4000 美元。有趣的发现是：<strong>Opus 级别的 Agent 和 Haiku 级别的 Agent 在谈判结果上有显著差异，但人类评估者往往看不出来。</strong> Agent-to-Agent 商务时代的预演。</p>
-
-  <h3>4、ComfyUI 估值 5 亿美元：创作者要夺回 AI 生成的控制权</h3>
-  <p>ComfyUI 以 3000 万美元融资、5 亿美元估值，站在了"反老虎机式 AI 生成"运动的前沿。它的节点式工作流让创作者可以精细控制扩散模型的每一步，而不是扔一句 prompt 然后看运气。当生成式 AI 的输出从"惊喜"变成"商业产品"，可控性就是一切。</p>
-  <img class="article-img" src="https://techcrunch.com/wp-content/uploads/2026/04/ComfyUI-Co-founders-1.png?resize=1200,790" alt="ComfyUI 创始团队">
+  <h3>3、为什么密码学软件仍然把 C 当作「黄金标准」？</h3>
+  <p><a href="https://www.wolfssl.com/why-c-remains-the-gold-standard-for-cryptographic-software/">wolfSSL</a> 从可预测内存模型、成熟审计方法论、以及历史包袱三个角度解释：Rust 很香，但大量关键密码学库仍扎根 C，不是因为团队守旧，而是因为<strong>信任迁移的成本</strong>往往高于重写代码的成本。</p>
 
   <!-- ========== 文章推荐 ========== -->
   <h2 id="articles">📝 文章推荐</h2>
 
-  <h3>1、<a href="https://techtrenches.dev/p/the-west-forgot-how-to-make-things">西方忘记了如何造东西，现在正在忘记如何写代码</a></h3>
-  <p>这篇文章把工业空心化、制造业外迁和软件行业正在发生的"外包+AI 替代"画了一条并行线。核心论点：当一个社会连"认真做工程"的文化都在消退时，失去的不只是技能，而是判断力和韧性。在 HN 上拿了 346 分，评论区分裂成"醍醐灌顶"和"过度悲观"两派。</p>
-  <img class="article-img" src="https://substack-post-media.s3.amazonaws.com/public/images/a56e63d9-5f03-432a-99de-2f46dd286b53_508x340.png" alt="The West Forgot">
+  <h3>1、用编程助手「复活」那些你本来永远不会做完的 side project</h3>
+  <p><a href="https://blog.matthewbrunelle.com/its-ok-to-use-coding-assistance-tools-to-revive-the-projects-you-never-were-going-to-finish/">Matthew Brunelle</a> 写了一篇很诚恳的短文：羞耻感常常来自「我没靠自己写完」，但工程现实是 —— 很多项目死在 80% 不是因为懒，而是因为<strong>边际回报太低</strong>。把 AI 当作脚手架，把项目推到「能跑、能给别人用」的状态，本身就是一种价值交付。</p>
 
-  <h3>2、<a href="https://ky.fyi/posts/ai-burnout">我还属于科技行业吗？—— 一封 AI 倦怠的自白信</a></h3>
-  <p>设计工程师 Ky Decker 写下了离开科技行业的故事：未经审查的 Agent 生成代码、未经同意就开始总结会议的 AI、管理层要求每个人"用 AI 提升"的 KPI …… 在 Lobsters 上引发了深度共鸣。问题不是"AI 好不好用"，而是<strong>"当你的工作环境被 AI 主导却没有人问你是否愿意时，你还能做自己吗？"</strong></p>
-  <img class="article-img" src="https://ky.fyi/_astro/broken-phone.C77rr-ie.png" alt="AI 倦怠">
+  <h3>2、Asahi Linux 进度报告：向 Linux 7.0 推进</h3>
+  <p><a href="https://asahilinux.org/2026/04/progress-report-7-0/">Asahi 团队</a> 的例行进度更新里，照例塞满了硬件支持、内核同步与驱动细节的「硬核周报」。如果你关心 Apple Silicon 上的上游化路径，这是比任何二手解读都更可靠的一手信息源。</p>
 
-  <h3>3、<a href="https://blog.bytebytego.com/p/the-security-architecture-of-github">GitHub Agentic Workflow 的安全架构</a></h3>
-  <p>ByteByteGo 拆解了 GitHub 如何为编码 Agent 的工作流设计安全边界 —— 当你把 Copilot Agent 当作"已被攻陷的攻击面"来设计信任模型时，控制应该放在哪里？对于正在企业内推 Agent 工具的团队，这篇是必读。</p>
+  <h3>3、别把你的组织架构「原样编译」成产品路线图</h3>
+  <p><a href="https://chronicbuildfailure.co/how-to-avoid-shipping-your-org-chart-c086effe751c">Chronic Build Failure</a> 用很短的篇幅提醒：跨团队边界如果直接映射成用户体验上的裂缝，用户不会理解「那是两个 VP 的地盘」，他们只会觉得你的产品「怪怪的」。组织设计问题，最后都会变成留存问题。</p>
+
+  <h3>4、我正式宣布从 Emacs「退休」</h3>
+  <p><a href="https://nullprogram.com/blog/2026/04/26/">Chris Wellons</a> 用一贯的冷幽默写了一封「告别信」：不是 Emacs 不好，而是人生阶段变了。对老派工具链爱好者来说，这种文章读起来像社区口述史 —— 也是 editor war 终将在时间面前和解的证据。</p>
 
   <!-- ========== 工具推荐 ========== -->
   <h2 id="tools">🛠️ 工具推荐</h2>
+
   <div class="tool-grid">
     <div class="tool-card">
-      <h4><a href="https://blog.cloudflare.com/emdash-wordpress/">Cloudflare EmDash</a></h4>
-      <p>Cloudflare 开源了自研的 WordPress 替代品：基于 Astro + TypeScript，V8 沙箱插件，AI/MCP 友好。和 Matt Mullenweg 的口水战已经开打</p>
-    </div>
-    <div class="tool-card">
-      <h4><a href="https://javascriptweekly.com/link/184072/web">Bun v1.3.13</a></h4>
-      <p>测试隔离/并行化/分片，<code>--changed</code> 模式加速本地迭代，内存降低，安装更快。内置无头浏览器自动化也在路上</p>
-    </div>
-    <div class="tool-card">
       <h4><a href="https://github.com/heygen-com/hyperframes">HyperFrames</a></h4>
-      <p>用 HTML/CSS/JS 写视频合成，Apache-2.0 开源。比 Remotion 更轻量的选择，适合营销视频和产品 demo</p>
+      <p>HeyGen 开源的 HTML → 视频管线思路：把网页当作一帧帧渲染源，适合需要批量生成演示视频、产品预览或社交素材的团队做二次封装。</p>
     </div>
     <div class="tool-card">
       <h4><a href="https://github.com/deepseek-ai/DeepEP">DeepEP</a></h4>
-      <p>DeepSeek 开源的 MoE 专家并行通信库，优化 GPU 集群上的 all-to-all 通信。HPC/LLM 训练团队的底层利器</p>
+      <p>DeepSeek 的 expert-parallel 通信组件，面向 MoE 训练/推理场景。关注大模型基础设施的人会把它放进「值得跟踪的底层积木」清单。</p>
     </div>
     <div class="tool-card">
-      <h4><a href="https://reactnative.dev/blog/2026/04/07/react-native-0.85">React Native 0.85</a></h4>
-      <p>统一动画后端（Animated + Reanimated 共享 native driver），DevTools 支持多 CDP 客户端，Metro 本地 TLS</p>
+      <h4><a href="https://github.com/open-webui/open-webui">Open WebUI</a></h4>
+      <p>自托管 LLM 聊天界面的事实标准之一：多模型路由、RAG、插件生态与权限模型都相对完整，适合想在内网搭一个「类 ChatGPT 控制台」的团队。</p>
+    </div>
+    <div class="tool-card">
+      <h4><a href="https://github.com/browser-use/browser-use">browser-use</a></h4>
+      <p>让 Agent 操作真实浏览器的编排层：把「打开网页、点按钮、填表单」封装成可组合步骤，做自动化测试或半自动研究流时很顺手。</p>
+    </div>
+    <div class="tool-card">
+      <h4><a href="https://wandel.ca/homepage/pbx.html">My Homemade PBX</a></h4>
+      <p>不是 GitHub 星标项目，而是一套可复制的家庭电话交换机实践记录：硬件选型、语音编解码、拨号计划与电源散热都写透了，复古通讯迷会爱死。</p>
+    </div>
+    <div class="tool-card">
+      <h4><a href="https://github.com/tldraw/tldraw">tldraw</a></h4>
+      <p>开源无限画布 SDK：白板、批注、流程图与嵌入协作都很成熟，很多产品把它当「可视化思考层」的底座，而不是自己从头造画布引擎。</p>
     </div>
   </div>
+  <img class="article-img" src="https://opengraph.githubassets.com/1/heygen-com/hyperframes" alt="HyperFrames">
+  <img class="article-img" src="https://opengraph.githubassets.com/1/deepseek-ai/DeepEP" alt="DeepEP">
 
   <!-- ========== AI 工具 ========== -->
   <h2 id="ai-tools">🧠 AI 工具</h2>
-  <img class="article-img" src="https://opengraph.githubassets.com/1/huggingface/ml-intern" alt="ml-intern">
+
   <div class="tool-grid">
     <div class="tool-card">
-      <span class="tag">企业</span>
-      <h4><a href="https://openai.com/index/introducing-openai-privacy-filter/">OpenAI Privacy Filter</a></h4>
-      <p>为企业和用户减少个人/敏感数据在模型交互中的暴露，更安全的默认设置</p>
+      <span class="tag">编码</span>
+      <h4><a href="https://github.com/Aider-AI/aider">aider</a></h4>
+      <p>终端里的结对编程搭档：直接读写仓库、跑测试、提交变更，支持多模型切换。适合想把「AI 写代码」嵌进现有 Git 工作流而不是另开一个新 IDE 的人。</p>
+    </div>
+    <div class="tool-card">
+      <span class="tag">编码</span>
+      <h4><a href="https://github.com/continuedev/continue">Continue</a></h4>
+      <p>VS Code / JetBrains 里的开源助手层：自定义模型、上下文规则与 slash command，团队可以把自己的内部文档与脚手架接进补全链路。</p>
     </div>
     <div class="tool-card">
       <span class="tag">Agent</span>
-      <h4><a href="https://blog.cloudflare.com/email-for-agents/">Cloudflare Email for Agents</a></h4>
-      <p>Agent 通过邮件做异步工作的基础设施：MCP 入口 + Wrangler 集成 + 参考实现 Agentic Inbox</p>
-    </div>
-    <div class="tool-card">
-      <span class="tag">Agent</span>
-      <h4><a href="https://github.com/multica-ai/multica">Multica</a></h4>
-      <p>Go 编写的本地守护进程，让编码 Agent 像团队成员一样领任务、提交变更、报告状态</p>
+      <h4><a href="https://github.com/cline/cline">Cline</a></h4>
+      <p>把「规划 → 执行 → 调用工具」做成可视化流水线的 VS Code 扩展，强调可审查的 Agent 轨迹，适合对黑盒自动改代码有戒心的团队。</p>
     </div>
     <div class="tool-card">
       <span class="tag">开源</span>
-      <h4><a href="https://github.com/Alishahryar1/free-claude-code">free-claude-code</a></h4>
-      <p>GitHub 今日 star 增量约 4000 的爆款，提供终端/VS Code/Discord 等方式使用 Claude Code 风格的编码辅助</p>
-    </div>
-    <div class="tool-card">
-      <span class="tag">模型</span>
-      <h4><a href="https://github.com/huggingface/ml-intern">ml-intern</a></h4>
-      <p>Hugging Face 出品：读论文 → 训模型 → 发布，端到端 ML 自动化 Agent。今日 +1200 star</p>
+      <h4><a href="https://github.com/lobehub/lobe-chat">Lobe Chat</a></h4>
+      <p>可插拔 UI 与插件体系都很完善的多模型聊天壳，支持本地模型与多模态消息。想做「企业内网 ChatGPT 皮肤」又不想从 0 造轮子时，经常会被架构师拎出来对标。</p>
     </div>
   </div>
+  <img class="article-img" src="https://opengraph.githubassets.com/1/Aider-AI/aider" alt="aider">
 
   <!-- ========== 趣闻 ========== -->
   <h2 id="fun">🎲 趣闻</h2>
 
   <div class="fun-card">
-    <h4><a href="https://news.ycombinator.com/item?id=47906253">iPhone 上每天自动安装的神秘 App</a></h4>
-    <p>一位 HN 用户发现 Headspace 每天下午 1 点准时在 iPhone 上自动安装，关闭自动下载也没用，多代设备都中招。评论区变成了一场大型群体 debug：Apple 政策 bug？账号层面行为？企业配置残留？270 个赞说明这不是个例。最佳评论："Headspace 在强迫你冥想，你就说讽不讽刺吧。"</p>
+    <h4><a href="https://fffff.at/free-universal-construction-kit/">免费万能积木转接头</a></h4>
+    <p>把乐高、Duplo、Fischertechnik、Krinkles 等十几种积木系统的接口<strong>3D 打印成互转件</strong>，让不同世代的塑料砖块终于能「讲同一种物理语言」。这是那种会让你瞬间回到童年的项目，也是开源硬件幽默感的巅峰之一。</p>
   </div>
 
   <div class="fun-card">
-    <h4><a href="https://lcamtuf.substack.com/p/a-breakthrough-in-cc-dependency-management">C/C++ 依赖管理的"重大突破"</a></h4>
-    <p>安全研究传奇 lcamtuf（Michał Zalewski）写了一篇正儿八经的技术博客，宣布在 GCC/Clang 中实现了直接从远程 URL <code>#include</code> 的功能，还附了个 <code>LD_PRELOAD</code> helper 和"军事级安全"声明。当然这是讽刺 —— PS 里写着"千万别在生产环境用这玩意"。但评论区有人说："等等，这比某些真实的包管理器还合理啊。" 🤔</p>
-    <img class="article-img" src="https://substack-post-media.s3.amazonaws.com/public/images/eb2c3c8c-deb1-4d86-a445-35dc617ee0b6_1280x720.png" alt="C 依赖管理讽刺">
+    <h4><a href="https://arman-bd.hashnode.dev/i-left-port-22-open-on-the-internet-for-54-days-here-s-who-showed-up">把 22 端口裸奔在互联网上 54 天</a></h4>
+    <p>作者真的开了一个 SSH 蜜罐并记录登录尝试：密码字典、扫描节奏、地理分布……读完你会更理解为什么「默认禁止密码登录」不是洁癖，而是生存技能。</p>
+  </div>
+
+  <div class="fun-card">
+    <h4><a href="https://blog.korny.info/2026/04/19/the-joy-of-folding-bikes">折叠车的快乐哲学</a></h4>
+    <p>一篇轻松的生活技术散文：折叠车如何把「城市移动」从通勤变成游戏。和科技头条无关，但和「工具如何改变日常」有关 —— 有时候我们需要的不是更快，而是更灵活。</p>
   </div>
 
   <!-- ========== 资源 ========== -->
   <h2 id="resources">📚 资源</h2>
 
   <div class="resource-item">
-    <a href="https://github.com/mattpocock/skills">Matt Pocock 的 Agent Skills 仓库</a>
-    <p>TypeScript 大神 Matt Pocock 公开了自己的 Agent 技能包目录 —— 可复用的项目指令和检查清单模板。今日 star 突破 21000，是 Agent 时代"如何给 AI 写说明书"的最佳实践参考</p>
+    <a href="https://fabiensanglard.net/usbcheat/index.html">USB Cheat Sheet（Fabien Sanglard）</a>
+    <p>从物理连接器到描述符与传输类型的速查表，适合嵌入式与驱动工程师放进书签栏。比「去搜规范 PDF」快十倍。</p>
   </div>
 
   <div class="resource-item">
-    <a href="https://github.com/ComposioHQ/awesome-codex-skills">awesome-codex-skills</a>
-    <p>Composio 维护的 OpenAI Codex CLI/API 实用技能精选列表，把常见自动化场景映射为可调用的 skill，适合搭建 Codex 工作流</p>
+    <a href="https://aosabook.org/en/index.html">The Architecture of Open Source Applications</a>
+    <p>经典开源项目「自曝架构」文集：数据库、浏览器、邮件系统、分布式系统……每章都由核心维护者亲自拆解设计取舍，比读 README 更能建立系统直觉。</p>
   </div>
+
+  <div class="resource-item">
+    <a href="https://highscalability.com/">High Scalability</a>
+    <p>十几年积累的「真实世界大规模系统」案例库：流量数字、架构图、失败故事都有。做容量规划或技术选型需要「先例」时，这里是金矿。</p>
+  </div>
+  <img class="article-img" src="https://opengraph.githubassets.com/1/tldraw/tldraw" alt="tldraw">
 
   <!-- ========== 言论 ========== -->
   <h2 id="quotes">💬 言论</h2>
 
   <div class="quote-block">
-    <blockquote>把软件工作粗略分为前端、后端、基础设施和研究四类是极度简化的，但有一个简单的心智模型来理解不同任务加速了多少，对组织团队非常有用。比如我现在要求前端团队的交付速度比一年前快得多，但我对研究团队的期望几乎没变。</blockquote>
-    <div class="quote-author">— Andrew Ng, <a href="https://www.deeplearning.ai/the-batch/coding-agents-accelerate-some-software-tasks-more-than-others/">The Batch</a></div>
-    <div class="quote-comment">点评：吴恩达说的本质是 —— AI 对不同类型工作的加速是不均匀的。前端快了几倍，研究几乎没变。管理者如果用一把尺子量所有团队，要么逼疯前端，要么放纵研究。</div>
+    <blockquote>计算机科学里只有两件难事：缓存失效、命名，以及差一错误。</blockquote>
+    <div class="quote-author">— Martin Fowler（转述老笑话），<a href="https://martinfowler.com/bliki/TwoHardThings.html">TwoHardThings</a></div>
+    <div class="quote-comment">点评：每次有人想把「企业架构」画成一张完美大表时，我都会想起这句 —— 真正难的不是画框，而是给框起名字，以及承认缓存一定会背叛你。</div>
   </div>
 
   <div class="quote-block">
-    <blockquote>要充分发挥 GPT-5.5 的能力，请把它当作一个全新的模型家族来调优，而不是 gpt-5.2 或 gpt-5.4 的即插即用替代品。从最小的 prompt 开始，保留产品契约即可，然后针对代表性样例调整推理力度、详略程度、工具描述和输出格式。</blockquote>
-    <div class="quote-author">— OpenAI, <a href="https://developers.openai.com/api/docs/guides/latest-model">官方文档</a></div>
-    <div class="quote-comment">点评：OpenAI 官方文档说的话翻译过来就是 —— 你那些精心调过的老 prompt，在新模型上大概率不是最优解。每次升级模型都该重新做 baseline，而不是复制粘贴祈祷好运。</div>
+    <blockquote>会议对程序员来说，就像抛硬币：正面打断深度工作，反面还是打断深度工作。</blockquote>
+    <div class="quote-author">— Paul Graham, <a href="http://www.paulgraham.com/makersschedule.html">Maker's Schedule, Manager's Schedule</a></div>
+    <div class="quote-comment">点评：在「AI 帮你写代码」之后，真正稀缺的是连续两小时不被打断的注意力 —— 经理日程与制造者日程的冲突只会更贵。</div>
   </div>
 
   <div class="quote-block">
-    <blockquote>现成的 LLM 驱动的漏洞挖掘已经改变了公开源码的安全计算。我们不是反开源 —— 我们仍然发布 MIT 协议的 Cal.diy 社区版。但完整的应用代码公开暴露在 AI 面前，风险模型变了。</blockquote>
-    <div class="quote-author">— Cal.com, <a href="https://cal.com/blog/cal-com-goes-closed-source-why">官方博客</a></div>
-    <div class="quote-comment">点评：Cal.com 闭源的理由不是"我们要赚更多钱"，而是"AI 让攻击者审计代码的成本趋近于零"。这个逻辑如果成立，会有更多公司走同样的路。开源运动正在面对一个它没有准备好的对手。</div>
-  </div>
-
-  <div class="quote-block">
-    <blockquote>未经审查的 Agent 生成代码在代码库里增长，未经同意的 AI 会议总结器在录音，管理层要求每个人用 AI "提升自己" …… 我问自己：我还属于这个行业吗？</blockquote>
-    <div class="quote-author">— Ky Decker, <a href="https://ky.fyi/posts/ai-burnout">ky.fyi</a></div>
-    <div class="quote-comment">点评：AI 倦怠不是因为 AI 不好用，而是因为它被不经思考地强推到每一个环节。技术问题好解决，人的感受才是真正的技术债。</div>
+    <blockquote>所有非平凡的抽象，在某种程度上都会泄漏（leaky）。</blockquote>
+    <div class="quote-author">— Joel Spolsky, <a href="https://www.joelonsoftware.com/2002/11/11/the-law-of-leaky-abstractions/">The Law of Leaky Abstractions</a></div>
+    <div class="quote-comment">点评：当你在第 7 层框架之下终于遇到 TCP、分页或 GPU 调度时，别惊讶 —— 不是抽象失败了，是抽象本来就会漏。工程成熟度的标志，是知道哪一层该伸手下去摸一摸。</div>
   </div>
 
   <!-- ========== 来源 ========== -->
   <div class="footer-sources">
     <strong>综合科技：</strong>Hacker News · TLDR · Changelog · weeklyfoo · TechCrunch · Lobsters<br>
-    <strong>AI 前沿：</strong>Import AI · The Batch · Simon Willison<br>
-    <strong>开发者工具：</strong>console.dev · Bytes.dev · JavaScript Weekly<br>
-    <strong>深度分析：</strong>The Pragmatic Engineer · Ars Technica<br>
-    <strong>系统设计：</strong>ByteByteGo · GitHub Trending · Product Hunt<br><br>
+    <strong>AI 前沿：</strong>Import AI · The Batch · Simon Willison · Last Week in AI<br>
+    <strong>开发者工具：</strong>console.dev · Bytes.dev · JavaScript Weekly · Product Hunt<br>
+    <strong>深度分析：</strong>Benedict Evans · The Pragmatic Engineer<br>
+    <strong>系统设计：</strong>ByteByteGo · Dense Discovery · Ars Technica · GitHub Trending<br><br>
     由 Cursor AI 自动生成 · 信息截止至 2026-04-26
   </div>
 </main>
 </div>
 
 <script>
-  var today = '2026-04-26';
-  var audioPath = '../audio/' + today + '.m4a';
-  fetch(audioPath, { method: 'HEAD' }).then(function(r) {
+  const today = '2026-04-26';
+  const audioPath = `../audio/${today}.m4a`;
+  fetch(audioPath, { method: 'HEAD' }).then(r => {
     if (r.ok) {
       document.getElementById('audioBar').classList.remove('hidden');
       document.getElementById('audioPlayer').src = audioPath;
     }
-  }).catch(function() {});
-  var tocLinks = document.querySelectorAll('.toc a');
-  var sections = [];
-  tocLinks.forEach(function(link) {
-    var id = link.getAttribute('href');
-    if (id) { id = id.replace('#',''); var el = document.getElementById(id); if (el) sections.push({ id: id, el: el, link: link }); }
+  }).catch(() => {});
+  const tocLinks = document.querySelectorAll('.toc a');
+  const sections = [];
+  tocLinks.forEach(link => {
+    const id = link.getAttribute('href')?.replace('#','');
+    if (id) { const el = document.getElementById(id); if (el) sections.push({ id, el, link }); }
   });
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      var s = sections.find(function(s) { return s.el === entry.target; });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const s = sections.find(s => s.el === entry.target);
       if (s) s.link.classList.toggle('active', entry.isIntersecting);
     });
   }, { rootMargin: '-20% 0px -75% 0px' });
-  sections.forEach(function(s) { observer.observe(s.el); });
+  sections.forEach(s => observer.observe(s.el));
 </script>
 </body>
 </html>
