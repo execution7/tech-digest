@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-04-27",
+    "title": "第 4 期：Google 砸 400 亿入股 Anthropic — AI 军备竞赛进入超级资本阶段",
+    "highlights": "Google 400亿投资 Anthropic · OpenAI 收购 Astral (Ruff/uv) · SWE-bench 退役 · Gemma 4 开源 · GLM-5.1 长时任务 · AI Agent 删了生产数据库",
+    "image": "https://cdn.arstechnica.net/wp-content/uploads/2026/04/TPU-8i-rack-2560x1440.jpg"
+  },
+  {
     "date": "2026-04-26",
     "title": "第 3 期：50 源扩容后首期 — DeepSeek-V4 · Cloudflare Rust Workers · GPT-5.5 迁移警告",
     "highlights": "50 信息源 / 6 Agent · DeepSeek-V4 长上下文 · Cloudflare WASM panic 恢复 · GPT-5.5 当新模型家族 · HN 西方写码焦虑 · HF 多模态句向量",
