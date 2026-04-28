@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>每日科技情报 #5 — 2026-04-28</title>
+  <meta property="og:title" content="AGI 条款已死 — AI 行业的独占时代终结，按量计费时代开启">
+  <meta property="og:description" content="OpenAI-微软结束独占 · GitHub Copilot 按量计费 · 中国叫停 Meta 收购 Manus · David Silver 11 亿美元新实验室 · Mercor 4TB 语音泄露">
+  <meta property="og:image" content="https://cdn.sanity.io/images/4zrzovbb/website/701946d96f607f199fd7d65c8f5e2f50bf9336e4-1200x630.png">
+  <style>
+    :root {
+      --bg: #f5f6f8; --surface: #ffffff; --surface2: #f0f2f5;
+      --border: #e8ecf1; --border-hover: #c5cdd8;
+      --text: #1a1d21; --text-secondary: #3d4550; --text-muted: #8c95a1;
+      --accent: #2d9f6f; --accent-light: #e8f5ef; --accent-hover: #248a5e;
+      --accent-text: #ffffff;
+      --purple: #7c5cbf; --purple-light: #f3effc;
+      --orange: #e58e26; --orange-light: #fef5e7;
+      --blue: #3a82f7; --blue-light: #eef4fe;
+      --red: #e74c3c; --red-light: #fdecea;
+      --green-deep: #1a7a4c; --green-light2: #e0f5ea;
+      --yellow: #d4a017; --yellow-light: #fef9e7;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.06), 0 2px 4px rgba(0,0,0,0.04);
+      --shadow-lg: 0 10px 30px rgba(0,0,0,0.08);
+      --radius: 12px; --radius-sm: 8px; --radius-xs: 6px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.75; font-size: 15px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .topbar {
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: 12px 32px; display: flex; align-items: center; gap: 16px;
+      position: sticky; top: 0; z-index: 200; box-shadow: var(--shadow-sm);
+    }
+    .topbar-brand {
+      font-size: 1.1rem; font-weight: 700; color: var(--accent);
+      text-decoration: none; display: flex; align-items: center; gap: 8px;
+    }
+    .topbar-brand svg { width: 28px; height: 28px; }
+    .topbar-nav { display: flex; gap: 4px; margin-left: 24px; }
+    .topbar-nav a {
+      padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 500;
+      color: var(--text-secondary); text-decoration: none; transition: all 0.2s;
+    }
+    .topbar-nav a:hover { background: var(--surface2); color: var(--text); }
+    .topbar-nav a.active { background: var(--accent-light); color: var(--accent); font-weight: 600; }
+    .topbar-right { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+    .topbar-date { font-size: 0.82rem; color: var(--text-muted); background: var(--surface2); padding: 5px 12px; border-radius: 16px; }
+    .page { display: flex; max-width: 1200px; margin: 0 auto; padding: 24px 24px 0; gap: 24px; }
+    .toc {
+      width: 220px; flex-shrink: 0;
+      position: sticky; top: 80px; height: calc(100vh - 104px); overflow-y: auto;
+      background: var(--surface); border-radius: var(--radius); padding: 20px 16px;
+      box-shadow: var(--shadow-sm); border: 1px solid var(--border);
+    }
+    .toc-title {
+      font-size: 0.72rem; font-weight: 700; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 14px; padding-left: 12px;
+    }
+    .toc a {
+      display: block; padding: 7px 12px; margin-bottom: 2px;
+      font-size: 0.82rem; color: var(--text-muted); text-decoration: none;
+      border-radius: var(--radius-xs); transition: all 0.15s; font-weight: 500;
+    }
+    .toc a:hover { color: var(--accent); background: var(--accent-light); }
+    .toc a.active { color: var(--accent); background: var(--accent-light); font-weight: 600; }
+    .toc-mobile {
+      display: none; position: sticky; top: 57px; z-index: 100;
+      background: var(--surface); border-bottom: 1px solid var(--border);
+      padding: 10px 16px; box-shadow: var(--shadow-sm);
+    }
+    .toc-mobile summary {
+      cursor: pointer; font-size: 0.85rem; color: var(--accent); font-weight: 600; list-style: none;
+    }
+    .toc-mobile summary::-webkit-details-marker { display: none; }
+    .toc-mobile .toc-dropdown {
+      background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 8px; margin-top: 8px; max-height: 60vh; overflow-y: auto; box-shadow: var(--shadow-md);
+    }
+    .toc-mobile .toc-dropdown a {
+      display: block; padding: 8px 12px; font-size: 0.88rem;
+      color: var(--text-secondary); text-decoration: none; border-radius: var(--radius-xs);
+    }
+    .toc-mobile .toc-dropdown a:hover { color: var(--accent); background: var(--accent-light); }
+    @media (max-width: 860px) {
+      .toc { display: none; }
+      .toc-mobile { display: block; }
+      .topbar-nav { display: none; }
+      .page { flex-direction: column; padding: 16px 12px 0; gap: 16px; }
+      .container { padding: 20px 16px 60px; }
+    }
+    .container {
+      flex: 1; min-width: 0;
+      background: var(--surface); border-radius: var(--radius);
+      padding: 36px 40px 60px; box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border); margin-bottom: 40px;
+    }
+    .back {
+      display: inline-flex; align-items: center; gap: 4px;
+      color: var(--text-muted); text-decoration: none; font-size: 0.85rem;
+      margin-bottom: 28px; font-weight: 500; transition: color 0.15s;
+    }
+    .back:hover { color: var(--accent); }
+    h1 { font-size: 1.7rem; font-weight: 800; margin-bottom: 10px; line-height: 1.35; color: var(--text); letter-spacing: -0.01em; }
+    .meta { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 28px; }
+    .hero-img { width: 100%; border-radius: var(--radius); margin-bottom: 10px; box-shadow: var(--shadow-md); }
+    .hero-caption { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 36px; text-align: center; font-style: italic; }
+    h2 {
+      font-size: 1.25rem; font-weight: 700; margin: 44px 0 18px; padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent-light); scroll-margin-top: 90px; color: var(--text);
+    }
+    h3 { font-size: 1.05rem; font-weight: 600; margin: 26px 0 8px; color: var(--text); }
+    p { margin-bottom: 14px; color: var(--text-secondary); }
+    a { color: var(--accent); text-decoration: none; font-weight: 500; }
+    a:hover { color: var(--accent-hover); text-decoration: underline; }
+    strong { color: var(--text); font-weight: 600; }
+    code {
+      background: var(--surface2); padding: 2px 6px; border-radius: 4px;
+      font-size: 0.88em; color: var(--accent-hover); font-family: "SF Mono", Monaco, monospace;
+    }
+    .callout {
+      background: var(--accent-light); border-left: 4px solid var(--accent);
+      border-radius: var(--radius-sm); padding: 16px 20px; margin: 20px 0; font-size: 0.93rem;
+      color: var(--text-secondary);
+    }
+    .article-img {
+      width: 100%; max-height: 380px; object-fit: cover;
+      border-radius: var(--radius-sm); margin: 12px 0 24px; box-shadow: var(--shadow-sm);
+    }
+    .tool-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 16px 0; }
+    .tool-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 18px 20px; transition: all 0.2s; box-shadow: var(--shadow-sm);
+    }
+    .tool-card:hover { border-color: var(--accent); box-shadow: var(--shadow-md); transform: translateY(-1px); }
+    .tool-card h4 { font-size: 0.95rem; margin-bottom: 6px; font-weight: 600; }
+    .tool-card h4 a { color: var(--accent); }
+    .tool-card p { font-size: 0.83rem; color: var(--text-muted); margin: 0; line-height: 1.55; }
+    .tool-card .tag {
+      display: inline-block; font-size: 0.68rem; padding: 3px 8px; border-radius: 10px;
+      background: var(--accent); color: var(--accent-text); font-weight: 600; margin-bottom: 8px;
+      letter-spacing: 0.02em;
+    }
+    .tool-card .priority-tag {
+      display: inline-block; font-size: 0.65rem; padding: 2px 6px; border-radius: 8px;
+      background: var(--surface2); color: var(--text-muted); font-weight: 600; margin-left: 6px;
+    }
+    .fun-card {
+      background: var(--orange-light); border: 1px solid #f5ddb8;
+      border-radius: var(--radius); padding: 20px 24px; margin: 14px 0;
+    }
+    .fun-card h4 { font-size: 1rem; margin-bottom: 8px; font-weight: 600; }
+    .fun-card h4 a { color: var(--orange); }
+    .fun-card p { font-size: 0.88rem; color: var(--text-secondary); margin: 0; line-height: 1.65; }
+    .quote-block {
+      background: var(--purple-light); border-left: 4px solid var(--purple);
+      border-radius: var(--radius-sm); padding: 20px 24px; margin: 18px 0;
+    }
+    .quote-block h4 { font-size: 0.95rem; color: var(--purple); font-weight: 700; margin-bottom: 10px; }
+    .quote-block blockquote {
+      font-size: 1.02rem; line-height: 1.65; margin-bottom: 10px;
+      font-style: italic; color: var(--text);
+    }
+    .quote-block .quote-author { font-size: 0.82rem; color: var(--purple); font-weight: 600; margin-bottom: 6px; }
+    .quote-block .quote-meta { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 10px; }
+    .quote-block .quote-comment {
+      font-size: 0.88rem; color: var(--text-secondary);
+      border-top: 1px solid #d8d0e8; padding-top: 10px; margin-top: 10px;
+    }
+    .quote-block .quote-team-insight {
+      font-size: 0.88rem; color: var(--green-deep); background: var(--accent-light);
+      border-radius: var(--radius-xs); padding: 8px 12px; margin-top: 8px;
+    }
+    .resource-item {
+      background: var(--blue-light); border: 1px solid #c8dbf8;
+      border-radius: var(--radius); padding: 18px 20px; margin: 12px 0;
+    }
+    .resource-item a { font-weight: 600; color: var(--blue); }
+    .resource-item p { font-size: 0.88rem; color: var(--text-secondary); margin: 6px 0 0; }
+    .concept-card {
+      background: var(--green-light2); border-left: 4px solid var(--accent);
+      border-radius: var(--radius-sm); padding: 20px 24px; margin: 16px 0;
+    }
+    .concept-card h4 { font-size: 1rem; font-weight: 700; color: var(--green-deep); margin-bottom: 10px; }
+    .concept-card .concept-field { font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 6px; line-height: 1.6; }
+    .concept-card .concept-field strong { color: var(--text); font-size: 0.88rem; }
+    .insight-card {
+      background: var(--yellow-light); border-left: 4px solid var(--yellow);
+      border-radius: var(--radius-sm); padding: 16px 20px; margin: 12px 0;
+    }
+    .insight-card p { font-size: 0.93rem; color: var(--text-secondary); margin: 0; line-height: 1.7; }
+    .insight-card .insight-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 24px; height: 24px; border-radius: 50%; background: var(--yellow);
+      color: #fff; font-size: 0.75rem; font-weight: 700; margin-right: 10px; flex-shrink: 0;
+    }
+    .certainty-tag {
+      display: inline-block; font-size: 0.65rem; padding: 2px 6px; border-radius: 8px;
+      font-weight: 600; margin-left: 8px;
+    }
+    .certainty-confirmed { background: var(--accent-light); color: var(--accent); }
+    .certainty-announced { background: var(--blue-light); color: var(--blue); }
+    .certainty-reported { background: var(--yellow-light); color: var(--yellow); }
+    .certainty-opinion { background: var(--purple-light); color: var(--purple); }
+    .certainty-rumor { background: var(--red-light); color: var(--red); }
+    .audio-bar {
+      background: var(--accent-light); border: 1px solid #b8dfc9;
+      border-radius: var(--radius); padding: 16px 20px; margin-bottom: 28px;
+    }
+    .audio-bar.hidden { display: none; }
+    .audio-bar .audio-label { font-size: 0.85rem; color: var(--accent-hover); margin-bottom: 8px; }
+    .audio-bar audio { width: 100%; height: 36px; border-radius: 18px; }
+    .footer-sources {
+      margin-top: 44px; padding: 20px 24px;
+      background: var(--surface2); border-radius: var(--radius);
+      font-size: 0.78rem; color: var(--text-muted); line-height: 1.9;
+    }
+    .footer-sources strong { color: var(--text-secondary); font-size: 0.78rem; }
+    @media (max-width: 640px) { .tool-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<header class="topbar">
+  <a href="../index.html" class="topbar-brand">
+    <svg viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="14" fill="#2d9f6f"/><path d="M8 14.5l3.5 3.5 8.5-8" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Tech Digest
+  </a>
+  <nav class="topbar-nav">
+    <a href="../index.html">Archive</a>
+    <a href="#headline" class="active">Today</a>
+    <a href="#tools">Tools</a>
+    <a href="#quotes">Quotes</a>
+  </nav>
+  <div class="topbar-right">
+    <span class="topbar-date">2026-04-28</span>
+  </div>
+</header>
+
+<details class="toc-mobile">
+  <summary>📑 目录导航</summary>
+  <div class="toc-dropdown">
+    <a href="#headline">🔥 头条深读</a>
+    <a href="#tech-news">📰 科技动态</a>
+    <a href="#ai">🤖 AI 相关</a>
+    <a href="#articles">📝 文章推荐</a>
+    <a href="#tools">🛠️ 工具推荐</a>
+    <a href="#ai-tools">🧠 AI 工具</a>
+    <a href="#concepts">🧩 本期概念库</a>
+    <a href="#fun">🎲 趣闻</a>
+    <a href="#resources">📚 资源</a>
+    <a href="#quotes">💬 言论</a>
+    <a href="#team-insights">✅ 对团队的启发</a>
+  </div>
+</details>
+
+<div class="page">
+<nav class="toc">
+  <div class="toc-title">本期目录</div>
+    <a href="#headline">🔥 头条深读</a>
+    <a href="#tech-news">📰 科技动态</a>
+    <a href="#ai">🤖 AI 相关</a>
+    <a href="#articles">📝 文章推荐</a>
+    <a href="#tools">🛠️ 工具推荐</a>
+    <a href="#ai-tools">🧠 AI 工具</a>
+    <a href="#concepts">🧩 本期概念库</a>
+    <a href="#fun">🎲 趣闻</a>
+    <a href="#resources">📚 资源</a>
+    <a href="#quotes">💬 言论</a>
+    <a href="#team-insights">✅ 对团队的启发</a>
+</nav>
+
+<main class="container">
+  <a href="../index.html" class="back">← 返回目录</a>
+
+  <h1>第 5 期：AGI 条款已死 — AI 行业同日完成三个「断奶」</h1>
+  <div class="meta">第 5 期 · 2026年4月28日，星期一</div>
+
+  <div class="audio-bar hidden" id="audioBar">
+    <div class="audio-label">🎧 收听本期音频版<br><small>由 NotebookLM 生成 · 双人对话播客风格</small></div>
+    <audio controls preload="none" id="audioPlayer"></audio>
+  </div>
+
+  <img class="hero-img" src="https://cdn.sanity.io/images/4zrzovbb/website/701946d96f607f199fd7d65c8f5e2f50bf9336e4-1200x630.png" alt="Anthropic Project Deal">
+  <p class="hero-caption">Anthropic Project Deal — 当 Claude 替你讨价还价，AI Agent 正式踏入真实经济</p>
+
+  <div class="callout">
+    <strong>⏱ 本期建议阅读顺序</strong><br>
+    5 分钟：核心判断 + 头条深读 + 对团队的启发<br>
+    10 分钟：GitHub Copilot 计费变更 + 中国叫停 Meta 收购 Manus + David Silver 新实验室<br>
+    15 分钟：AI 动态（Project Deal、81k 调查、Claude Design）+ 概念库<br>
+    20 分钟：文章推荐（MCP 批判、Agent Stack）+ 工具推荐<br>
+    30 分钟：言论 + 趣闻 + 全部内容<br>
+  </div>
+
+  <div class="callout">
+    <strong>🎯 本期核心判断：</strong>AGI 条款已死、独占合作终结、按量计费开启 — AI 行业在一天之内完成了三个「断奶」，从此没有免费午餐，谁用谁付钱。
+  </div>
+
+  <h2 id="headline">🔥 头条深读</h2>
+
+  <p><strong>OpenAI 与微软今天宣布修订合作协议。</strong>微软对 OpenAI 的知识产权许可变为<strong>非独占</strong>（有效期至 2032 年），OpenAI 可在任何云平台服务客户，Azure 仅保留「首选云合作伙伴」地位。OpenAI 向微软支付的收入分成维持 20%，但设定上限、2030 年后终止，且——这是关键——「与 OpenAI 的技术进展无关」。</p>
+  <p>Simon Willison 一针见血：「据我所知，『与 OpenAI 的技术进展无关』就是在宣告 AGI 条款已死。」那个曾让整个行业幻想「一旦实现 AGI，所有协议作废」的神秘条款，在商业现实面前寿终正寝。其背景是 OpenAI 与亚马逊高达 500 亿美元的云服务协议——微软此前的独占权成了交易的绊脚石。</p>
+  <p>同日，GitHub 宣布 <strong>Copilot 将于 6 月 1 日全面转向按量计费</strong>，用 AI Credits 替代 Premium Request。理由很直白：「Agent 式用量正在成为默认模式，带来的计算和推理开销远超以往。」一次闲聊和一次多小时的自主编码会话，不应该花一样的钱。Pro 用户每月 10 美元含 10 美元 Credits，Enterprise 用户 39 美元含 39 美元 Credits，代码补全和 Next Edit 不消耗额度。</p>
+  <p><strong>判断：</strong>独占时代结束，补贴时代终结。当 AI 从「花别人的钱跑」变成「花自己的钱跑」，团队要做的第一件事不是选模型，而是建立 token 用量监控和成本预算体系。接下来几个月，预计会看到更多 AI 产品从固定订阅转向按量计费。</p>
+  <p><strong>对团队的启发：</strong>立即评估团队 Copilot / Cursor / Claude Code 的实际 token 消耗量，在 6 月 1 日前建立用量基线和预算上限。多云部署也意味着 OpenAI 模型将出现在 AWS Bedrock 上——API 选型多了一个变量。</p>
+
+  <h2 id="tech-news">📰 科技动态</h2>
+
+  <h3>1、GitHub Copilot 6 月 1 日起全面转向按量计费 <span class="certainty-tag certainty-confirmed">confirmed</span></h3>
+  <p>GitHub 宣布所有 Copilot 计划将用 AI Credits（按 token 计费）替代 Premium Request。订阅价格不变，代码补全和 Next Edit 免费，但 Agent 模式、多模型切换等高级用量按实际消耗扣费。5 月初上线计费预览。理由：Agent 式用量正在成为默认模式，固定价格无法覆盖差异化算力需求。</p>
+  <h3>2、中国叫停 Meta 20 亿美元收购 AI 创业公司 Manus <span class="certainty-tag certainty-confirmed">confirmed</span></h3>
+  <p>中国发改委要求 Meta 和 Manus 撤回收购交易，称依据相关法律法规对外商投资进行合规审查。Manus 是一家总部位于新加坡、有中国背景的 AI Agent 公司，曾获 Benchmark 领投 7500 万美元融资，声称 ARR 达 1 亿美元。该事件反映了「新加坡洗白」和中美 AI 投资限制的持续紧张。</p>
+  <h3>3、DeepMind 强化学习之父 David Silver 创办 Ineffable Intelligence，融资 11 亿美元 <span class="certainty-tag certainty-confirmed">confirmed</span></h3>
+  <p>Silver 创立的 Ineffable Intelligence 以 51 亿美元估值融资 11 亿美元，目标是构建不依赖人类数据的「超级学习器」，纯靠强化学习训练。投资方包括 Sequoia、Lightspeed、Google、Nvidia 和英国主权 AI 基金。Silver 称这是「他毕生的事业」，并承诺个人收入全部捐给慈善机构。同期，AMI Labs 融 10.3 亿，Recursive Superintelligence 据报融资需求达 10 亿。</p>
+  <h3>4、Mercor 4TB 语音数据泄露：4 万 AI 承包商的声纹被盗 <span class="certainty-tag certainty-confirmed">confirmed</span></h3>
+  <p>Lapsus$ 在泄露站点公开了 AI 数据标注平台 Mercor 的约 4TB 数据，涉及 4 万余名承包商的政府证件、自拍和长时间录音室语音样本。分析指出 Mercor 的入职流程将身份证件和高质量语音绑定在一起，为声纹克隆提供了完美素材——多数商业克隆工具只需约 15 秒干净音频，而 Mercor 样本平均 2-5 分钟。已有 5 起承包商诉讼。建议：把声纹当作泄露的密码对待——你无法轮换它，但可以改变它能解锁的东西。</p>
+  <img class="article-img" src="https://app.oravys.com/static/images/og-image.png" alt="Mercor 4TB 语音数据泄露：4 万 AI 承包商的声纹被盗">
+  <h3>5、pgBackRest 仓库已归档，不再维护 <span class="certainty-tag certainty-confirmed">confirmed</span></h3>
+  <p>PostgreSQL 备份恢复工具 pgBackRest 的 GitHub 仓库于 4 月 27 日被所有者归档为只读。这个拥有约 3800 Star、支持并行备份/恢复、多仓库、块级增量、S3/Azure/GCS 等特性的项目，是许多企业 PostgreSQL 基础设施的核心组件。Issues 和 PR 已冻结，依赖该工具的团队需确认迁移路径。</p>
+  <h3>6、Python 包 element-data 供应链攻击：月下载量百万级 <span class="certainty-tag certainty-confirmed">confirmed</span></h3>
+  <p>ML 监控工具 Elementary 的 CLI 包 element-data 遭供应链攻击。攻击者利用 GitHub Action 工作流漏洞，通过恶意 PR 在维护者上下文中执行脚本，窃取签名密钥后发布恶意版本 0.23.3 至 PyPI 和 Docker。该版本会搜集云密钥、API Token、SSH 密钥等凭证。恶意版本约 12 小时后被移除，受影响用户应假定凭证已暴露并立即轮换。runZero 的 HD Moore 指出：「很难不在无意中创建可被攻击者 PR 利用的危险工作流。」</p>
+  <img class="article-img" src="https://cdn.arstechnica.net/wp-content/uploads/2025/06/browser-security-threat-1152x627.jpg" alt="Python 包 element-data 供应链攻击：月下载量百万级">
+  <h3>7、FDA 批准首个基因疗法治疗遗传性听力损失 <span class="certainty-tag certainty-confirmed">confirmed</span></h3>
+  <p>FDA 批准 Regeneron 的 Otarmeni（lunsotogene parvec-cwha），这是首个针对双等位 OTOF 基因变异导致的重度至极重度感音神经性耳聋的基因疗法。该生物制品-器械组合通过手术递送至耳蜗，在 24 名儿童患者的试验中，80% 的可评估患者听力改善。通过国家优先券通道，从申请到批准仅 61 天——创现代 BLA 审查速度纪录。</p>
+
+  <h2 id="ai">🤖 AI 相关</h2>
+
+  <h3>1、Anthropic Project Deal：Claude 替员工在跳蚤市场讨价还价 <span class="certainty-tag certainty-confirmed">confirmed</span></h3>
+  <p>Anthropic 在旧金山办公室开展了一场为期一周的内部实验：69 名员工让 Claude Agent 在 Slack 上代表自己谈判二手物品交易，每人 100 美元预算，共完成 186 笔交易、总额超 4000 美元。关键发现：秘密 A/B 测试显示，使用 Opus 4.5 的用户获得了客观上更好的交易结果，但使用 Haiku 4.5 的用户并未察觉自己处于劣势。这暗示了 AI Agent 商务谈判中的信息不对称问题。</p>
+  <h3>2、81,000 人告诉 Anthropic 关于 AI 经济学的真相 <span class="certainty-tag certainty-confirmed">confirmed</span></h3>
+  <p>Anthropic 经济研究团队分析了 81,000 名 Claude 用户的开放式访谈。约 1/5 的受访者担忧被取代，担忧程度随 AI 暴露度上升而增加，早期职业者比资深人士更焦虑。平均生产力评分 5.1/7（显著提升），48% 强调范围扩展，40% 强调速度提升。呈 U 型曲线：被 AI 拖慢和被大幅加速的用户，反而更担忧失业。一位软件工程师说：「以前花几个月做的网站，我 4-5 天就做完了。」</p>
+  <img class="article-img" src="https://www.anthropic.com/api/opengraph-illustration?name=Hand%20Megaphone&amp;backgroundColor=sky" alt="81,000 人告诉 Anthropic 关于 AI 经济学的真相">
+  <h3>3、Anthropic 工程博客：Scaling Managed Agents — 将大脑与双手解耦 <span class="certainty-tag certainty-confirmed">confirmed</span></h3>
+  <p>Anthropic 详解 Managed Agents 的架构设计。核心理念：将 Session（持久事件日志）、Harness（调用循环）和 Sandbox（执行环境）解耦，类似操作系统的 read() 抽象。此前他们的容器是「宠物」——一旦失败，整个会话丢失。解耦后 p50 首 token 延迟降低约 60%，p95 改善超 90%。Session 不等于 Claude 的上下文窗口，而是通过 getEvents() 切片的外部上下文。MCP + Vault 模式用于安全的自定义工具接入。</p>
+  <h3>4、GPT-5.5 通过 Codex「后门」API 可用，定价公布 <span class="certainty-tag certainty-confirmed">confirmed</span></h3>
+  <p>Simon Willison 介绍了通过 OpenAI Codex 订阅路径使用 GPT-5.5 的方法（公共 API 尚未正式开放），并发布了 llm-openai-via-codex 插件。GPT-5.5 API 定价：输入 5 美元/百万 token，输出 30 美元/百万 token（GPT-5.4 分别为 2.5 和 15 美元）。Pro 版输入 30 美元、输出 180 美元。OpenAI 的 Romain Huet 确认官方支持通过 ChatGPT 订阅在第三方工具中使用 Codex。</p>
+  <h3>5、Claude Design 发布：从设计到原型到交付的 AI 视觉协作工具 <span class="certainty-tag certainty-confirmed">confirmed</span></h3>
+  <p>Anthropic Labs 推出 Claude Design，基于 Claude Opus 4.7，支持设计、原型、演示文稿、单页文档等视觉协作场景。亮点包括设计系统导入（从代码和设计文件中提取）、内联评论、直接编辑、Claude 生成的交互滑块、以及向 Claude Code 的交付包。客户反馈：「我们最复杂的页面在其他工具需要 20+ 次提示，在 Claude Design 只需 2 次。」目前为 Pro/Max/Team/Enterprise 的研究预览版。</p>
+
+  <h2 id="articles">📝 文章推荐</h2>
+
+  <h3>1、<a href="https://fly.io/blog/unfortunately-mcp/">Fly.io：2026 年，MCP 不是扩展 Agent 的正确方式</a></h3>
+  <p>Fly.io 为 Sprites 添加了 MCP 支持——但同时发文论证 MCP 在 2026 年是扩展 Agent 的错误默认方案。他们主张 CLI + 可发现 API + Skills（渐进式披露）优于 MCP 的工具描述膨胀。MCP 把所有工具定义塞进上下文，而 Skill 只需一句话描述就能让 Agent 按需调用。文章还痛批「无状态沙箱」，认为 Agent 需要的是持久的、有网络的「真正的计算机」。</p>
+  <img class="article-img" src="https://fly.io/blog/unfortunately-mcp/assets/whack.webp" alt="Fly.io：2026 年，MCP 不是扩展 Agent 的正确方式">
+  <h3>2、<a href="https://addyo.substack.com/p/the-agent-stack-bet">The Agent Stack Bet：为什么 Agent 的瓶颈不是模型质量</a></h3>
+  <p>Addy Osmani 认为生产级 Agent 失败的原因通常不是模型，而是管道：会话逻辑、共享凭证、治理缺失。他提出四个押注：(1) 每个 Agent 独立身份而非共享服务账号；(2) 跨系统统一上下文；(3) 持久执行和检查点；(4) 平台化而非自建记忆/可观测/重试栈。核心金句：「A promise in a prompt is not a policy.」</p>
+  <h3>3、<a href="https://samkhawase.com/blog/email-is-crazy/">Email is Crazy — 邮件基础设施的疯狂架构之旅</a></h3>
+  <p>一篇从 MSA/MTA/MUA 讲到 SPF/DKIM/DMARC 的邮件系统全景。SMTP 是明文协议，信封和 From 头部不做匹配检查——这是钓鱼攻击的根源。行业的应对不是修复 SMTP，而是不断叠加「胶带」。最恐怖的场景不是退信，而是静默丢弃——RFC 5321 并不禁止这样做。结论：邮件不优雅，但它是 Lindy 的。</p>
+  <h3>4、<a href="https://tigerbeetle.com/blog/2026-04-24-toolchain-horizons">TigerBeetle：Rust 依赖的工具链兼容性窗口只有约两年</a></h3>
+  <p>TigerBeetle 的 Rust 客户端因传递依赖（如 syn）在 patch 版本中提升 rust-version 而遭遇 CI 中断。作者对 crates.io 前 100 包做了兼容性二分搜索实验，发现典型 Rust 项目只有约两年的编译器可用窗口。Serde 值得表扬（兼容回溯到 Rust 1.31），futures 因 proc-macro 链拖后腿。TigerBeetle 的 Zig 核心坚持「零依赖」策略。</p>
+  <img class="article-img" src="https://tigerbeetle.com/blog/2026-04-24-toolchain-horizons/banner-34465fa7.webp" alt="TigerBeetle：Rust 依赖的工具链兼容性窗口只有约两年">
+  <h3>5、<a href="https://tailscale.com/blog/adult-in-the-room">Tailscale CEO：当行业变成龙卷风，我们不制造更多龙卷风</a></h3>
+  <p>Avery Pennarun 的产品哲学文章：AI 带来的速度是好事，但速度缺乏判断力时，会把粗糙的边角传导给整条链路。他用 VR 蹒跚学步的孩子比喻当前的 AI 狂热——沉浸感很强，但总得有人防止你撞墙。Tailscale 定位自己为「龙卷风中的基础设施」——做连接、身份、策略、日志这些「无聊但致命」的事。</p>
+
+  <h2 id="tools">🛠️ 工具推荐</h2>
+
+  <div class="tool-grid">
+    <div class="tool-card">
+      <h4><a href="https://quarkdown.com/">Quarkdown</a> <span class="priority-tag">P1</span></h4>
+      <p>Markdown 遇上 LaTeX 排版能力的现代排版系统，支持论文、书籍、演示文稿、静态站点和知识库。免费开源，10K+ GitHub Star，v2.0.0 刚于 4 月 23 日发布。支持 .doctype 文档模式、图灵完备的脚本系统和实时预览。意大利制造。</p>
+    </div>
+    <div class="tool-card">
+      <h4><a href="https://github.com/dirac-run/dirac">Dirac</a> <span class="priority-tag">P1</span></h4>
+      <p>开源编码 Agent（Apache-2.0，基于 Cline 分叉），在 Terminal-Bench-2 上使用 Gemini-3-flash-preview 以 65.2% 得分登顶（Google 基线 47.6%）。核心特色：哈希锚定并行编辑、AST 操纵、紧凑上下文策展（平均 API 成本降低约 64.8%）。不支持 MCP，只用原生工具调用。VS Code 扩展 + CLI 可用。</p>
+    </div>
+    <div class="tool-card">
+      <h4><a href="https://blog.trailofbits.com/2026/04/23/trailmark-turns-code-into-graphs/">Trailmark</a> <span class="priority-tag">P2</span></h4>
+      <p>Trail of Bits 开源的代码→调用图分析库（Apache-2.0），基于 tree-sitter 和 rustworkx，支持 17 种语言（含 Solidity、Circom）。通过 Python API 暴露可查询的函数/类/调用关系图谱，为安全审计提供图推理能力。配套 8 个 Claude Code Skills，包括变异测试分类、架构瓶颈发现和 SARIF 叠加。</p>
+    </div>
+  </div>
+
+  <h2 id="ai-tools">🧠 AI 工具</h2>
+
+  <div class="tool-grid">
+    <div class="tool-card">
+      <span class="tag">安全/治理</span>
+      <h4><a href="https://tailscale.com/blog/aperture-public-beta">Tailscale Aperture</a></h4>
+      <p>面向 AI Agent 时代的使用量控制层，现进入公开 Beta。支持跨供应商/模型/用户/Agent 的统一配额、LLM 调用前拦截钩子（PII 剥离、工具门控）、可配置日志保留（支持零本地留存 + S3 导出）和管理员审计日志。Personal 计划免费。背景：「补贴型 AI 的时代结束了，Agent 杀死了它。」</p>
+    </div>
+  </div>
+
+  <h2 id="concepts">🧩 本期概念库</h2>
+
+  <div class="concept-card">
+    <h4>1. AGI 条款 (AGI Clause)</h4>
+    <div class="concept-field"><strong>一句话解释：</strong>OpenAI 与微软协议中的特殊条款：一旦 OpenAI 实现 AGI，微软的技术许可将失效。这个条款曾被视为 AI 行业最大的法律悬念，现已随协议修订而实质性消亡。</div>
+    <div class="concept-field"><strong>背景来源：</strong>OpenAI-微软协议修订 + Simon Willison 分析</div>
+    <div class="concept-field"><strong>为什么重要：</strong>标志着 AI 行业从理想主义阶段进入商业现实主义阶段。「AGI 触发器」曾是约束 AI 公司最独特的法律工具，它的消亡意味着资本和商业逻辑已经完全主导了 AI 的发展方向。</div>
+    <div class="concept-field"><strong>团队应用场景：</strong>关注 AI 供应商的商业条款变化——独占协议正在被多云策略取代，我们的 API 接入架构也应具备供应商切换能力。</div>
+  </div>
+  <div class="concept-card">
+    <h4>2. 宠物容器问题 (Pet Container Problem)</h4>
+    <div class="concept-field"><strong>一句话解释：</strong>Anthropic 在 Managed Agents 中遇到的架构缺陷：Agent 会话绑定到特定容器（像养宠物一样），容器故障则会话丢失。解决方案：将 Session/Harness/Sandbox 解耦为独立抽象层，容器变为可替换的「牛」。</div>
+    <div class="concept-field"><strong>背景来源：</strong>Anthropic Engineering: Scaling Managed Agents</div>
+    <div class="concept-field"><strong>为什么重要：</strong>所有运行 AI Agent 的团队都会遇到这个问题。有状态的 Agent 需要无状态的执行环境——这与微服务架构的演进路径完全一致。</div>
+    <div class="concept-field"><strong>团队应用场景：</strong>审查我们自己的 Agent 运行方式：会话状态是否与执行环境解耦？容器或进程崩溃后，Agent 能否恢复？</div>
+  </div>
+  <div class="concept-card">
+    <h4>3. Agent 按量计费时代</h4>
+    <div class="concept-field"><strong>一句话解释：</strong>从 GitHub Copilot 的 AI Credits 到 Tailscale Aperture 的跨供应商配额，AI 工具正在集体从固定订阅转向按量计费。根本原因：Agent 式用量（多小时自主运行）与聊天式用量（几秒钟问答）的成本差异可达数个数量级。</div>
+    <div class="concept-field"><strong>背景来源：</strong>GitHub Copilot 计费变更 + Tailscale Aperture 公告</div>
+    <div class="concept-field"><strong>为什么重要：</strong>这将根本改变团队评估和使用 AI 工具的方式。「免费试用」心态必须转变为「成本意识」心态。</div>
+    <div class="concept-field"><strong>团队应用场景：</strong>在 6 月 1 日前建立 AI 工具 token 消耗基线，设置团队和个人级别的用量预警和预算上限。</div>
+  </div>
+  <div class="concept-card">
+    <h4>4. 声纹即不可轮换凭证</h4>
+    <div class="concept-field"><strong>一句话解释：</strong>与密码不同，声纹一旦泄露就无法「轮换」。Mercor 泄露事件将政府 ID、自拍和高质量录音绑定在一起，为攻击者提供了完整的身份+声纹包。这类数据可用于银行声纹验证绕过、Vishing 和深伪造电话。</div>
+    <div class="concept-field"><strong>背景来源：</strong>Mercor 4TB 数据泄露分析</div>
+    <div class="concept-field"><strong>为什么重要：</strong>生物特征认证的根本脆弱性：你可以轮换密码和密钥，但不能轮换你的声音和脸。</div>
+    <div class="concept-field"><strong>团队应用场景：</strong>验证我们的身份认证和反欺诈系统是否过度依赖单一生物特征。考虑多因素验证中生物特征仅作为辅助而非唯一因子。</div>
+  </div>
+  <div class="concept-card">
+    <h4>5. 渐进式披露 vs MCP 工具膨胀 (Progressive Disclosure vs Tool Bloat)</h4>
+    <div class="concept-field"><strong>一句话解释：</strong>Fly.io 的观点：MCP 将所有工具定义塞进 Agent 上下文（工具膨胀），而更好的方式是渐进式披露——Agent 只需知道一句话描述就能按需加载完整工具。类比：你不会在每次对话中把整本字典放在桌上。</div>
+    <div class="concept-field"><strong>背景来源：</strong>Fly.io: Unfortunately, Sprites Now Speak MCP</div>
+    <div class="concept-field"><strong>为什么重要：</strong>随着 Agent 工具数量增长，上下文窗口管理成为关键瓶颈。这个设计哲学将影响所有 Agent 框架的演进方向。</div>
+    <div class="concept-field"><strong>团队应用场景：</strong>设计内部 Agent 工具时，优先考虑 Skill/CLI 模式（按需加载），而非一次性注册所有工具。保持 Agent 上下文精简。</div>
+  </div>
+
+  <h2 id="fun">🎲 趣闻</h2>
+
+  <div class="fun-card">
+    <h4><a href="https://www.alexselimov.com/posts/men_who_stare_at_walls/">盯墙术：一种反直觉的专注力训练</a></h4>
+    <p>当大脑疲劳时，不刷手机、不看视频，而是面壁静坐 5-10 分钟。作者发现这像健身一样——开始时极度抗拒，但坚持后专注力显著恢复。原理：减少微多巴胺刺激，让前额叶皮层重新接管注意力。HN 453 赞。适合下午三点写不动代码的你。</p>
+  </div>
+  <div class="fun-card">
+    <h4><a href="https://ismy.blue/">你的蓝色是我的蓝色吗？</a></h4>
+    <p>一个极简交互实验：给你一个颜色，你判断它是蓝色还是绿色。测试你的色彩分类边界是否与他人一致。背景是语言学中关于「蓝-绿边界」的经典研究——不同文化和个体的颜色分类确实存在显著差异。HN 343 赞。</p>
+  </div>
+  <div class="fun-card">
+    <h4><a href="https://arstechnica.com/tech-policy/2026/04/musk-and-altman-face-off-in-trial-that-will-determine-openais-future/">Musk vs Altman 对簿公堂：OpenAI 的存亡审判</a></h4>
+    <p>审判预计持续约四周。Musk 主张 OpenAI 背叛了非营利使命，索赔理论高达 1340 亿美元（被 OpenAI 嘲笑）。证人名单包括 Brockman、Nadella、Sutskever、Shivon Zilis。精彩对白不断：Musk 称 Altman 是「骗子」，Altman 反击 Musk 发布了「给儿童看的动漫色情机器人」。Brockman 2017 年日记被引用：「这是我们摆脱 Elon 的唯一机会。」戏剧性拉满。</p>
+  </div>
+
+  <h2 id="resources">📚 资源</h2>
+
+  <div class="resource-item">
+    <a href="https://eclecticlight.co/2026/04/23/networking-changes-coming-in-macos-27/">macOS 27 网络变更预警</a>
+    <p>Apple 罕见地提前预告 macOS 27 将可能移除 AFP 协议支持，并要求 MDM/ADE/应用分发等服务器使用 TLS 1.2+ 和 ATS 级证书。老旧 NAS 和 Time Capsule 用户需关注。预计 WWDC 6 月 8 日发布开发者 Beta。</p>
+  </div>
+  <div class="resource-item">
+    <a href="https://tech.meituan.com/2026/04/27/longcat-larybench.html">美团 LARYBench：具身 AI 的动作表征 ImageNet</a>
+    <p>美团 LongCat 团队发布 LARYBench，包含 100 万+ 标注视频片段、151 种动作类型、11 种机器人形态。关键发现：通用视觉编码器（DINOv3、V-JEPA-2）在动作表征上显著优于专门的具身 AI 模型——暗示从互联网视频学习的通用预训练可能比专业训练更有效。数据集和代码已开源。</p>
+  </div>
+
+  <h2 id="quotes">💬 言论</h2>
+
+  <div class="quote-block">
+    <blockquote>据我所知，「与 OpenAI 的技术进展无关」就是在宣告 AGI 条款已死。</blockquote>
+    <div class="quote-author">— <a href="https://simonwillison.net/2026/Apr/27/now-deceased-agi-clause/">Simon Willison</a></div>
+    <div class="quote-meta">类型：作者原话 · 关键词：AI Workflow / 管理认知</div>
+    <div class="quote-comment"><strong>点评：</strong>一个曾让整个行业浮想联翩的法律概念，在一份商业协议修订中悄然消亡。资本逻辑终究比技术理想主义更有执行力。</div>
+    <div class="quote-team-insight"><strong>团队启发：</strong>关注 AI 供应商的合同条款变化——「AGI 触发器」类的条款可能影响服务连续性和定价，提前评估供应商锁定风险。</div>
+  </div>
+  <div class="quote-block">
+    <blockquote>文档和代码的生成速度已经超过了团队成员的审阅速度。你会感觉大多数人已经不再阅读了。</blockquote>
+    <div class="quote-author">— <a href="https://ky.fyi/posts/ai-burnout">Ky Decker</a></div>
+    <div class="quote-meta">类型：作者原话 · 关键词：管理认知 / AI Workflow</div>
+    <div class="quote-comment"><strong>点评：</strong>AI 倦怠的核心不是工具疲劳，而是「环境胁迫」——你无法选择退出别人使用 AI 的后果。当所有人都在生成、没人在阅读时，整个组织的知识基础都在空心化。</div>
+    <div class="quote-team-insight"><strong>团队启发：</strong>定期审视团队中「AI 生成量 vs 人类审阅量」的比例。代码审查和文档 review 的时间投入不应因 AI 提速而被压缩。</div>
+  </div>
+  <div class="quote-block">
+    <blockquote>要预测一场仍在展开的变革，我们需要倾听正在经历它的人。</blockquote>
+    <div class="quote-author">— <a href="https://www.anthropic.com/research/economic-index-survey-announcement">Anthropic 经济研究团队</a></div>
+    <div class="quote-meta">类型：译文 · 关键词：管理认知</div>
+    <div class="quote-comment"><strong>点评：</strong>量化数据（用量统计、劳动力数据）总是滞后的。用定性访谈补充定量指标——这个方法论本身值得团队借鉴，不仅限于 AI 影响评估。</div>
+    <div class="quote-team-insight"><strong>团队启发：</strong>在评估 AI 工具对团队效率的影响时，除了看数据指标，也应定期做一对一访谈，收集主观体验和未被量化的「暗知识」。</div>
+  </div>
+  <div class="quote-block">
+    <blockquote>OpenAI 产品将「优先在 Azure 上发布，除非微软无法或选择不支持所需能力」。</blockquote>
+    <div class="quote-author">— <a href="https://techcrunch.com/2026/04/27/openai-ends-microsoft-legal-peril-over-its-50b-amazon-deal/">OpenAI-微软联合声明（经由 TechCrunch 报道）</a></div>
+    <div class="quote-meta">类型：译文 · 关键词：管理认知</div>
+    <div class="quote-comment"><strong>点评：</strong>「除非微软不能」这五个字是整份协议中最微妙的博弈空间。它既给了 Azure 面子，又给了 OpenAI 随时出走的合法理由。合同措辞的艺术。</div>
+    <div class="quote-team-insight"><strong>团队启发：</strong>在评估云服务和 AI API 供应商时，关注「优先」和「独占」的区别——前者给你切换空间，后者锁死你。</div>
+  </div>
+  <div class="quote-block">
+    <blockquote>更强的模型产生了客观上更好的交易结果，但使用弱模型的用户并未察觉自己处于劣势。</blockquote>
+    <div class="quote-author">— <a href="https://www.anthropic.com/features/project-deal">Anthropic Project Deal 实验</a></div>
+    <div class="quote-meta">类型：摘要式转述 · 关键词：AI Workflow / 交易系统</div>
+    <div class="quote-comment"><strong>点评：</strong>这是 AI Agent 商务谈判中最危险的发现：你不知道对手的 Agent 比你的更强。信息不对称从「谁知道更多」变成了「谁的模型更好」——而你可能完全感知不到差距。</div>
+    <div class="quote-team-insight"><strong>团队启发：</strong>在使用 AI Agent 进行商务沟通或谈判时，要意识到模型质量差异可能导致系统性劣势。定期评估并升级关键业务场景中的模型版本。</div>
+  </div>
+  <div class="quote-block">
+    <blockquote>Output 不等于设计。新工具不断承诺更快地生成界面、更快地把文字变成产品、更快地把设计折叠进代码。但这些假设的前提是错误的：设计不是「产出」这个动作本身。</blockquote>
+    <div class="quote-author">— <a href="https://linear.app/now/output-isn-t-design">Karri Saarinen（Linear CEO）</a></div>
+    <div class="quote-meta">类型：译文 · 关键词：前端工程 / 管理认知</div>
+    <div class="quote-comment"><strong>点评：</strong>这是对 AI 辅助设计最精准的降维打击。效率工具优化的是产出速度，但设计的核心是判断、取舍和意图——这些恰恰是不能被加速的部分。</div>
+    <div class="quote-team-insight"><strong>团队启发：</strong>在引入 AI 设计工具（如 Claude Design）时，明确区分「生成速度」和「设计质量」。工具加速的是探索，不是判断。判断仍需人类设计师。</div>
+  </div>
+  <div class="quote-block">
+    <blockquote>邮件不优雅，但它是 Lindy 的。</blockquote>
+    <div class="quote-author">— <a href="https://samkhawase.com/blog/email-is-crazy/">Sam Khawase</a></div>
+    <div class="quote-meta">类型：作者原话 · 关键词：稳定性 / 工具链</div>
+    <div class="quote-comment"><strong>点评：</strong>Lindy 效应：存活越久的东西，越可能继续存活。邮件的每一层「胶带」都是一次进化适应。这个思维模型也适用于评估技术栈——有时候「丑但有效」比「美但脆弱」更值得押注。</div>
+    <div class="quote-team-insight"><strong>团队启发：</strong>评估技术选型时引入 Lindy 思维：一项技术的存活历史长度，可能比它的 GitHub Star 数更能预测它的未来寿命。</div>
+  </div>
+
+  <h2 id="team-insights">✅ 对团队的启发</h2>
+
+  <div class="insight-card">
+    <p><span class="insight-num">1</span>6 月 1 日前建立 AI 工具 token 消耗基线和预算体系 — GitHub Copilot 转向按量计费只是开始，Cursor、Claude Code 大概率跟进。不做预算的团队将在月底账单中「惊喜」。</p>
+  </div>
+  <div class="insight-card">
+    <p><span class="insight-num">2</span>声纹和面部等生物特征是不可轮换的凭证 — Mercor 泄露事件提醒我们，身份验证不应过度依赖单一生物因子。审查我们的反欺诈和身份验证链路。</p>
+  </div>
+  <div class="insight-card">
+    <p><span class="insight-num">3</span>Agent 工具设计采用渐进式披露 — Fly.io 的批判值得借鉴：与其把所有工具定义塞进 MCP 上下文，不如让 Agent 通过 Skill/CLI 按需加载。保持上下文精简，提升准确率。</p>
+  </div>
+  <div class="insight-card">
+    <p><span class="insight-num">4</span>定期审视「AI 生成量 vs 人类审阅量」的比例 — 81k 调查和 AI 倦怠反思都指向同一问题：如果生成速度远超审阅速度，组织知识基础就在空心化。代码审查时间不应因 AI 提速而被压缩。</p>
+  </div>
+
+
+
+  <div class="footer-sources">
+    <strong>信息源：</strong>60 个全球精选科技 / AI / 工程 / 系统可靠性信息源<br>
+    <strong>覆盖：</strong>Hacker News · TLDR · Anthropic · OpenAI · DeepMind · Simon Willison · Pragmatic Engineer · Cloudflare · Netflix · Stripe · GitHub · Jepsen · ACM Queue 等<br><br>
+    由 Cursor AI 自动生成 · 信息截止至 2026-04-28
+  </div>
+</main>
+</div>
+
+<script>
+  const today = '2026-04-28';
+  const audioPath = `../audio/${today}.m4a`;
+  fetch(audioPath, { method: 'HEAD' }).then(r => {
+    if (r.ok) {
+      document.getElementById('audioBar').classList.remove('hidden');
+      document.getElementById('audioPlayer').src = audioPath;
+    }
+  }).catch(() => {});
+
+  const tocLinks = document.querySelectorAll('.toc a');
+  const sections = [];
+  tocLinks.forEach(link => {
+    const id = link.getAttribute('href')?.replace('#','');
+    if (id) { const el = document.getElementById(id); if (el) sections.push({ id, el, link }); }
+  });
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const s = sections.find(s => s.el === entry.target);
+      if (s) s.link.classList.toggle('active', entry.isIntersecting);
+    });
+  }, { rootMargin: '-20% 0px -75% 0px' });
+  sections.forEach(s => observer.observe(s.el));
+</script>
+</body>
+</html>

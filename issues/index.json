@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-04-28",
+    "title": "第 5 期：AGI 条款已死 — AI 行业同日完成三个「断奶」",
+    "highlights": "AGI 条款已死 · OpenAI-微软结束独占 · GitHub Copilot 按量计费 · 中国叫停 Meta 收购 Manus · David Silver 11 亿新实验室 · Mercor 4TB 泄露 · Claude Design 发布",
+    "image": "https://cdn.sanity.io/images/4zrzovbb/website/701946d96f607f199fd7d65c8f5e2f50bf9336e4-1200x630.png"
+  },
+  {
     "date": "2026-04-27",
     "title": "第 4 期：AI Agent 删了生产数据库 — 能力在膨胀，安全网在哪？",
     "highlights": "AI Agent 删库事件 · Google 承诺最高 400 亿加码 Anthropic · OpenAI 拟收购 Astral · Claude Code 质量复盘 · DeepSeek V4 开源 · 竞技马拉松破 2 小时",
