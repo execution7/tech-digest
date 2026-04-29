@@ -111,6 +111,21 @@
       display: inline-block; font-size: 0.65rem; padding: 2px 7px; border-radius: 8px;
       background: var(--surface2); color: var(--text-muted); font-weight: 500;
     }
+    .sort-bar {
+      display: flex; align-items: center; gap: 8px; margin-bottom: 20px;
+    }
+    .sort-label {
+      font-size: 0.82rem; color: var(--text-muted); font-weight: 500; margin-right: 4px;
+    }
+    .sort-btn {
+      font-size: 0.8rem; font-weight: 600; padding: 6px 16px; border-radius: 20px;
+      border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary);
+      cursor: pointer; transition: all 0.2s; outline: none;
+    }
+    .sort-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .sort-btn.active {
+      background: var(--accent); color: #fff; border-color: var(--accent);
+    }
     .footer {
       margin-top: 48px; padding: 20px; text-align: center;
       font-size: 0.85rem; color: var(--text-muted);
@@ -165,6 +180,11 @@
         <div class="stat-num stat-recommended">8</div>
         <div class="stat-label">推荐 (5万+播放)</div>
       </div>
+    </div>
+    <div class="sort-bar">
+      <span class="sort-label">排序</span>
+      <button class="sort-btn active" data-sort="popularity" onclick="sortArticles('popularity')">按精选度</button>
+      <button class="sort-btn" data-sort="latest" onclick="sortArticles('latest')">按最新</button>
     </div>
     <ul class="article-list">
 
@@ -774,5 +794,25 @@
       Powered by <a href="https://cursor.com">Cursor AI</a>
     </div>
   </div>
+<script>
+function sortArticles(mode) {
+  document.querySelectorAll('.sort-btn').forEach(b => b.classList.toggle('active', b.dataset.sort === mode));
+  const list = document.querySelector('.article-list');
+  const items = Array.from(list.children);
+  const parseViews = el => {
+    const t = el.querySelector('.article-views')?.textContent || '0';
+    return parseFloat(t.replace(/[^\d.]/g, '')) || 0;
+  };
+  items.sort((a, b) => {
+    if (mode === 'latest') {
+      const da = a.querySelector('.article-date')?.textContent || '';
+      const db = b.querySelector('.article-date')?.textContent || '';
+      return db.localeCompare(da);
+    }
+    return parseViews(b) - parseViews(a);
+  });
+  items.forEach(el => list.appendChild(el));
+}
+</script>
 </body>
 </html>
