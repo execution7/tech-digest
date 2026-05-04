@@ -1,5 +1,11 @@
 [
   {
+    "date": "2026-05-04",
+    "title": "第 9 期：GPT-5.5 登顶基准却在「说不知道」上退步了——可信度比能力更贵",
+    "highlights": "GPT-5.5 登顶基准但幻觉率 85% · Martin Fowler SPDD 结构化提示 · Discord 指标压缩提效 45% · Cloudflare Rust panic 恢复 · EU AI Act 合规倒计时 · Citizen Lab 电信监控 · pgBackRest 维护变故 · TUI 无障碍困境",
+    "image": null
+  },
+  {
     "date": "2026-05-03",
     "title": "第 8 期：Agent 开户买域名了——当 AI 成为经济主体，钱流向了谁？",
     "highlights": "Agent 自主开户买域名 · AI Lab 吃掉价值链 · Token 支出压垮 GitHub · Agentic 编码倦怠 · MCP 似曾相识 · Google ZK 证明被攻破 · Jepsen 测出 MariaDB 隔离造假 · 奥斯卡禁 AI 参评",
