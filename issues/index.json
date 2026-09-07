@@ -1,12 +1,12 @@
 [
   {
     "date": "2026-09-07",
-    "title": "第 92 期：先查清引用，再让 Agent 改代码｜精选短版",
+    "title": "第 92 期：让 Agent 少返工，比让它多写代码更有用",
     "highlights": [
-      "Kotlin PSI MCP 借用 IDE 的语义索引查引用、定义和继承关系；需要插件、工程索引和 MCP 接入，未安装不能直接用",
-      "Compose 重组可视化适合缩小排查范围，但重组多不等于必然卡顿，项目的零开销说法未经独立验证",
-      "Simon Willison 在 9 月 6 日讨论技术债：先补测试、再定向重构，避免新旧系统长期并存；这是经验观点，不是成功率统计",
-      "另选两篇背景实践：组合 WorkManager 测试规则，以及在 JVM 小工具中替换手写 Gemini REST 调用；不冒充当天发布"
+      "6项工具与工作法：domain-modeling、prototype、git range-diff，以及 Agent Browser、OKF Agent Memory、Kotlin PSI MCP",
+      "前两项 Skill 当前会话已提供；Git 已确认存在。另三个项目需要接入验证，不冒充已安装可用",
+      "9月4日至7日的未重复动态补充进来：Codex 异步澄清修复、Bun 上下文保留回归、Kubernetes Rootless Beta",
+      "X 工具线索已回溯原始仓库；同名 Agent Browser 项目、记忆工具的节省宣传和模型权限均保留边界"
     ],
     "image": "https://github.com/user-attachments/assets/2530c24c-48fa-40ab-8bb2-fb4864b0e25f"
   },
