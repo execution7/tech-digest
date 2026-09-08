@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-09-08",
+    "title": "第 93 期：Agent 推荐的工具，未必是你需要的工具",
+    "highlights": [
+      "AEO 研究观察 Agent 的产品选择；推荐倾向不是产品质量榜，也不是适用性证明",
+      "grilling、research、git bisect：先用已有 Skill 与 Git，补齐决策、证据和回归定位",
+      "Knip 清理 JS/TS 冗余，LLM 0.35 增加 Astra 标识；两项均需接入，不冒充已经可用",
+      "Kotlin、Swift Package Index 与数据库 MCP：关注调用边界和显示语义，而非追逐版本号"
+    ],
+    "image": "https://substack-post-media.s3.amazonaws.com/public/images/7c8e4ec6-5470-4b1e-831c-cbdd0b864f2b_2910x1598.png"
+  },
+  {
     "date": "2026-09-07",
     "title": "第 92 期：让 Agent 少返工，比让它多写代码更有用",
     "highlights": [
