@@ -1,5 +1,16 @@
 [
   {
+    "date": "2026-09-09",
+    "title": "第 94 期：请求失败了，先别急着改业务代码",
+    "highlights": [
+      "Claude Code 2.1.266 修复网关配置回归，官方说明不需要改配置",
+      "TDD Skill、Git 历史检索、curl 请求计时：用已有能力缩小问题；Spec Kit 需接入",
+      "Dependabot 的自动凭证重新启用；显式注册表配置仍优先，不能无条件删掉所有 PAT",
+      "CI tracing 仍为 Alpha；Spring 调试的 MCP 入口尚属未来计划，不冒充当前可用"
+    ],
+    "image": "https://blog.jetbrains.com/wp-content/uploads/2026/09/image-25.png"
+  },
+  {
     "date": "2026-09-08",
     "title": "第 93 期：Agent 推荐的工具，未必是你需要的工具",
     "highlights": [
